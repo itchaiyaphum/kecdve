@@ -15,8 +15,10 @@
                 	</div>
                 </footer>
                 <?php if($this->auth_lib->isLogin()){ ?>
-                <div class="uk-margin-large-top uk-text-center"><a href="{{ url('admin') }}">จัดการข้อมูลหลังบ้าน</a></div>
-                <?php } ?>
+                <!-- 
+                <div class="uk-margin-large-top uk-text-center"><a href="<?php echo base_url('admin');?>">จัดการข้อมูลหลังบ้าน</a></div>
+                 -->
+			    <?php } ?>
 			</div>
 		</div>
 	</div>

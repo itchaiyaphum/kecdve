@@ -34,17 +34,17 @@
             							<li><a href="<?php echo base_url('profile');?>"><i class="uk-icon-home"></i> หน้าหลัก</a></li>
             							<li class="uk-nav-divider"></li>
             							<?php if($profileData->user_type=='student'){ ?>
-            							<li><a href="<?php echo base_url('profile/activity/index');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
-            							<li><a href="<?php echo base_url('profile/timing/index');?>><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
-            							<li><a href="<?php echo base_url('profile/report/index');?>"><i class="uk-icon-pie-chart"></i> สรุปผลการฝึกงาน</a></li>
+            							<li><a href="<?php echo base_url('profile/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
+            							<li><a href="<?php echo base_url('profile/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
+            							<li><a href="<?php echo base_url('profile/evaluation/');?>"><i class="uk-icon-pie-chart"></i> สรุปผลการฝึกงาน</a></li>
             							<?php } elseif($profileData->user_type=='trainer'){ ?>
-            							<li><a href="<?php echo base_url('profile/trainer_activity/index');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
-            							<li><a href="<?php echo base_url('profile/trainer_timing/index');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
-            							<li><a href="<?php echo base_url('profile/trainer_report/index');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
+            							<li><a href="<?php echo base_url('trainer/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
+            							<li><a href="<?php echo base_url('trainer/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
+            							<li><a href="<?php echo base_url('trainer/evaluation/');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
             							<?php } elseif($profileData->user_type=='advisor'){ ?>
-            							<li><a href="<?php echo base_url('profile/advisor_activity/index');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
-            							<li><a href="<?php echo base_url('profile/advisor_timing/index');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
-            							<li><a href="<?php echo base_url('profile/advisor_report/index');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
+            							<li><a href="<?php echo base_url('advisor/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
+            							<li><a href="<?php echo base_url('advisor/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
+            							<li><a href="<?php echo base_url('advisor/evaluation/');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
             							<?php } ?>
             							<li class="uk-nav-divider"></li>
             							<li><a href="<?php echo base_url('settings/profile');?>"><i class="uk-icon-gear"></i> แก้ไขข้อมูลส่วนตัว</a></li>
@@ -73,17 +73,17 @@
             			     $profileData = $this->profile_lib->getData();
             			?>
             				<?php if($profileData->user_type=='student'){ ?>
-            				<li><a href="<?php echo base_url('profile/activity/index');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
-            				<li><a href="<?php echo base_url('profile/timing/index');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
-            				<li><a href="<?php echo base_url('profile/report/index');?>"><i class="uk-icon-pie-chart"></i> สรุปผลการฝึกงาน</a></li>
+            				<li><a href="<?php echo base_url('profile/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
+            				<li><a href="<?php echo base_url('profile/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
+            				<li><a href="<?php echo base_url('profile/evaluation/');?>"><i class="uk-icon-pie-chart"></i> สรุปผลการฝึกงาน</a></li>
             				<?php } elseif($profileData->user_type=='trainer'){ ?>
-            				<li><a href="<?php echo base_url('profile/trainer_activity/index');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
-            				<li><a href="<?php echo base_url('profile/trainer_timing/index');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
-            				<li><a href="<?php echo base_url('profile/trainer_report/index');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
+            				<li><a href="<?php echo base_url('trainer/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
+            				<li><a href="<?php echo base_url('trainer/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
+            				<li><a href="<?php echo base_url('trainer/evaluation/');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
             				<?php } elseif($profileData->user_type=='advisor'){ ?>
-            				<li><a href="<?php echo base_url('profile/advisor_activity/index');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
-            				<li><a href="<?php echo base_url('profile/advisor_timing/index');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
-            				<li><a href="<?php echo base_url('profile/advisor_report/index');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
+            				<li><a href="<?php echo base_url('advisor/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
+            				<li><a href="<?php echo base_url('advisor/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
+            				<li><a href="<?php echo base_url('advisor/evaluation/');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
             				<?php } ?>
             				<li class="uk-nav-divider"></li>
             				<li><a href="<?php echo base_url('settings/profile');?>"><i class="uk-icon-gear"></i> แก้ไขข้อมูลส่วนตัว</a></li>

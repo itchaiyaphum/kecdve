@@ -11,11 +11,12 @@ class Profile_lib
 
     public function getData()
     {
+        
         $profile = new stdClass();
-        $profile->firstname = "Wannapong";
-        $profile->lastname = "Kumjumpon";
-        $profile->user_type = "student";
-        $profile->thumbnail = "/storage/profiles/profile-556b099b7aff3.jpg";
+        $profile->firstname = $this->ci->tank_auth->get_firstname();
+        $profile->lastname = $this->ci->tank_auth->get_lastname();
+        $profile->user_type = $this->ci->tank_auth->get_usertype();
+        $profile->thumbnail = $this->ci->tank_auth->get_thumbnail();
         
         return $profile;
     }

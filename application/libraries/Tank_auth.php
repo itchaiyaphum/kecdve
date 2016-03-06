@@ -71,6 +71,11 @@ class Tank_auth
 						$this->ci->session->set_userdata(array(
 								'user_id'	=> $user->id,
 								'username'	=> $user->username,
+								'email'	=> $user->email,
+								'firstname'	=> $user->firstname,
+								'lastname'	=> $user->lastname,
+								'user_type'	=> $user->user_type,
+								'thumbnail'	=> $user->thumbnail,
 								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
 						));
 
@@ -148,6 +153,46 @@ class Tank_auth
 	{
 		return $this->ci->session->userdata('username');
 	}
+	
+	/**
+	 * Get firstname
+	 *
+	 * @return	string
+	 */
+	function get_firstname()
+	{
+		return $this->ci->session->userdata('firstname');
+	}
+	
+	/**
+	 * Get lastname
+	 *
+	 * @return	string
+	 */
+	function get_lastname()
+	{
+		return $this->ci->session->userdata('lastname');
+	}
+	
+	/**
+	 * Get user_type
+	 *
+	 * @return	string
+	 */
+	function get_usertype()
+	{
+		return $this->ci->session->userdata('user_type');
+	}
+	
+	/**
+	 * Get thumbnail
+	 *
+	 * @return	string
+	 */
+	function get_thumbnail()
+	{
+		return $this->ci->session->userdata('thumbnail');
+	}
 
 	/**
 	 * Create new user on the site and return some data about it:
@@ -161,6 +206,10 @@ class Tank_auth
 	 */
 	function create_user($username, $email, $password, $email_activation)
 	{
+	    $firstname = $this->ci->input->get_post('firstname');
+	    $lastname = $this->ci->input->get_post('lastname');
+	    $user_type = "student";
+	    
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
 			$this->error = array('username' => 'auth_username_in_use');
 
@@ -179,6 +228,9 @@ class Tank_auth
 				'password'	=> $hashed_password,
 				'email'		=> $email,
 				'last_ip'	=> $this->ci->input->ip_address(),
+				'firstname'	=> $firstname,
+				'lastname'	=> $lastname,
+				'user_type'	=> $user_type
 			);
 
 			if ($email_activation) {

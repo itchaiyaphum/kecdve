@@ -8,6 +8,20 @@ if ($use_username) {
 		'size'	=> 30,
 	);
 }
+$firstname = array(
+	'name'	=> 'firstname',
+	'id'	=> 'firstname',
+	'value'	=> set_value('firstname'),
+	'maxlength'	=> 80,
+	'size'	=> 30,
+);
+$lastname = array(
+	'name'	=> 'lastname',
+	'id'	=> 'lastname',
+	'value'	=> set_value('lastname'),
+	'maxlength'	=> 80,
+	'size'	=> 30,
+);
 $email = array(
 	'name'	=> 'email',
 	'id'	=> 'email',
@@ -52,6 +66,26 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
                 </div>
             </div>
         	<?php } ?>
+        	<div class="uk-form-row">
+                <label class="uk-form-label" for="form-h-it"><?php echo form_label('ชื่อ', $firstname['id']); ?></label>
+                <div class="uk-form-controls">
+                    <?php echo form_input($firstname); ?>
+                    <div>
+                    	<?php echo form_error($firstname['name']); ?>
+                    	<?php echo isset($errors[$firstname['name']])?$errors[$firstname['name']]:''; ?>
+                    </div>
+                </div>
+            </div>
+        	<div class="uk-form-row">
+                <label class="uk-form-label" for="form-h-it"><?php echo form_label('นามสกุล', $lastname['id']); ?></label>
+                <div class="uk-form-controls">
+                    <?php echo form_input($lastname); ?>
+                    <div>
+                    	<?php echo form_error($lastname['name']); ?>
+                    	<?php echo isset($errors[$lastname['name']])?$errors[$lastname['name']]:''; ?>
+                    </div>
+                </div>
+            </div>
         	<div class="uk-form-row">
                 <label class="uk-form-label" for="form-h-it"><?php echo form_label('อีเมล์', $email['id']); ?></label>
                 <div class="uk-form-controls">

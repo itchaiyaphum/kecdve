@@ -68,15 +68,15 @@ class Tank_auth
 						$this->error = array('banned' => $user->ban_reason);
 
 					} else {
-						$this->ci->session->set_userdata(array(
-								'user_id'	=> $user->id,
-								'username'	=> $user->username,
-								'email'	=> $user->email,
-								'firstname'	=> $user->firstname,
-								'lastname'	=> $user->lastname,
-								'user_type'	=> $user->user_type,
-								'thumbnail'	=> $user->thumbnail,
-								'status'	=> ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED,
+						$this->set_session_data(array(
+						    'user_id' => $user->id,
+						    'username' => $user->username,
+						    'email' => $user->email,
+						    'firstname' => $user->firstname,
+						    'lastname' => $user->lastname,
+						    'user_type' => $user->user_type,
+						    'thumbnail' => $user->thumbnail,
+						    'status' => ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED
 						));
 
 						if ($user->activated == 0) {							// fail - not activated
@@ -616,10 +616,15 @@ class Tank_auth
 					if (!is_null($user = $this->ci->user_autologin->get($data['user_id'], md5($data['key'])))) {
 
 						// Login user
-						$this->ci->session->set_userdata(array(
-								'user_id'	=> $user->id,
-								'username'	=> $user->username,
-								'status'	=> STATUS_ACTIVATED,
+						$this->set_session_data(array(
+						    'user_id' => $user->id,
+						    'username' => $user->username,
+						    'email' => $user->email,
+						    'firstname' => $user->firstname,
+						    'lastname' => $user->lastname,
+						    'user_type' => $user->user_type,
+						    'thumbnail' => $user->thumbnail,
+						    'status' => STATUS_ACTIVATED
 						));
 
 						// Renew users cookie to prevent it from expiring
@@ -639,6 +644,19 @@ class Tank_auth
 			}
 		}
 		return FALSE;
+	}
+	
+	private function set_session_data($data=array()){
+	    $this->ci->session->set_userdata(array(
+	        'user_id'	=> $data['user_id'],
+	        'username'	=> $data['username'],
+	        'email'	    => $data['email'],
+	        'firstname'	=> $data['firstname'],
+	        'lastname'	=> $data['lastname'],
+	        'user_type'	=> $data['user_type'],
+	        'thumbnail'	=> $data['thumbnail'],
+	        'status'	=> $data['status']
+	    ));
 	}
 
 	/**

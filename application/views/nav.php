@@ -22,7 +22,7 @@
             		<div class="uk-navbar-flip">
             			<ul class="uk-navbar-nav uk-hidden-small">
             				<?php 
-            				if($this->auth_lib->isLogin()){ 
+            				if($this->tank_auth->is_logged_in()){ 
             				    $profileData = $this->profile_lib->getData();
             				?>
             				<li><a href="<?php echo base_url('profile');?>"><span class="uk-icon-user"></span> <?php echo $profileData->firstname;?> <?php echo $profileData->lastname;?></a></li>
@@ -69,7 +69,7 @@
             			<li><a href="<?php echo base_url('');?>"><i class="uk-icon-home"></i> หน้าหลัก</a></li>
             			<li class="uk-nav-divider"></li>
             			<?php 
-            			if($this->auth_lib->isLogin()){ 
+            			if($this->tank_auth->is_logged_in()){ 
             			     $profileData = $this->profile_lib->getData();
             			?>
             				<?php if($profileData->user_type=='student'){ ?>

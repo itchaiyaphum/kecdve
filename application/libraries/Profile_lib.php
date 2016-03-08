@@ -12,13 +12,27 @@ class Profile_lib
     public function getData()
     {
         $profile = new stdClass();
-        $profile->user_id = $this->ci->tank_auth->get_user_id();
-        $profile->firstname = $this->ci->tank_auth->get_firstname();
-        $profile->lastname = $this->ci->tank_auth->get_lastname();
-        $profile->user_type = $this->ci->tank_auth->get_usertype();
-        $profile->email = $this->ci->tank_auth->get_email();
-        $profile->thumbnail = $this->ci->tank_auth->get_thumbnail();
-        $profile->organization_id = $this->ci->tank_auth->get_organization_id();
+        $profile->user_id = NULL;
+        $profile->firstname = NULL;
+        $profile->lastname = NULL;
+        $profile->user_type = NULL;
+        $profile->email = NULL;
+        $profile->thumbnail = NULL;
+        $profile->organization_id = NULL;
+        
+        $this->ci->db->where('id', $this->ci->tank_auth->get_user_id());
+        $query = $this->ci->db->get('users');
+        if ($query->num_rows()){
+            $row = $query->row();
+        
+            $profile->user_id = $row->id;
+            $profile->firstname = $row->firstname;
+            $profile->lastname = $row->lastname;
+            $profile->user_type = $row->user_type;
+            $profile->email = $row->email;
+            $profile->thumbnail = $row->thumbnail;
+            $profile->organization_id = $row->organization_id;
+        }
         
         return $profile;
     }
@@ -30,6 +44,16 @@ class Profile_lib
         $query = $this->ci->db->get('organization');
         if ($query->num_rows())
             return $query->result();
+        return NULL;
+    }
+
+    public function save($data)
+    {
+        $data['modified'] = date('Y-m-d H:i:s');
+        $this->ci->db->where('id', $data['id']);
+        if ($this->ci->db->update('users', $data)) {
+            return true;
+        }
         return NULL;
     }
 }

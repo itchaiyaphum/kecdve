@@ -20,12 +20,42 @@ class Settings extends CI_Controller
 
     public function profile()
     {
-        $data = array();
-        $data['colleges'] = $this->profile_lib->getColleges();
+        if (!$this->tank_auth->is_logged_in()) {								// not logged in or not activated
+            redirect('/auth/login/');
+        } else {
+            $profile = $this->profile_lib->getData();
+            
+            $this->form_validation->set_rules('firstname', 'ชื่อ', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('lastname', 'นามสกุล', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('organization_id', 'สถานศึกษา', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('email', 'อีเมล์', 'trim|required|xss_clean');
         
-        $this->load->view('nav');
-        $this->load->view('settings/profile', $data);
-        $this->load->view('footer');
+            $data['errors'] = array();
+        
+            if ($this->form_validation->run()) {								// validation ok
+                if ($this->profile_lib->save(array(
+                    'id' => $profile->user_id,
+                    'firstname' => $this->form_validation->set_value('firstname'),
+                    'lastname' => $this->form_validation->set_value('lastname'),
+                    'organization_id' => $this->form_validation->set_value('organization_id'),
+                    'email' => $this->form_validation->set_value('email'),
+                ))) {	// success
+                    $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
+                    redirect('settings/profile');
+                } else {														// fail
+                    $errors = $this->tank_auth->get_error_message();
+                    foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+                }
+            }
+            $data['colleges'] = $this->profile_lib->getColleges();
+            
+            $this->load->view('nav');
+            $this->load->view('settings/profile', $data);
+            $this->load->view('footer');
+            
+        }
+        
+        
     }
     public function password()
     {

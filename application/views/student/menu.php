@@ -3,7 +3,8 @@ $profileData = $this->profile_lib->getData();
 ?>
 <div class="uk-panel  uk-text-center">
 	<img class="uk-border-circle" width="120" height="120" src="<?php echo $profileData->thumbnail;?>" alt="">
-	<h3><?php echo $profileData->firstname;?> <?php echo $profileData->lastname;?></h3>
+	<div class="uk-text-large uk-margin-top"><?php echo $profileData->firstname;?> <?php echo $profileData->lastname;?></div>
+	<div><?php echo $profileData->email;?></div>
 </div>
 <hr />
 <ul class="tm-nav uk-nav" data-uk-nav="">

@@ -155,6 +155,16 @@ class Tank_auth
 	}
 	
 	/**
+	 * Get email
+	 *
+	 * @return	string
+	 */
+	function get_email()
+	{
+		return $this->ci->session->userdata('email');
+	}
+	
+	/**
 	 * Get firstname
 	 *
 	 * @return	string

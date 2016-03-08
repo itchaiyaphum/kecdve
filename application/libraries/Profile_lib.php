@@ -16,6 +16,7 @@ class Profile_lib
         $profile->firstname = $this->ci->tank_auth->get_firstname();
         $profile->lastname = $this->ci->tank_auth->get_lastname();
         $profile->user_type = $this->ci->tank_auth->get_usertype();
+        $profile->email = $this->ci->tank_auth->get_email();
         $profile->thumbnail = $this->ci->tank_auth->get_thumbnail();
         
         return $profile;

@@ -6,10 +6,10 @@
                 		</div>
                 		<div class="uk-float-right">
                 			<div style="padding: 10px;">
-                				<a href="{{ url('') }}">หน้าหลัก</a> | 
-                				<a href="{{ url('about') }}">เกี่ยวกับเรา</a> | 
-                				<a href="{{ url('contact') }}">ติดต่อเรา</a> | 
-                				<a href="{{ url('help') }}">คู่มือการใช้งาน</a>
+                				<a href="<?php echo base_url('');?>">หน้าหลัก</a> | 
+                				<a href="<?php echo base_url('about');?>">เกี่ยวกับเรา</a> | 
+                				<a href="<?php echo base_url('contact');?>">ติดต่อเรา</a> | 
+                				<a href="<?php echo base_url('help');?>">คู่มือการใช้งาน</a>
                 			</div>
                 		</div>
                 	</div>

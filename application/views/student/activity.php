@@ -26,14 +26,26 @@
 					</tr>
 					<?php 
             		for($j=0; $j<count($days_of_weeks); $j++){
+            		    
+            		    $text_activity = '-';
+            		    $text_problem = '-';
+            		    $text_advantage = '-';
+            		    for($k=0; $k<count($items); $k++){
+            		        $item = $items[$k];
+            		        if($item->week==($i+1) && $item->day==($j+1)){
+            		            $text_activity = $item->activity;
+            		            $text_problem = $item->problem;
+            		            $text_advantage = $item->advantage;
+            		        }
+            		    }
             		?>
 					<tr>
 						<td></td>
 						<td><?php echo $days_of_weeks[$j];?></td>
-						<td>-</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="<?php echo base_url('index.php?option=com_internship&view=notes&layout=form&week='.($i+1).'&day='.($j+1)); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
+						<td><?php echo $text_activity;?></td>
+						<td><?php echo $text_problem;?></td>
+						<td><?php echo $text_advantage;?></td>
+						<td><a href="<?php echo base_url('profile/activity/form/?week='.($i+1).'&day='.($j+1)); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
 					</tr>
 					<?php } ?>
 					</tbody>

@@ -87,6 +87,22 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
                 </div>
             </div>
         	<div class="uk-form-row">
+                <label class="uk-form-label" for="form-h-it"><?php echo form_label('สถานศึกษา', 'organization_id'); ?></label>
+                <div class="uk-form-controls uk-text-left">
+                	<select name="organization_id" id="organization_id">
+                	<option value="0">--- เลือกสถานศึกษา ---</option>
+                    <?php 
+                    for($i=0; $i<count($colleges); $i++){
+                        $college = $colleges[$i];
+                        ?>
+                        <option value="<?php echo $college->id;?>"><?php echo $college->title;?></option>
+                        <?php
+                    }
+                    ?>
+                    </select>
+                </div>
+            </div>
+        	<div class="uk-form-row">
                 <label class="uk-form-label" for="form-h-it"><?php echo form_label('อีเมล์', $email['id']); ?></label>
                 <div class="uk-form-controls">
                     <?php echo form_input($email); ?>

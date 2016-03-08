@@ -193,6 +193,7 @@ class Auth extends CI_Controller
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
+			$data['colleges'] = $this->profile_lib->getColleges();
 			
 			$this->load->view('nav');
 			$this->load->view('auth/register_form', $data);

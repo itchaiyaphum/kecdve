@@ -33,7 +33,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                 <div class="uk-alert uk-alert-success"><?php echo $messages;?></div>
                 <?php } ?>
                 <div class="uk-form-row">
-                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("Firstname:", $firstname['id']); ?></label>
+                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("ชื่อ:", $firstname['id']); ?></label>
                     <div class="uk-form-controls">
                         <?php echo form_input($firstname); ?>
                         <div>
@@ -43,7 +43,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                     </div>
                 </div>
                 <div class="uk-form-row">
-                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("Lastname:", $lastname['id']); ?></label>
+                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("นามสกุล:", $lastname['id']); ?></label>
                     <div class="uk-form-controls">
                         <?php echo form_input($lastname); ?>
                         <div>
@@ -53,7 +53,23 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                     </div>
                 </div>
                 <div class="uk-form-row">
-                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("Email:", $email['id']); ?></label>
+                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("สถานศึกษา:", $lastname['id']); ?></label>
+                    <div class="uk-form-controls">
+                        <select name="organization_id" id="organization_id">
+                    	<option value="0">--- เลือกสถานศึกษา ---</option>
+                        <?php 
+                        for($i=0; $i<count($colleges); $i++){
+                            $college = $colleges[$i];
+                            ?>
+                            <option value="<?php echo $college->id;?>" <?php echo ($profile->organization_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->title;?></option>
+                            <?php
+                        }
+                        ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="uk-form-row">
+                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("อีเมล์:", $email['id']); ?></label>
                     <div class="uk-form-controls">
                         <?php echo form_input($email); ?>
                         <div>

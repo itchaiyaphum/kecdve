@@ -20,11 +20,11 @@ class Settings extends CI_Controller
 
     public function profile()
     {
-        if ($this->form_validation->run()) {
-            
-        }
+        $data = array();
+        $data['colleges'] = $this->profile_lib->getColleges();
+        
         $this->load->view('nav');
-        $this->load->view('settings/profile');
+        $this->load->view('settings/profile', $data);
         $this->load->view('footer');
     }
     public function password()

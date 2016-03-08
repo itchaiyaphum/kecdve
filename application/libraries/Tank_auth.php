@@ -75,6 +75,7 @@ class Tank_auth
 						    'firstname' => $user->firstname,
 						    'lastname' => $user->lastname,
 						    'user_type' => $user->user_type,
+						    'organization_id' => $user->organization_id,
 						    'thumbnail' => $user->thumbnail,
 						    'status' => ($user->activated == 1) ? STATUS_ACTIVATED : STATUS_NOT_ACTIVATED
 						));
@@ -142,6 +143,16 @@ class Tank_auth
 	function get_user_id()
 	{
 		return $this->ci->session->userdata('user_id');
+	}
+	
+	/**
+	 * Get organization_id
+	 *
+	 * @return	string
+	 */
+	function get_organization_id()
+	{
+		return $this->ci->session->userdata('organization_id');
 	}
 
 	/**
@@ -218,6 +229,7 @@ class Tank_auth
 	{
 	    $firstname = $this->ci->input->get_post('firstname');
 	    $lastname = $this->ci->input->get_post('lastname');
+	    $organization_id = $this->ci->input->get_post('organization_id');
 	    $user_type = "student";
 	    
 		if ((strlen($username) > 0) AND !$this->ci->users->is_username_available($username)) {
@@ -240,7 +252,8 @@ class Tank_auth
 				'last_ip'	=> $this->ci->input->ip_address(),
 				'firstname'	=> $firstname,
 				'lastname'	=> $lastname,
-				'user_type'	=> $user_type
+				'user_type'	=> $user_type,
+				'organization_id'	=> $organization_id
 			);
 
 			if ($email_activation) {
@@ -633,6 +646,7 @@ class Tank_auth
 						    'firstname' => $user->firstname,
 						    'lastname' => $user->lastname,
 						    'user_type' => $user->user_type,
+						    'organization_id' => $user->organization_id,
 						    'thumbnail' => $user->thumbnail,
 						    'status' => STATUS_ACTIVATED
 						));
@@ -664,6 +678,7 @@ class Tank_auth
 	        'firstname'	=> $data['firstname'],
 	        'lastname'	=> $data['lastname'],
 	        'user_type'	=> $data['user_type'],
+	        'organization_id'	=> $data['organization_id'],
 	        'thumbnail'	=> $data['thumbnail'],
 	        'status'	=> $data['status']
 	    ));

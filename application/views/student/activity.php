@@ -53,6 +53,7 @@
 			</article>
 			<?php } ?>
 			
+			<!-- 
 			<article class="uk-article">
 				<table class="uk-table uk-table-hover">
 					<tbody><tr>
@@ -149,6 +150,7 @@
 					</tbody>
 				</table>
 			</article>
+			 -->
 		</div>
 	</div>
 </div>

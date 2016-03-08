@@ -29,17 +29,56 @@ class Settings extends CI_Controller
             $this->form_validation->set_rules('lastname', 'นามสกุล', 'trim|required|xss_clean');
             $this->form_validation->set_rules('organization_id', 'สถานศึกษา', 'trim|required|xss_clean');
             $this->form_validation->set_rules('email', 'อีเมล์', 'trim|required|xss_clean');
+            
+            $this->form_validation->set_rules('firstname_en', 'firstname_en', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('lastname_en', 'lastname_en', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('student_id', 'student_id', 'trim|required|xss_clean');
+//             $this->form_validation->set_rules('major_id', 'major_id', 'trim|required|xss_clean');
+//             $this->form_validation->set_rules('group_id', 'group_id', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('edulevel', 'edulevel', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('religion_title', 'religion_title', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('dob', 'dob', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('age', 'age', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('congenital_disease', 'congenital_disease', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('drug_allergy', 'drug_allergy', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('blood_type', 'blood_type', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('experience_work', 'experience_work', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('experience_skill', 'experience_skill', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('experience_intesting', 'experience_intesting', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('experience_status', 'experience_status', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('experience_marry_name', 'experience_marry_name', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('experience_marry_cocupation', 'experience_marry_cocupation', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('emergency_name', 'emergency_name', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('emergency_address', 'emergency_address', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('emergency_mobile', 'emergency_mobile', 'trim|required|xss_clean');
+            
+            $this->form_validation->set_rules('hometown_no', 'hometown_no', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('hometown_moo', 'hometown_moo', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('hometown_subdistrict', 'hometown_subdistrict', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('hometown_district', 'hometown_district', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('hometown_province', 'hometown_province', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('hometown_postcode', 'hometown_postcode', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('hometown_mobile', 'hometown_mobile', 'trim|required|xss_clean');
+            
+            $this->form_validation->set_rules('current_address_no', 'current_address_no', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('current_address_moo', 'current_address_moo', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('current_address_subdistrict', 'current_address_subdistrict', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('current_address_district', 'current_address_district', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('current_address_province', 'current_address_province', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('current_address_postcode', 'current_address_postcode', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('current_address_mobile', 'current_address_mobile', 'trim|required|xss_clean');
+            
+            $this->form_validation->set_rules('advisor_id', 'advisor_id', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('trainer_id', 'trainer_id', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('company_id', 'company_id', 'trim|required|xss_clean');
+            $this->form_validation->set_rules('internship_id', 'internship_id', 'trim|required|xss_clean');
         
             $data['errors'] = array();
-        
+            
+            $input_data = $this->input->post();
+            $input_data['user_id'] = $profile->user_id;
             if ($this->form_validation->run()) {								// validation ok
-                if ($this->profile_lib->save(array(
-                    'id' => $profile->user_id,
-                    'firstname' => $this->form_validation->set_value('firstname'),
-                    'lastname' => $this->form_validation->set_value('lastname'),
-                    'organization_id' => $this->form_validation->set_value('organization_id'),
-                    'email' => $this->form_validation->set_value('email'),
-                ))) {	// success
+                if ($this->profile_lib->save($input_data)) {	// success
                     $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
                     redirect('settings/profile');
                 } else {														// fail
@@ -48,6 +87,10 @@ class Settings extends CI_Controller
                 }
             }
             $data['colleges'] = $this->profile_lib->getColleges();
+            $data['internship_items'] = $this->profile_lib->getInternship();
+            $data['company_items'] = $this->profile_lib->getCompany();
+            $data['trainer_items'] = $this->profile_lib->getTrainer();
+            $data['advisor_items'] = $this->profile_lib->getAdvisor();
             
             $this->load->view('nav');
             $this->load->view('settings/profile', $data);

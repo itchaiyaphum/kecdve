@@ -221,6 +221,13 @@ class Profile_lib
 
     public function saveStudent($data)
     {
+        //upload thumbnail
+        $thumbnail = $this->saveThumbnail($data);
+        if($thumbnail==false){
+            $thumbnail = '/storage/profiles/no-thumbnail.jpg';
+        }
+        unset($data['thumbnail']);
+        
         //save table: users
         $this->ci->db->where('id', $data['user_id']);
         $this->ci->db->update('users', array(
@@ -228,6 +235,7 @@ class Profile_lib
             'lastname' => $data['lastname'],
             'organization_id' => $data['organization_id'],
             'email' => $data['email'],
+            'thumbnail' => $thumbnail,
             'modified' => date('Y-m-d H:i:s')
         ));
         
@@ -245,4 +253,34 @@ class Profile_lib
         }
         return false;
     }
+    
+    private function saveThumbnail($data){
+        $profile = $this->ci->profile_lib->getData();
+        
+        $config = array();
+        $config['upload_path'] = './storage/profiles/';
+        $config['allowed_types'] = 'jpeg|jpg|png|gif';
+        $config['file_name'] = $profile->user_id;
+        $config['max_size']	= '10240';
+        $this->ci->upload->initialize($config);
+    
+        if($this->ci->upload->do_upload('thumbnail')){
+            $thumbnail_data = $this->ci->upload->data();
+            //resize thumbnail
+            $config_photo['image_library'] = 'gd2';
+            $config_photo['source_image']	= $config['upload_path'].$thumbnail_data['file_name'];
+            $config_photo['new_image'] = $config['upload_path'].'/thumbnail/'.$thumbnail_data['file_name'];
+            $config_photo['create_thumb'] = FALSE;
+            $config_photo['maintain_ratio'] = FALSE;
+            $config_photo['width']	= 150;
+            $config_photo['height']	= 150;
+            $this->ci->image_lib->initialize($config_photo);
+            $this->ci->image_lib->resize();
+            
+            return '/storage/profiles/thumbnail/'.$thumbnail_data['file_name'];
+        }else{
+            return false;
+        }
+    }
+    
 }

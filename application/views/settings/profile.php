@@ -206,7 +206,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
 		<div class="tm-main uk-width-medium-3-4 uk-margin-top uk-margin-bottom">
             <div class="uk-height-1-1 uk-margin-large-bottom">
             
-            	<?php echo form_open($this->uri->uri_string(), $attributes); ?>
+            	<?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
            	 		<div class="uk-grid">
            	 			<div class="uk-width-1-2">
                         	<h3><u>ข้อมูลพื้นฐานทั่วไป</u></h3>
@@ -683,6 +683,16 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                                 		}
                                 		?>
                                 	</select>
+                                </div>
+                            </div>
+                            
+                            <hr/>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label" >รูปภาพส่วนตัว</label>
+                                <div class="uk-form-controls">
+                                	<img class="uk-border-circle" width="120" height="120" src="<?php echo $profile->thumbnail;?>">
+                                    <br/><br/>
+                                    <div><input type="file" name="thumbnail"></div>
                                 </div>
                             </div>
                 		</div>

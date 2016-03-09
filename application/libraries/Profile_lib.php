@@ -142,6 +142,15 @@ class Profile_lib
         }
         return $profile;
     }
+    
+    public function checkNotChooseInternship()
+    {
+        $profile = $this->ci->profile_lib->getData();
+        if($profile->user_type=="student" && empty($profile->internship_id)){
+            return true;
+        }
+        return false;
+    }
 
     public function getInternship()
     {

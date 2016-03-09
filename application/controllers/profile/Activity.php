@@ -16,18 +16,29 @@ class Activity extends CI_Controller
         $this->load->library('tank_auth');
         $this->lang->load('tank_auth');
     }
-
+    
     public function index()
     {
-        $profile = $this->profile_lib->getData();
-        
-        $data = array();
-        $data['items'] = $this->activity_lib->getItems($profile->user_id);
-        $data['file_items'] = $this->activity_lib->getFileItems($profile->user_id, $profile->internship_id);
-        
-        $this->load->view('nav');
-        $this->load->view('student/activity', $data);
-        $this->load->view('footer');
+        if (! $this->tank_auth->is_logged_in()) { // not logged in or not activated
+            redirect('/auth/login/');
+        } else {
+            $profile = $this->profile_lib->getData();
+            
+            if($this->profile_lib->checkNotChooseInternship()){
+                $this->load->view('nav');
+                $this->load->view('student/changeprofile');
+                $this->load->view('footer');
+            }else{
+            
+                $data = array();
+                $data['items'] = $this->activity_lib->getItems($profile->user_id);
+                $data['file_items'] = $this->activity_lib->getFileItems($profile->user_id, $profile->internship_id);
+                
+                $this->load->view('nav');
+                $this->load->view('student/activity', $data);
+                $this->load->view('footer');
+            }
+        }
     }
 
     public function form()

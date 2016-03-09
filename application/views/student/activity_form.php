@@ -61,17 +61,31 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
                     </div>
                 </div>
             </div>
-            <!--
             <div class="uk-form-row">
                 <label class="uk-form-label" for="form-h-it">รูปภาพ</label>
                 <div class="uk-form-controls">
                     <ul class="uk-list uk-list-line uk-width-medium-3-4">
-                		<li><input type="file" name="pic1"></li>
+                		<li><input type="file" name="photo1"></li>
                 	</ul>
-                	
+                	<ul class="uk-list uk-list-line uk-width-medium-3-4">
+                	<?php 
+                	for($i=0; $i<count($photo_items); $i++){
+                	    $photo = $photo_items[$i];
+                	    if($photo->week==$week && $photo->day==$day){
+                	?>
+                	<li>
+                		<div class="uk-alert">
+                            <a href="<?php echo base_url('/profile/activity/photo_remove/?id='.$photo->id.'&week='.$week.'&day='.$day);?>" class="uk-alert-close uk-close"></a>
+                            <p><a target="_blank" href="<?php echo base_url('/storage/photos/'.$photo->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $photo->orig_name;?></a></p>
+                        </div>
+                	</li>
+                	<?php 
+                	    }
+                	} 
+                	?>
+                	</ul>
                 </div>
             </div>
-            -->
             <div class="uk-form-row">
                 <label class="uk-form-label" for="form-h-it">เอกสารดาวน์โหลด</label>
                 <div class="uk-form-controls">

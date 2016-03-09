@@ -33,6 +33,7 @@ class Activity extends CI_Controller
                 $data = array();
                 $data['items'] = $this->activity_lib->getItems($profile->user_id);
                 $data['file_items'] = $this->activity_lib->getFileItems($profile->user_id, $profile->internship_id);
+                $data['photo_items'] = $this->activity_lib->getPhotoItems($profile->user_id, $profile->internship_id);
                 
                 $this->load->view('nav');
                 $this->load->view('student/activity', $data);
@@ -64,9 +65,8 @@ class Activity extends CI_Controller
                     'problem' => $this->form_validation->set_value('problem'),
                     'advantage' => $this->form_validation->set_value('advantage')
                 ))) { // success
-                    $data['messages'] = 'บันทึกข้อมูลเรียบร้อย';
-                    redirect('profile/activity/');
-//                     redirect('profile/activity/form/?week='.$week.'&day='.$day);
+//                     redirect('profile/activity/');
+                    redirect('profile/activity/form/?week='.$week.'&day='.$day);
                 } else { // fail
                     $errors = $this->tank_auth->get_error_message();
                     foreach ($errors as $k => $v)
@@ -77,6 +77,7 @@ class Activity extends CI_Controller
             $data = array();
             $data['item'] = $this->activity_lib->getItem($profile->user_id, $day, $week);
             $data['file_items'] = $this->activity_lib->getFileItems($profile->user_id, $profile->internship_id);
+            $data['photo_items'] = $this->activity_lib->getPhotoItems($profile->user_id, $profile->internship_id);
             $data['day'] = $day;
             $data['week'] = $week;
             
@@ -95,6 +96,20 @@ class Activity extends CI_Controller
             $week = $this->input->get('week',0);
             $day = $this->input->get('day',0);
             if ($this->activity_lib->removeFile($id)) { // success
+                redirect('profile/activity/form/?week='.$week.'&day='.$day);
+            }
+        }
+    }
+    
+    public function photo_remove()
+    {
+        if (! $this->tank_auth->is_logged_in()) { // not logged in or not activated
+            redirect('/auth/login/');
+        } else {
+            $id = $this->input->get('id',0);
+            $week = $this->input->get('week',0);
+            $day = $this->input->get('day',0);
+            if ($this->activity_lib->removePhoto($id)) { // success
                 redirect('profile/activity/form/?week='.$week.'&day='.$day);
             }
         }

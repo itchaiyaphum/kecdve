@@ -9,6 +9,7 @@ class Activity_lib
     public function __construct()
     {
         $this->ci = & get_instance();
+        $this->ci->load->library('upload');
     }
 
     public function save($data)
@@ -24,6 +25,7 @@ class Activity_lib
             $this->ci->db->where('week', $data['week']);
             if ($this->ci->db->update('activity', $data)) {
                 $this->saveFiles($data);
+                $this->savePhotos($data);
                 return array(
                     'user_id' => $data['user_id']
                 );
@@ -34,12 +36,37 @@ class Activity_lib
             if ($this->ci->db->insert('activity', $data)) {
                 $user_id = $this->ci->db->insert_id();
                 $this->saveFiles($data);
+                $this->savePhotos($data);
                 return array(
                     'user_id' => $user_id
                 );
             }
         }
         return NULL;
+    }
+    
+    private function savePhotos($data){
+        $config = array();
+        $config['upload_path'] = './storage/photos/';
+        $config['allowed_types'] = 'jpeg|jpg|png|gif';
+        $config['file_name'] = md5(microtime());
+        $config['max_size']	= '10240';
+        
+        $this->ci->upload->initialize($config);
+        
+        $profile = $this->ci->profile_lib->getData();
+        if($this->ci->upload->do_upload('photo1')){
+            $photo1_data = $this->ci->upload->data();
+            $this->ci->db->insert('attachment_photos', array(
+                'file_name' => $photo1_data['file_name'],
+                'file_ext' => $photo1_data['file_ext'],
+                'orig_name' => $photo1_data['client_name'],
+                'internship_id' => $profile->internship_id,
+                'user_id' => $data['user_id'],
+                'week' => $data['week'],
+                'day' => $data['day'],
+            ));
+        }
     }
     
     private function saveFiles($data){
@@ -49,7 +76,7 @@ class Activity_lib
         $config['file_name'] = md5(microtime());
         $config['max_size']	= '10240';
         
-        $this->ci->load->library('upload', $config);
+        $this->ci->upload->initialize($config);
         
         $profile = $this->ci->profile_lib->getData();
         
@@ -65,36 +92,6 @@ class Activity_lib
                 'day' => $data['day'],
             ));
         }
-        /*
-        $config['file_name'] = md5(microtime());
-        $this->ci->upload->initialize($config);
-        if($this->ci->upload->do_upload('file2')){
-            $file2_data = $this->ci->upload->data();
-            $this->ci->db->insert('attachment_files', array(
-                'file_name' => $file2_data['file_name'],
-                'file_ext' => $file2_data['file_ext'],
-                'orig_name' => $file2_data['client_name'],
-                'internship_id' => $profile->internship_id,
-                'user_id' => $data['user_id'],
-                'week' => $data['week'],
-                'day' => $data['day'],
-            ));
-        }
-        $config['file_name'] = md5(microtime());
-        $this->ci->upload->initialize($config);
-        if($this->ci->upload->do_upload('file3')){
-            $file3_data = $this->ci->upload->data();
-            $this->ci->db->insert('attachment_files', array(
-                'file_name' => $file3_data['file_name'],
-                'file_ext' => $file3_data['file_ext'],
-                'orig_name' => $file3_data['client_name'],
-                'internship_id' => $profile->internship_id,
-                'user_id' => $data['user_id'],
-                'week' => $data['week'],
-                'day' => $data['day'],
-            ));
-        }
-        */
     }
 
     public function getItem($user_id = 0, $day = 0, $week = 0)
@@ -127,10 +124,28 @@ class Activity_lib
         return NULL;
     }
     
+    public function getPhotoItems($user_id = 0, $internship_id = 0)
+    {
+        $this->ci->db->where('user_id', $user_id);
+        $this->ci->db->where('internship_id', $internship_id);
+        $query = $this->ci->db->get('attachment_photos');
+        if ($query->num_rows())
+            return $query->result();
+        return NULL;
+    }
+    
     public function removeFile($id = 0)
     {
         $this->ci->db->where('id', $id);
         if ($this->ci->db->delete('attachment_files'))
+            return true;
+        return false;
+    }
+    
+    public function removePhoto($id = 0)
+    {
+        $this->ci->db->where('id', $id);
+        if ($this->ci->db->delete('attachment_photos'))
             return true;
         return false;
     }

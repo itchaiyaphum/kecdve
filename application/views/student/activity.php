@@ -50,20 +50,63 @@
 					</tr>
 					
 					<?php 
-					if(count($file_items)){
+					$filter_photos = array();
+					for($n=0; $n<count($photo_items); $n++){
+					    $photo = $photo_items[$n];
+					    if($photo->week==($i+1) && $photo->day==($j+1)){
+					        array_push($filter_photos, $photo);
+					    }
+					}
+					
+					if(count($filter_photos)){
+					?>
+					<tr>
+						<td></td>
+						<td colspan="5">
+							<div class="uk-grid uk-grid-small">
+								<?php 
+								$class_width = "uk-width-1-3";
+								if(count($filter_photos)==1){
+								    $class_width = "uk-width-1-1";
+								}else if(count($filter_photos)==2){
+								    $class_width = "uk-width-1-2";
+								}
+								for($n=0; $n<count($filter_photos); $n++){
+								    $photo = $filter_photos[$n];
+								    $photo_link = base_url('/storage/photos/'.$photo->file_name);
+								?>
+								<div class="<?php echo $class_width;?>">
+									<a target="_blank" href="<?php echo $photo_link;?>"><img class="uk-thumbnail" src="<?php echo $photo_link;?>"/></a>
+								</div>
+								<?php 
+								} 
+								?>
+							</div>
+						</td>
+					</tr>
+					<?php } ?>
+							
+					<?php 
+					$filter_files = array();
+					for($n=0; $n<count($file_items); $n++){
+					    $file = $file_items[$n];
+					    if($photo->week==($i+1) && $file->day==($j+1)){
+					        array_push($filter_files, $file);
+					    }
+					}
+					
+					if(count($filter_files)){
 					?>
 					<tr>
 						<td></td>
 						<td colspan="5">
 							<ul class="uk-list uk-list-line">
 								<?php 
-								for($n=0; $n<count($file_items); $n++){
-								    $file = $file_items[$n];
-								    if($file->week==($i+1) && $file->day==($j+1)){
+								for($n=0; $n<count($filter_files); $n++){
+								    $file = $filter_files[$n];
 								?>
 								<li><a target="_blank" href="<?php echo base_url('/storage/files/'.$file->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $file->orig_name;?></a></li>
 								<?php 
-								    }
 								} 
 								?>
 							</ul>

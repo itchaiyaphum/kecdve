@@ -39,6 +39,7 @@
             		        }
             		    }
             		?>
+            		
 					<tr>
 						<td></td>
 						<td><?php echo $days_of_weeks[$j];?></td>
@@ -47,6 +48,29 @@
 						<td><?php echo $text_advantage;?></td>
 						<td><a href="<?php echo base_url('profile/activity/form/?week='.($i+1).'&day='.($j+1)); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
 					</tr>
+					
+					<?php 
+					if(count($file_items)){
+					?>
+					<tr>
+						<td></td>
+						<td colspan="5">
+							<ul class="uk-list uk-list-line">
+								<?php 
+								for($n=0; $n<count($file_items); $n++){
+								    $file = $file_items[$n];
+								    if($file->week==($i+1) && $file->day==($j+1)){
+								?>
+								<li><a target="_blank" href="<?php echo base_url('/storage/files/'.$file->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $file->orig_name;?></a></li>
+								<?php 
+								    }
+								} 
+								?>
+							</ul>
+						</td>
+					</tr>
+					<?php } ?>
+					
 					<?php } ?>
 					</tbody>
 				</table>

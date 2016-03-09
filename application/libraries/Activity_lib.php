@@ -10,6 +10,7 @@ class Activity_lib
     {
         $this->ci = & get_instance();
         $this->ci->load->library('upload');
+        $this->ci->load->library('image_lib');
     }
 
     public function save($data)
@@ -66,6 +67,28 @@ class Activity_lib
                 'week' => $data['week'],
                 'day' => $data['day'],
             ));
+            
+            //reset photo
+            $config_photo['image_library'] = 'gd2';
+            $config_photo['source_image']	= $config['upload_path'].$photo1_data['file_name'];
+            $config_photo['create_thumb'] = FALSE;
+            $config_photo['maintain_ratio'] = TRUE;
+            $config_photo['width']	= 1024;
+            $config_photo['height']	= 1024;
+            $this->ci->image_lib->initialize($config_photo);
+            $this->ci->image_lib->resize();
+            
+            //crop photo
+            $config_photo['image_library'] = 'gd2';
+            $config_photo['source_image']	= $config['upload_path'].$photo1_data['file_name'];
+            $config_photo['new_image'] = $config['upload_path'].'/thumbnail/'.$photo1_data['file_name'];
+            $config_photo['create_thumb'] = FALSE;
+            $config_photo['maintain_ratio'] = TRUE;
+            $config_photo['width']	= 500;
+            $config_photo['height']	= 500;
+            $this->ci->image_lib->initialize($config_photo);
+            $this->ci->image_lib->resize();
+            
         }
     }
     

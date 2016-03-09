@@ -73,10 +73,9 @@
 								}
 								for($n=0; $n<count($filter_photos); $n++){
 								    $photo = $filter_photos[$n];
-								    $photo_link = base_url('/storage/photos/'.$photo->file_name);
 								?>
 								<div class="<?php echo $class_width;?>">
-									<a target="_blank" href="<?php echo $photo_link;?>"><img class="uk-thumbnail" src="<?php echo $photo_link;?>"/></a>
+									<a target="_blank" href="<?php echo base_url('/storage/photos/'.$photo->file_name);?>"><img class="uk-thumbnail" src="<?php echo base_url('/storage/photos/thumbnail/'.$photo->file_name);?>"/></a>
 								</div>
 								<?php 
 								} 

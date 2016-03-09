@@ -65,8 +65,8 @@ class Activity extends CI_Controller
                     'problem' => $this->form_validation->set_value('problem'),
                     'advantage' => $this->form_validation->set_value('advantage')
                 ))) { // success
-//                     redirect('profile/activity/');
-                    redirect('profile/activity/form/?week='.$week.'&day='.$day);
+                    redirect('profile/activity/');
+//                     redirect('profile/activity/form/?week='.$week.'&day='.$day);
                 } else { // fail
                     $errors = $this->tank_auth->get_error_message();
                     foreach ($errors as $k => $v)

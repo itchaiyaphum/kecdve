@@ -31,4 +31,8 @@ class Home extends CI_Controller
         $this->load->view('help');
         $this->load->view('footer');
     }
+    public function admin_restricted_access(){
+        echo "คุณไม่ได้รับอนุญาติให้เข้าใช้งาน /admin/ <br/><br/>";
+        echo '<a href="/">กลับหน้าหลัก</a>';
+    }
 }

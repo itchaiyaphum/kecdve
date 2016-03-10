@@ -13,7 +13,7 @@ class Factory_lib
 
     public function getTable($table)
     {
-        $class_name = 'Table'.ucfirst($table);
+        $class_name = 'Table'.$table;
         return new $class_name($this->ci->db);
     }
     

@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class TableLoginattempts extends JTable
+class TableLoginAttempts extends JTable
 {
     public $id = NULL;
     public $ip_address = NULL;

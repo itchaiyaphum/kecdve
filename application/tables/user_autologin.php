@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class TableUserautologin extends JTable
+class TableUserAutologin extends JTable
 {
     public $key_id = NULL;
     public $user_id = NULL;

@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class TableUserprofiles extends JTable
+class TableUserProfiles extends JTable
 {
     public $id = NULL;
     public $user_id = NULL;

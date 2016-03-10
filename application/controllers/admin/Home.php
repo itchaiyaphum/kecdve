@@ -17,18 +17,18 @@ class Home extends CI_Controller {
 	{
 		echo "Hello Admin";
 		
-		$activity = $this->factory_lib->getTable('activity');
-		$attachmentfiles = $this->factory_lib->getTable('attachmentfiles');
-		$attachmentphotos = $this->factory_lib->getTable('attachmentphotos');
-		$course = $this->factory_lib->getTable('course');
-		$internship = $this->factory_lib->getTable('internship');
-		$loginattempts = $this->factory_lib->getTable('loginattempts');
-		$organization = $this->factory_lib->getTable('organization');
+		$activity = $this->factory_lib->getTable('Activity');
+		$attachmentfiles = $this->factory_lib->getTable('AttachmentFiles');
+		$attachmentphotos = $this->factory_lib->getTable('AttachmentPhotos');
+		$course = $this->factory_lib->getTable('Course');
+		$internship = $this->factory_lib->getTable('Internship');
+		$loginattempts = $this->factory_lib->getTable('LoginAttempts');
+		$organization = $this->factory_lib->getTable('Organization');
 		$time = $this->factory_lib->getTable('time');
-		$userautologin = $this->factory_lib->getTable('userautologin');
-		$userprofiles = $this->factory_lib->getTable('userprofiles');
-		$usersstudent = $this->factory_lib->getTable('usersstudent');
-		$users = $this->factory_lib->getTable('users');
+		$userautologin = $this->factory_lib->getTable('UserAutologin');
+		$userprofiles = $this->factory_lib->getTable('UserProfiles');
+		$usersstudent = $this->factory_lib->getTable('UsersStudent');
+		$users = $this->factory_lib->getTable('Users');
 		
 		echo "<pre>";
 		print_r($users);

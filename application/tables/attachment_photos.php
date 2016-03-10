@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class TableAttachmentphotos extends JTable
+class TableAttachmentPhotos extends JTable
 {
     public $id = NULL;
     public $user_id = NULL;

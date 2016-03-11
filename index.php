@@ -315,6 +315,7 @@ require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'province.php';
 require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'edulevel.php';
 require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'edudegree.php';
 require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'semester.php';
+require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'college.php';
 
 
 

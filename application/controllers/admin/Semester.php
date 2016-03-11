@@ -27,7 +27,7 @@ class Semester extends BaseController
     
     public function edit()
     {
-        $this->form_validation->set_rules('name', 'ระดับวุฒิการศึกษา', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('name', 'ภาคการศึกษา', 'trim|required|xss_clean');
         
         if ($this->form_validation->run()) {
             if ($this->semester_model->save()) {

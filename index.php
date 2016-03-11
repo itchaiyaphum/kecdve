@@ -311,6 +311,7 @@ require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'user_autologin.php';
 require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'user_profiles.php';
 require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'users_student.php';
 require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'users.php';
+require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'province.php';
 
 
 

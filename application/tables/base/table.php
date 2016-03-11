@@ -253,71 +253,18 @@ class JTable extends JObject
 		return true;
 	}
 	
-	
-	public function publish( $cid=null, $publish=1)
+	public function publish( $id=null, $publish=1)
 	{
-		JArrayHelper::toInteger( $cid );
-		$publish	= (int) $publish;
-		$k			= $this->_tbl_key;
+		$this->_db->where('id', $id);
+		$this->_db->set('status', $publish);
+		$result = $this->_db->update($this->_tbl);
 
-		if (count( $cid ) < 1)
-		{
-			if ($this->$k) {
-				$cid = array( $this->$k );
-			} else {
-				$this->setError("No items selected.");
-				return false;
-			}
-		}
-
-		$cids = $k . '=' . implode( ' OR ' . $k . '=', $cid );
-
-		$query = 'UPDATE '. $this->_tbl
-		. ' SET published = ' . (int) $publish
-		. ' WHERE ('.$cids.')'
-		;
-
-		$result = $this->_db->query( $query );
 		if (!$result)
 		{
 			return false;
 		}
 
-		$this->setError('');
 		return true;
-	}
-	
-	public function unpublish( $cid=null, $publish=0)
-	{
-	    JArrayHelper::toInteger( $cid );
-	    $publish	= (int) $publish;
-	    $k			= $this->_tbl_key;
-	
-	    if (count( $cid ) < 1)
-	    {
-	        if ($this->$k) {
-	            $cid = array( $this->$k );
-	        } else {
-	            $this->setError("No items selected.");
-	            return false;
-	        }
-	    }
-	
-	    $cids = $k . '=' . implode( ' OR ' . $k . '=', $cid );
-	
-	    $query = 'UPDATE '. $this->_tbl
-	    . ' SET published = ' . (int) $publish
-	    . ' WHERE ('.$cids.')'
-	        ;
-	
-	        $result = $this->_db->query( $query );
-	        if (!$result)
-	        {
-	            return false;
-	        }
-	
-	        $this->setError('');
-	        return true;
 	}
 
 }

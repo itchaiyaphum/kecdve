@@ -7,6 +7,7 @@ class BaseModel
 {
 
     public $ci = null;
+    public $table = null;
 
     public function __construct()
     {

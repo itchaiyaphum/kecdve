@@ -5,7 +5,7 @@ if (! defined('BASEPATH'))
 class Province_model extends BaseModel
 {
 
-    private $table = NULL;
+    public $table = NULL;
 
     public function __construct()
     {

@@ -292,35 +292,6 @@ switch (ENVIRONMENT)
 
 	define('VIEWPATH', $view_folder);
 
-	
-// load other base table class
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'base'.DIRECTORY_SEPARATOR.'object.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'base'.DIRECTORY_SEPARATOR.'table.php';
-// load helper class
-require_once APPPATH.'helpers'.DIRECTORY_SEPARATOR.'array_helper.php';
-// load table class
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'activity.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'attachment_files.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'attachment_photos.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'course.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'internship.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'login_attempts.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'organization.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'time.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'user_autologin.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'user_profiles.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'users_student.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'users.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'province.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'edulevel.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'edudegree.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'semester.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'college.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'company.php';
-require_once APPPATH.'tables'.DIRECTORY_SEPARATOR.'department.php';
-
-
-
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE

@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |  $autoload['packages'] = array(APPPATH.'third_party', '/usr/local/shared');
 |
 */
-$autoload['packages'] = array();
+$autoload['packages'] = array(APPPATH.'tables');
 
 /*
 | -------------------------------------------------------------------
@@ -58,7 +58,41 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('BaseModel','session','factory_lib','helper_lib','time_lib','activity_lib','tank_auth','auth_lib','profile_lib');
+$autoload['libraries'] = array(
+    'JObject'
+    ,'JTable'
+    
+    ,'tables/TableActivity'
+    ,'tables/TableAttachmentFiles'
+    ,'tables/TableAttachmentPhotos'
+    ,'tables/TableCollege'
+    ,'tables/TableCompany'
+    ,'tables/TableCourse'
+    ,'tables/TableDepartment'
+    ,'tables/TableEdudegree'
+    ,'tables/TableEdulevel'
+    ,'tables/TableInternship'
+    ,'tables/TableLoginAttempts'
+    ,'tables/TableOrganization'
+    ,'tables/TableProvince'
+    ,'tables/TableSemester'
+    ,'tables/TableTime'
+    ,'tables/TableUserAutologin'
+    ,'tables/TableUserProfiles'
+    ,'tables/TableUsers'
+    ,'tables/TableUsersStudent'
+    
+    ,'BaseModel'
+    ,'session'
+    ,'factory_lib'
+    ,'helper_lib'
+    ,'time_lib'
+    ,'activity_lib'
+    ,'tank_auth'
+    ,'auth_lib'
+    ,'profile_lib'
+
+);
 
 /*
 | -------------------------------------------------------------------

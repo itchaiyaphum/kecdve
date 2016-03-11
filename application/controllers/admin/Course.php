@@ -10,6 +10,8 @@ class Course extends BaseController
         parent::__construct();
         
         $this->load->model('admin/course_model');
+        $this->load->model('admin/advisor_model');
+        $this->load->model('admin/semester_model');
         $this->load->library('form_validation');
     }
 
@@ -19,6 +21,7 @@ class Course extends BaseController
         $data['leftmenu'] = $this->load->view('admin/menu', '', true);
         $data['pagination'] = $this->course_model->getPagination();
         $data['items'] = $this->course_model->getItems();
+        $data['semester_items'] = $this->semester_model->getItems(array('status'=>'publish'));
         
         $this->load->view('nav');
         $this->load->view('admin/course/index', $data);
@@ -41,6 +44,8 @@ class Course extends BaseController
         $data['leftmenu'] = $this->load->view('admin/menu', '', true);
         $data['pagination'] = $this->course_model->getPagination();
         $data['item'] = $this->course_model->getItem($id);
+        $data['advisor_items'] = $this->advisor_model->getItems(array('status'=>'publish'));
+        $data['semester_items'] = $this->semester_model->getItems(array('status'=>'publish'));
         
         $this->load->view('nav');
         $this->load->view('admin/course/form', $data);

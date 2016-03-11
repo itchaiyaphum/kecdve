@@ -35,14 +35,20 @@ class Course_model extends BaseModel
 
     public function getQueryWhere($options)
     {
-        $filter_search = $this->ci->input->get_post('filter_search');
-        $filter_status = $this->ci->input->get_post('filter_status');
+        $filter_search = $this->ci->input->get_post('course_filter_search');
+        $filter_semester_id = $this->ci->input->get_post('course_filter_semester_id');
+        $filter_status = $this->ci->input->get_post('course_filter_status');
         
         $wheres = array();
         
         // filter: status
+        $options['filter_status'] = $filter_status;
         $filter_status_value = $this->getQueryStatus($options);
         $wheres[] = "status IN({$filter_status_value})";
+        // filter: semester_id
+        if ($filter_semester_id != "") {
+            $wheres[] = "semester_id IN({$filter_semester_id})";
+        }
         
         // filter: search
         if ($filter_search != "") {

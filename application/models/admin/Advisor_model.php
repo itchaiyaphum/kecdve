@@ -2,21 +2,22 @@
 if (! defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Edudegree_model extends BaseModel
+class Advisor_model extends BaseModel
 {
 
     public $table = NULL;
-
+    
     public function __construct()
     {
         parent::__construct();
-        $this->table = $this->ci->factory_lib->getTable('Edudegree');
+        $this->table = $this->ci->factory_lib->getTable('Users');
+        $this->table->setStatusKey('activated');
     }
 
     public function getPagination()
     {
         return $this->ci->helper_lib->getPagination(array(
-            'base_url' => '/admin/edudegree/',
+            'base_url' => '/admin/advisor/',
             'total_rows' => count($this->getItems(array(
                 'no_limit' => true
             ))),
@@ -27,7 +28,7 @@ class Edudegree_model extends BaseModel
     public function getItems($options = array())
     {
         $where = $this->getQueryWhere($options);
-        $sql = "SELECT * FROM edudegree WHERE {$where}";
+        $sql = "SELECT * FROM users WHERE user_type='advisor' AND {$where}";
         $query = $this->ci->db->query($sql);
         $items = $query->result();
         return $items;
@@ -35,20 +36,22 @@ class Edudegree_model extends BaseModel
 
     public function getQueryWhere($options)
     {
-        $filter_search = $this->ci->input->get_post('edudegree_filter_search');
-        $filter_status = $this->ci->input->get_post('edudegree_filter_status');
+        $filter_search = $this->ci->input->get_post('advisor_filter_search');
+        $filter_status = $this->ci->input->get_post('advisor_filter_status');
         
         $wheres = array();
         
         // filter: status
         $options['filter_status'] = $filter_status;
         $filter_status_value = $this->getQueryStatus($options);
-        $wheres[] = "status IN({$filter_status_value})";
+        $wheres[] = "activated IN({$filter_status_value})";
         
         // filter: search
         if ($filter_search != "") {
             $filter_search_value = $filter_search;
-            $wheres[] = "name LIKE '%{$filter_search_value}%'";
+            $wheres[] = "firstname LIKE '%{$filter_search_value}%'";
+            $wheres[] = "lastname LIKE '%{$filter_search_value}%'";
+            $wheres[] = "email LIKE '%{$filter_search_value}%'";
         }
         
         // render query

@@ -35,12 +35,13 @@ class Edulevel_model extends BaseModel
 
     public function getQueryWhere($options)
     {
-        $filter_search = $this->ci->input->get_post('filter_search');
-        $filter_status = $this->ci->input->get_post('filter_status');
+        $filter_search = $this->ci->input->get_post('edulevel_filter_search');
+        $filter_status = $this->ci->input->get_post('edulevel_filter_status');
         
         $wheres = array();
         
         // filter: status
+        $options['filter_status'] = $filter_status;
         $filter_status_value = $this->getQueryStatus($options);
         $wheres[] = "status IN({$filter_status_value})";
         

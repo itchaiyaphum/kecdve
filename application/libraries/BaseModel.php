@@ -65,7 +65,12 @@ class BaseModel
 
     public function getQueryStatus($options)
     {
-        $filter_status = $this->ci->input->get_post('filter_status');
+        $filter_status = '';
+        if(!isset($options['filter_status'])){
+            $filter_status = $this->ci->input->get_post('filter_status');
+        }else{
+            $filter_status = $options['filter_status'];
+        }
         $filter_status_value = '0,1';
         if (isset($options['status'])) {
             if (is_array($options['status'])) {

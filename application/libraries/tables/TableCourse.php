@@ -8,7 +8,7 @@ class TableCourse extends JTable
     public $credit = NULL;
     public $hour_per_week = NULL;
     public $num_of_week = NULL;
-    public $teacher_id = NULL;
+    public $advisor_id = NULL;
     public $semester_id = NULL;
     public $status = NULL;
     public $created_at = NULL;

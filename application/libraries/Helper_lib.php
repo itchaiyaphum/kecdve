@@ -48,17 +48,17 @@ class Helper_lib
         return $icon;
     }
     
-    public function getFilterStatus(){
-        return $this->ci->input->get_post('filter_status');
+    public function getFilterStatus($name='filter_status'){
+        return $this->ci->input->get_post($name);
     }
     
-    public function getStatusHtml(){
+    public function getStatusHtml($name='filter_status'){
         return '
-            <select name="filter_status" onchange="this.form.submit();">
-                <option value="all" '.set_select('filter_status','all',TRUE).'>- แสดงสถานะทั้งหมด -</option>
-                <option value="publish" '.set_select('filter_status','publish').'>เผยแพร่</option>
-                <option value="unpublish" '.set_select('filter_status','unpublish').'>ไม่เผยแพร่</option>
-                <option value="trash" '.set_select('filter_status','trash').'>อยู่ในถังขยะ</option>
+            <select name="'.$name.'" onchange="this.form.submit();">
+                <option value="all" '.set_select($name,'all',TRUE).'>- แสดงสถานะทั้งหมด -</option>
+                <option value="publish" '.set_select($name,'publish').'>เผยแพร่</option>
+                <option value="unpublish" '.set_select($name,'unpublish').'>ไม่เผยแพร่</option>
+                <option value="trash" '.set_select($name,'trash').'>อยู่ในถังขยะ</option>
             </select>
         ';
     }

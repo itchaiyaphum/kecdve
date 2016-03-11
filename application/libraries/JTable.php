@@ -13,6 +13,8 @@ class JTable extends JObject
     var $_nameQuote = '`';
 
     var $_db = null;
+    
+    var $_status_key = 'status';
 
     public function __construct($table=NULL, $key=NULL, &$db=NULL)
     {
@@ -37,6 +39,11 @@ class JTable extends JObject
         return $instance;
     }
 
+    public function setStatusKey($key='status')
+    {
+        return $this->_status_key = $key;
+    }
+    
     public function &getDBO()
     {
         return $this->_db;
@@ -256,7 +263,7 @@ class JTable extends JObject
 	public function publish( $id=null, $publish=1)
 	{
 		$this->_db->where('id', $id);
-		$this->_db->set('status', $publish);
+		$this->_db->set($this->_status_key, $publish);
 		$result = $this->_db->update($this->_tbl);
 
 		if (!$result)

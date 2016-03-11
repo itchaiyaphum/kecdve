@@ -18,12 +18,21 @@
             		<tr>
             			<td width="100%">
             				Filter:
-            				<input type="text" name="filter_search" id="search" value="<?php echo set_value('filter_search');?>" class="text_area" onchange="document.adminForm.submit();" />
+            				<input type="text" name="course_filter_search" id="search" value="<?php echo set_value('course_filter_search');?>" class="text_area" onchange="document.adminForm.submit();" />
             				<button onclick="this.form.submit();">Go</button>
-            				<button onclick="document.getElementById('search').value='';this.form.getElementById('filter_type').value='0';this.form.getElementById('filter_logged').value='0';this.form.submit();">Reset</button>
+            				<button onclick="document.getElementById('search').value='';this.form.submit();">Reset</button>
             			</td>
             			<td nowrap="nowrap">
-            				<?php echo $this->helper_lib->getStatusHtml();?>
+            				<select name="course_filter_semester_id" onchange="document.adminForm.submit();">
+                            	<option value="">- เลือกภาคการศึกษา -</option>
+                            	<?php 
+                            	for($i=0; $i<count($semester_items); $i++){
+                            	    $row = $semester_items[$i];
+                            	?>
+                            	<option value="<?php echo $row->id;?>" <?php echo set_select('course_filter_semester_id',$row->id);?>><?php echo $row->name;?></option>
+                            	<?php } ?>
+                            </select>
+            				<?php echo $this->helper_lib->getStatusHtml('course_filter_status');?>
             			</td>
             		</tr>
             	</table>
@@ -90,7 +99,7 @@
             				<td>
             					<a href="<?php echo $link_edit;?>" class="uk-button uk-button-success uk-button-mini"><i class="uk-icon-pencil"></i></a>
             					<?php 
-            					if($this->helper_lib->getFilterStatus()=='trash'){
+            					if($this->helper_lib->getFilterStatus('course_filter_status')=='trash'){
             					?>
             					<a href="<?php echo $link_restore;?>" class="uk-button uk-button-primary uk-button-mini"><i class="uk-icon-reply"></i></a>
             					<a href="<?php echo $link_delete;?>" class="uk-button uk-button-danger uk-button-mini"><i class="uk-icon-remove"></i></a>

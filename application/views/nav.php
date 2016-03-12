@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/uikit/css/uikit.min.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/uikit/css/uikit.gradient.min.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/base.min.css');?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/vendor/uikit/css/components/datepicker.min.css');?>" />
 </head>
 <body>
 	<div class="wrapper">

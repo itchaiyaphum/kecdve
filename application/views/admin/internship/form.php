@@ -30,7 +30,7 @@
             	<div class="uk-form-row">
                     <label class="uk-form-label" for="form-h-it">วันที่เริ่มต้นการฝึกงาน</label>
                     <div class="uk-form-controls">
-                        <input type="text" id="form-h-it" name="internship_start" value="<?php echo $item->internship_start;?>" class="uk-width-1-4">
+                        <input type="text" id="form-h-it" data-uk-datepicker="{format:'YYYY-MM-DD'}" name="internship_start" value="<?php echo $item->internship_start;?>" class="uk-width-1-4">
                     	<div>
                         	<?php echo form_error('internship_start'); ?>
                         	<?php echo isset($errors['internship_start'])?$errors['internship_start']:''; ?>
@@ -40,7 +40,7 @@
             	<div class="uk-form-row">
                     <label class="uk-form-label" for="form-h-it">วันที่สิ้นสุดการฝึกงาน</label>
                     <div class="uk-form-controls">
-                        <input type="text" id="form-h-it" name="internship_end" value="<?php echo $item->internship_end;?>" class="uk-width-1-4">
+                        <input type="text" id="form-h-it" data-uk-datepicker="{format:'YYYY-MM-DD'}" name="internship_end" value="<?php echo $item->internship_end;?>" class="uk-width-1-4">
                     	<div>
                         	<?php echo form_error('internship_end'); ?>
                         	<?php echo isset($errors['internship_end'])?$errors['internship_end']:''; ?>

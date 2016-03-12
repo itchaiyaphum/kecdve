@@ -56,6 +56,7 @@ $dob = array(
 	'name'	=> 'dob',
 	'id'	=> 'dob',
 	'value'	=> $profile->dob,
+    'data-uk-datepicker' => "{format:'YYYY-MM-DD'}"
 );
 $age = array(
 	'name'	=> 'age',

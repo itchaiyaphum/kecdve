@@ -46,7 +46,9 @@
             							<li><a href="<?php echo base_url('advisor/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
             							<li><a href="<?php echo base_url('advisor/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
             							<li><a href="<?php echo base_url('advisor/evaluation/');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
-            							<?php } ?>
+            							<?php } elseif($profileData->user_type=='admin'){ ?>
+                        				<li><a href="<?php echo base_url('admin/');?>"><i class="uk-icon-lock"></i> เข้าระบบจัดการข้อมูล</a></li>
+                        				<?php } ?>
             							<li class="uk-nav-divider"></li>
             							<li><a href="<?php echo base_url('settings/profile');?>"><i class="uk-icon-gear"></i> แก้ไขข้อมูลส่วนตัว</a></li>
             							<li><a href="<?php echo base_url('auth/logout');?>"><i class="uk-icon-power-off"></i> ออกจากระบบ</a></li>
@@ -85,6 +87,8 @@
             				<li><a href="<?php echo base_url('advisor/activity/');?>"><i class="uk-icon-book"></i> บันทึกการเรียน</a></li>
             				<li><a href="<?php echo base_url('advisor/time/');?>"><i class="uk-icon-clock-o"></i> บันทึกเวลาเรียน</a></li>
             				<li><a href="<?php echo base_url('advisor/evaluation/');?>"><i class="uk-icon-pie-chart"></i> ประเมินผลการฝึกงาน</a></li>
+            				<?php } elseif($profileData->user_type=='admin'){ ?>
+            				<li><a href="<?php echo base_url('admin/');?>"><i class="uk-icon-lock"></i> เข้าระบบจัดการข้อมูล</a></li>
             				<?php } ?>
             				<li class="uk-nav-divider"></li>
             				<li><a href="<?php echo base_url('settings/profile');?>"><i class="uk-icon-gear"></i> แก้ไขข้อมูลส่วนตัว</a></li>

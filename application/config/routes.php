@@ -58,6 +58,8 @@ $route['contact']	= "home/contact";
 $route['help']	= "home/help";
 
 $route['admin']	= "admin/home";
+$route['admin/users']	= "admin/adminusers";
+$route['admin/users/edit']	= "admin/adminusers/edit";
 $route['admin_restricted_access']	= "home/admin_restricted_access";
 $route['profile']	= "profile/index";
 

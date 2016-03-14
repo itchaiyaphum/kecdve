@@ -56,7 +56,10 @@ class BaseModel
     public function renderQueryWhere($wheres = array(), $options = array())
     {
         // render : wheres
-        $sql_wheres = (count($wheres) >= 2) ? implode(' AND ', $wheres) : implode(' ', $wheres);
+        if(!isset($options['where_type'])){
+            $options['where_type'] = 'AND';
+        }
+        $sql_wheres = (count($wheres) >= 2) ? implode(" {$options['where_type']} ", $wheres) : implode(' ', $wheres);
         // render : limit
         $filter_limit_value = $this->getQueryLimit($options);
         $sql_wheres .= $filter_limit_value;

@@ -1,5 +1,5 @@
-<div style="background-color: #0b3835;">
-	<div id="wrapper" class="uk-container uk-container-center"  style="background: url('<?php echo base_url('assets/imgs/bg.jpg')?>'); background-repeat:repeat-y; height: 100%">
+<div style="background: url('<?php echo base_url('assets/imgs/bg.jpg')?>'); background-repeat:repeat-y;">
+	<div id="wrapper" class="uk-container uk-container-center">
 		<div class="uk-text-left uk-margin-top">
 			<?php $this->load->view('home/header');?>
 			<hr/>

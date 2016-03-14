@@ -58,10 +58,10 @@
 	<li class="<?php echo $this->helper_lib->getActiveMenu('users');?>">
 		<a href="<?php echo base_url('admin/users'); ?>"><span class="uk-icon-cube"></span> จัดการประเภทผู้ใช้งาน</a>
 	</li>
+	<!-- 
 	<li class="<?php echo $this->helper_lib->getActiveMenu('student');?>">
 		<a href="<?php echo base_url('admin/student'); ?>"><span class="uk-icon-cube"></span> จัดการนักศึกษา</a>
 	</li>
-	<!-- 
 	<li class="<?php echo $this->helper_lib->getActiveMenu('advisor');?>">
 		<a href="<?php echo base_url('admin/advisor'); ?>"><span class="uk-icon-cube"></span> จัดการอาจารย์ที่ปรึกษา</a>
 	</li>

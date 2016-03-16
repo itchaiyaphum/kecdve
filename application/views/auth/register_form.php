@@ -95,7 +95,7 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
                     for($i=0; $i<count($colleges); $i++){
                         $college = $colleges[$i];
                         ?>
-                        <option value="<?php echo $college->id;?>"><?php echo $college->title;?></option>
+                        <option value="<?php echo $college->id;?>"><?php echo $college->name;?></option>
                         <?php
                     }
                     ?>

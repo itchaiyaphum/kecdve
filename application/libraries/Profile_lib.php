@@ -154,31 +154,20 @@ class Profile_lib
 
     public function getInternship()
     {
-        $this->ci->db->where('published', 1);
-        $query = $this->ci->db->get('internship');
-        if ($query->num_rows())
-            return $query->result();
-        return NULL;
+        $this->ci->load->model('admin/internship_model');
+        return $this->ci->internship_model->getItems(array('status'=>1));
     }
     
     public function getColleges()
     {
-        $this->ci->db->where('alias', 'college');
-        $this->ci->db->where('published', 1);
-        $query = $this->ci->db->get('organization');
-        if ($query->num_rows())
-            return $query->result();
-        return NULL;
+        $this->ci->load->model('admin/college_model');
+        return $this->ci->college_model->getItems(array('status'=>1));
     }
     
     public function getCompany()
     {
-        $this->ci->db->where('alias', 'company');
-        $this->ci->db->where('published', 1);
-        $query = $this->ci->db->get('organization');
-        if ($query->num_rows())
-            return $query->result();
-        return NULL;
+        $this->ci->load->model('admin/company_model');
+        return $this->ci->company_model->getItems(array('status'=>1));
     }
 
     public function getStaff()

@@ -7,6 +7,7 @@ class Auth extends CI_Controller
 		parent::__construct();
 
 		$this->load->helper(array('form', 'url'));
+		$this->load->model('admin/college_model');
 		$this->load->library('form_validation');
 		$this->load->library('tank_auth');
 		$this->lang->load('tank_auth');
@@ -193,7 +194,7 @@ class Auth extends CI_Controller
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
-			$data['colleges'] = $this->profile_lib->getColleges();
+			$data['colleges'] = $this->college_model->getItems(array('status'=>1));
 			
 			$this->load->view('nav');
 			$this->load->view('auth/register_form', $data);

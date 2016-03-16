@@ -280,7 +280,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                                     for($i=0; $i<count($colleges); $i++){
                                         $college = $colleges[$i];
                                         ?>
-                                        <option value="<?php echo $college->id;?>" <?php echo ($profile->organization_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->title;?></option>
+                                        <option value="<?php echo $college->id;?>" <?php echo ($profile->organization_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->name;?></option>
                                         <?php
                                     }
                                     ?>
@@ -643,7 +643,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                                 		for($i=0; $i<count($company_items); $i++){
                                 		    $item = $company_items[$i];
                                 		?>
-                                		<option value="<?php echo $item->id;?>" <?php echo ($profile->company_id==$item->id)?' selected="selected" ':'';?>><?php echo $item->title;?></option>
+                                		<option value="<?php echo $item->id;?>" <?php echo ($profile->company_id==$item->id)?' selected="selected" ':'';?>><?php echo $item->name;?></option>
                                 		<?php
                                 		}
                                 		?>

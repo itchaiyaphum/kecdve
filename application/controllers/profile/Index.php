@@ -1,14 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Index extends CI_Controller {
-    public function __construct(){
+class Index extends CI_Controller
+{
+
+    public function __construct()
+    {
         parent::__construct();
     }
-	public function index()
-	{
-	    $this->load->view('nav');
-		$this->load->view('student/index');
-		$this->load->view('footer');
-	}
+
+    public function index()
+    {
+        $this->load->view('nav');
+        $this->load->view('student/index');
+        $this->load->view('footer');
+    }
 }

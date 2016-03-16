@@ -8,6 +8,9 @@ class Settings extends CI_Controller
         parent::__construct();
     
         $this->load->helper(array('form', 'url'));
+        $this->load->model('admin/college_model');
+        $this->load->model('admin/internship_model');
+        $this->load->model('admin/company_model');
         $this->load->library('form_validation');
         $this->load->library('tank_auth');
         $this->lang->load('tank_auth');
@@ -86,9 +89,9 @@ class Settings extends CI_Controller
                     foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
                 }
             }
-            $data['colleges'] = $this->profile_lib->getColleges();
-            $data['internship_items'] = $this->profile_lib->getInternship();
-            $data['company_items'] = $this->profile_lib->getCompany();
+            $data['colleges'] = $this->college_model->getItems(array('status'=>1));
+            $data['internship_items'] = $this->internship_model->getItems(array('status'=>1));
+            $data['company_items'] = $this->company_model->getItems(array('status'=>1));
             $data['trainer_items'] = $this->profile_lib->getTrainer();
             $data['advisor_items'] = $this->profile_lib->getAdvisor();
             

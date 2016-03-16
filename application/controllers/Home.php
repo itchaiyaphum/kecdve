@@ -35,4 +35,16 @@ class Home extends CI_Controller
         echo "คุณไม่ได้รับอนุญาติให้เข้าใช้งาน /admin/ <br/><br/>";
         echo '<a href="/">กลับหน้าหลัก</a>';
     }
+    public function trainer_restricted_access(){
+        echo "คุณไม่ได้รับอนุญาติให้เข้าใช้งาน /trainer/ <br/><br/>";
+        echo '<a href="/">กลับหน้าหลัก</a>';
+    }
+    public function advisor_restricted_access(){
+        echo "คุณไม่ได้รับอนุญาติให้เข้าใช้งาน /advisor/ <br/><br/>";
+        echo '<a href="/">กลับหน้าหลัก</a>';
+    }
+    public function staff_restricted_access(){
+        echo "คุณไม่ได้รับอนุญาติให้เข้าใช้งาน /staff/ <br/><br/>";
+        echo '<a href="/">กลับหน้าหลัก</a>';
+    }
 }

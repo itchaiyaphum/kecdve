@@ -15,6 +15,19 @@ class Evaluation extends CI_Controller
         $this->load->library('form_validation');
         $this->load->library('tank_auth');
         $this->lang->load('tank_auth');
+        
+        $this->executeRedirection();
+    }
+    
+    private function executeRedirection(){
+        $profile = $this->profile_lib->getData();
+        if($profile->user_type=="advisor"){
+            redirect('/advisor/');
+        }else if($profile->user_type=="trainer"){
+            redirect('/trainer/');
+        }else if($profile->user_type=="staff"){
+            redirect('/staff/');
+        }
     }
 
     public function index()

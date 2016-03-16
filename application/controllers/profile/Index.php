@@ -7,6 +7,18 @@ class Index extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->executeRedirection();
+    }
+    
+    private function executeRedirection(){
+        $profile = $this->profile_lib->getData();
+        if($profile->user_type=="advisor"){
+            redirect('/advisor/');
+        }else if($profile->user_type=="trainer"){
+            redirect('/trainer/');
+        }else if($profile->user_type=="staff"){
+            redirect('/staff/');
+        }
     }
 
     public function index()

@@ -23,6 +23,21 @@ class Auth extends CI_Controller
 			redirect('/auth/login/');
 		}
 	}
+	
+	private function executeRedirection(){
+	    $profile = $this->profile_lib->getData();
+	    if($profile->user_type=="student"){
+	        redirect('/profile/activity/');
+	    }else if($profile->user_type=="advisor"){
+	        redirect('/advisor/');
+	    }else if($profile->user_type=="trainer"){
+	        redirect('/trainer/');
+	    }else if($profile->user_type=="staff"){
+	        redirect('/staff/');
+	    }else{
+	        redirect('/');
+	    }
+	}
 
 	/**
 	 * Login user on the site
@@ -32,8 +47,8 @@ class Auth extends CI_Controller
 	function login()
 	{
 		if ($this->tank_auth->is_logged_in()) {									// logged in
-			redirect('/profile/activity/');
-
+			$this->executeRedirection();
+			
 		} elseif ($this->tank_auth->is_logged_in(FALSE)) {						// logged in, not activated
 			redirect('/auth/send_again/');
 
@@ -70,7 +85,8 @@ class Auth extends CI_Controller
 						$this->form_validation->set_value('remember'),
 						$data['login_by_username'],
 						$data['login_by_email'])) {								// success
-					redirect('/profile/activity/');
+					
+					$this->executeRedirection();
 
 				} else {
 					$errors = $this->tank_auth->get_error_message();

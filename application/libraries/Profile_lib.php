@@ -212,21 +212,22 @@ class Profile_lib
     {
         //upload thumbnail
         $thumbnail = $this->saveThumbnail($data);
-        if($thumbnail==false){
-            $thumbnail = '/storage/profiles/no-thumbnail.jpg';
+        
+        $users_data = array();
+        $users_data['firstname'] = $data['firstname'];
+        $users_data['lastname'] = $data['lastname'];
+        $users_data['organization_id'] = $data['organization_id'];
+        $users_data['email'] = $data['email'];
+        if(!empty($thumbnail)){
+            $users_data['thumbnail'] = $thumbnail;
         }
-        unset($data['thumbnail']);
+        $users_data['modified'] = date('Y-m-d H:i:s');
         
         //save table: users
         $this->ci->db->where('id', $data['user_id']);
-        $this->ci->db->update('users', array(
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'organization_id' => $data['organization_id'],
-            'email' => $data['email'],
-            'thumbnail' => $thumbnail,
-            'modified' => date('Y-m-d H:i:s')
-        ));
+        $this->ci->db->update('users', $users_data);
+        
+        unset($data['thumbnail']);
         
         //save table: users_student
         $this->ci->db->where('user_id', $data['user_id']);
@@ -240,6 +241,118 @@ class Profile_lib
             $data['updated_at'] = date('Y-m-d H:i:s');
             if ($this->ci->db->insert('users_student', $data)) return true;
         }
+        
+        return false;
+    }
+    
+    public function saveAdvisor($data)
+    {
+        //upload thumbnail
+        $thumbnail = $this->saveThumbnail($data);
+        
+        $users_data = array();
+        $users_data['firstname'] = $data['firstname'];
+        $users_data['lastname'] = $data['lastname'];
+        $users_data['organization_id'] = $data['organization_id'];
+        $users_data['email'] = $data['email'];
+        if(!empty($thumbnail)){
+            $users_data['thumbnail'] = $thumbnail;
+        }
+        $users_data['modified'] = date('Y-m-d H:i:s');
+        
+        //save table: users
+        $this->ci->db->where('id', $data['user_id']);
+        $this->ci->db->update('users', $users_data);
+    
+        unset($data['thumbnail']);
+        
+        //save table: users_advisor
+        $this->ci->db->where('user_id', $data['user_id']);
+        $query = $this->ci->db->get('users_advisor');
+        if ($query->num_rows()){
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            $this->ci->db->where('user_id', $data['user_id']);
+            if ($this->ci->db->update('users_advisor', $data)) return true;
+        }else{
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            if ($this->ci->db->insert('users_advisor', $data)) return true;
+        }
+    
+        return false;
+    }
+    
+    public function saveTrainer($data)
+    {
+        //upload thumbnail
+        $thumbnail = $this->saveThumbnail($data);
+        
+        $users_data = array();
+        $users_data['firstname'] = $data['firstname'];
+        $users_data['lastname'] = $data['lastname'];
+        $users_data['organization_id'] = $data['organization_id'];
+        $users_data['email'] = $data['email'];
+        if(!empty($thumbnail)){
+            $users_data['thumbnail'] = $thumbnail;
+        }
+        $users_data['modified'] = date('Y-m-d H:i:s');
+        
+        //save table: users
+        $this->ci->db->where('id', $data['user_id']);
+        $this->ci->db->update('users', $users_data);
+        
+        unset($data['thumbnail']);
+        
+        //save table: users_trainer
+        $this->ci->db->where('user_id', $data['user_id']);
+        $query = $this->ci->db->get('users_trainer');
+        if ($query->num_rows()){
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            $this->ci->db->where('user_id', $data['user_id']);
+            if ($this->ci->db->update('users_trainer', $data)) return true;
+        }else{
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            if ($this->ci->db->insert('users_trainer', $data)) return true;
+        }
+        
+        return false;
+    }
+    
+    public function saveStaff($data)
+    {
+        //upload thumbnail
+        $thumbnail = $this->saveThumbnail($data);
+    
+        $users_data = array();
+        $users_data['firstname'] = $data['firstname'];
+        $users_data['lastname'] = $data['lastname'];
+        $users_data['organization_id'] = $data['organization_id'];
+        $users_data['email'] = $data['email'];
+        if(!empty($thumbnail)){
+            $users_data['thumbnail'] = $thumbnail;
+        }
+        $users_data['modified'] = date('Y-m-d H:i:s');
+    
+        //save table: users
+        $this->ci->db->where('id', $data['user_id']);
+        $this->ci->db->update('users', $users_data);
+    
+        unset($data['thumbnail']);
+    
+        //save table: users_staff
+        $this->ci->db->where('user_id', $data['user_id']);
+        $query = $this->ci->db->get('users_staff');
+        if ($query->num_rows()){
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            $this->ci->db->where('user_id', $data['user_id']);
+            if ($this->ci->db->update('users_staff', $data)) return true;
+        }else{
+            $data['created_at'] = date('Y-m-d H:i:s');
+            $data['updated_at'] = date('Y-m-d H:i:s');
+            if ($this->ci->db->insert('users_staff', $data)) return true;
+        }
+    
         return false;
     }
     

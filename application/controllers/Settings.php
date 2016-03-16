@@ -8,6 +8,7 @@ class Settings extends CI_Controller
         parent::__construct();
     
         $this->load->helper(array('form', 'url'));
+        $this->load->model('settings_model');
         $this->load->model('admin/college_model');
         $this->load->model('admin/internship_model');
         $this->load->model('admin/company_model');
@@ -27,77 +28,87 @@ class Settings extends CI_Controller
             redirect('/auth/login/');
         } else {
             $profile = $this->profile_lib->getData();
-            
-            $this->form_validation->set_rules('firstname', 'ชื่อ', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('lastname', 'นามสกุล', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('organization_id', 'สถานศึกษา', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('email', 'อีเมล์', 'trim|required|xss_clean');
-            
-            $this->form_validation->set_rules('firstname_en', 'firstname_en', 'trim|xss_clean');
-            $this->form_validation->set_rules('lastname_en', 'lastname_en', 'trim|xss_clean');
-            $this->form_validation->set_rules('student_id', 'student_id', 'trim|xss_clean');
-//             $this->form_validation->set_rules('major_id', 'major_id', 'trim|xss_clean');
-//             $this->form_validation->set_rules('group_id', 'group_id', 'trim|xss_clean');
-            $this->form_validation->set_rules('edulevel', 'edulevel', 'trim|xss_clean');
-            $this->form_validation->set_rules('religion_title', 'religion_title', 'trim|xss_clean');
-            $this->form_validation->set_rules('dob', 'dob', 'trim|xss_clean');
-            $this->form_validation->set_rules('age', 'age', 'trim|xss_clean');
-            $this->form_validation->set_rules('congenital_disease', 'congenital_disease', 'trim|xss_clean');
-            $this->form_validation->set_rules('drug_allergy', 'drug_allergy', 'trim|xss_clean');
-            $this->form_validation->set_rules('blood_type', 'blood_type', 'trim|xss_clean');
-            $this->form_validation->set_rules('experience_work', 'experience_work', 'trim|xss_clean');
-            $this->form_validation->set_rules('experience_skill', 'experience_skill', 'trim|xss_clean');
-            $this->form_validation->set_rules('experience_intesting', 'experience_intesting', 'trim|xss_clean');
-            $this->form_validation->set_rules('experience_status', 'experience_status', 'trim|xss_clean');
-            $this->form_validation->set_rules('experience_marry_name', 'experience_marry_name', 'trim|xss_clean');
-            $this->form_validation->set_rules('experience_marry_cocupation', 'experience_marry_cocupation', 'trim|xss_clean');
-            $this->form_validation->set_rules('emergency_name', 'emergency_name', 'trim|xss_clean');
-            $this->form_validation->set_rules('emergency_address', 'emergency_address', 'trim|xss_clean');
-            $this->form_validation->set_rules('emergency_mobile', 'emergency_mobile', 'trim|xss_clean');
-            
-            $this->form_validation->set_rules('hometown_no', 'hometown_no', 'trim|xss_clean');
-            $this->form_validation->set_rules('hometown_moo', 'hometown_moo', 'trim|xss_clean');
-            $this->form_validation->set_rules('hometown_subdistrict', 'hometown_subdistrict', 'trim|xss_clean');
-            $this->form_validation->set_rules('hometown_district', 'hometown_district', 'trim|xss_clean');
-            $this->form_validation->set_rules('hometown_province', 'hometown_province', 'trim|xss_clean');
-            $this->form_validation->set_rules('hometown_postcode', 'hometown_postcode', 'trim|xss_clean');
-            $this->form_validation->set_rules('hometown_mobile', 'hometown_mobile', 'trim|xss_clean');
-            
-            $this->form_validation->set_rules('current_address_no', 'current_address_no', 'trim|xss_clean');
-            $this->form_validation->set_rules('current_address_moo', 'current_address_moo', 'trim|xss_clean');
-            $this->form_validation->set_rules('current_address_subdistrict', 'current_address_subdistrict', 'trim|xss_clean');
-            $this->form_validation->set_rules('current_address_district', 'current_address_district', 'trim|xss_clean');
-            $this->form_validation->set_rules('current_address_province', 'current_address_province', 'trim|xss_clean');
-            $this->form_validation->set_rules('current_address_postcode', 'current_address_postcode', 'trim|xss_clean');
-            $this->form_validation->set_rules('current_address_mobile', 'current_address_mobile', 'trim|xss_clean');
-            
-            $this->form_validation->set_rules('advisor_id', 'advisor_id', 'trim|xss_clean');
-            $this->form_validation->set_rules('trainer_id', 'trainer_id', 'trim|xss_clean');
-            $this->form_validation->set_rules('company_id', 'company_id', 'trim|xss_clean');
-            $this->form_validation->set_rules('internship_id', 'internship_id', 'trim|xss_clean');
         
             $data['errors'] = array();
-            
             $input_data = $this->input->post();
-            $input_data['user_id'] = $profile->user_id;
-            if ($this->form_validation->run()) {								// validation ok
-                if ($this->profile_lib->save($input_data)) {	// success
-                    $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
-                    redirect('settings/profile');
-                } else {														// fail
-                    $errors = $this->tank_auth->get_error_message();
-                    foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
-                }
-            }
-            $data['colleges'] = $this->college_model->getItems(array('status'=>1));
-            $data['internship_items'] = $this->internship_model->getItems(array('status'=>1));
-            $data['company_items'] = $this->company_model->getItems(array('status'=>1));
-            $data['trainer_items'] = $this->profile_lib->getTrainer();
-            $data['advisor_items'] = $this->profile_lib->getAdvisor();
             
-            $this->load->view('nav');
-            $this->load->view('settings/profile', $data);
-            $this->load->view('footer');
+            if($profile->user_type=="student"){
+                $input_data['user_id'] = $profile->user_id;
+                if ($this->settings_model->validateStudent()) {
+                    if ($this->profile_lib->saveStudent($input_data)) {
+                        $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
+                        redirect('settings/profile');
+                    } else {
+                        $errors = $this->tank_auth->get_error_message();
+                        foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+                    }
+                }
+                
+                $data['colleges'] = $this->college_model->getItems(array('status'=>1));
+                $data['internship_items'] = $this->internship_model->getItems(array('status'=>1));
+                $data['company_items'] = $this->company_model->getItems(array('status'=>1));
+                $data['trainer_items'] = $this->profile_lib->getTrainer();
+                $data['advisor_items'] = $this->profile_lib->getAdvisor();
+                
+                $this->load->view('nav');
+                $this->load->view('settings/profile_student', $data);
+                $this->load->view('footer');
+            }else if($profile->user_type=="advisor"){
+                $input_data['user_id'] = $profile->user_id;
+                if ($this->settings_model->validateStudent()) {
+                    if ($this->profile_lib->saveAdvisor($input_data)) {
+                        $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
+                        redirect('settings/profile');
+                    } else {
+                        $errors = $this->tank_auth->get_error_message();
+                        foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+                    }
+                }
+                
+                $data['college_items'] = $this->college_model->getItems(array('status'=>1));
+                
+                $this->load->view('nav');
+                $this->load->view('settings/profile_advisor', $data);
+                $this->load->view('footer');
+            }else if($profile->user_type=="trainer"){
+                $input_data['user_id'] = $profile->user_id;
+                if ($this->settings_model->validateTrainer()) {
+                    if ($this->profile_lib->saveTrainer($input_data)) {
+                        $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
+                        redirect('settings/profile');
+                    } else {
+                        $errors = $this->tank_auth->get_error_message();
+                        foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+                    }
+                }
+                
+                $data['company_items'] = $this->company_model->getItems(array('status'=>1));
+                
+                $this->load->view('nav');
+                $this->load->view('settings/profile_trainer', $data);
+                $this->load->view('footer');
+            }else if($profile->user_type=="staff"){
+                $input_data['user_id'] = $profile->user_id;
+                if ($this->settings_model->validateStaff()) {
+                    if ($this->profile_lib->saveStaff($input_data)) {
+                        $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
+                        redirect('settings/profile');
+                    } else {
+                        $errors = $this->tank_auth->get_error_message();
+                        foreach ($errors as $k => $v)	$data['errors'][$k] = $this->lang->line($v);
+                    }
+                }
+                
+                $data['college_items'] = $this->college_model->getItems(array('status'=>1));
+                
+                $this->load->view('nav');
+                $this->load->view('settings/profile_staff', $data);
+                $this->load->view('footer');
+            }else{
+                $this->load->view('nav');
+                echo "no this user_type on this platform! please contact administrator!";
+                $this->load->view('footer');
+            }
             
         }
         

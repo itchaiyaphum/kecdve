@@ -63,6 +63,15 @@ $route['admin/users/edit']	= "admin/adminusers/edit";
 $route['admin_restricted_access']	= "home/admin_restricted_access";
 $route['profile']	= "profile/index";
 
+$route['trainer']	= "trainer/home";
+$route['trainer_restricted_access']	= "home/trainer_restricted_access";
+
+$route['advisor']	= "advisor/home";
+$route['advisor_restricted_access']	= "home/advisor_restricted_access";
+
+$route['staff']	= "staff/home";
+$route['staff_restricted_access']	= "home/staff_restricted_access";
+
 
 
 

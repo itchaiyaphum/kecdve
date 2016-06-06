@@ -7,10 +7,14 @@ class Evaluation extends BaseController
 
     public function index()
     {
+        $profile = $this->profile_lib->getData();
+        $advisor_id = $profile->user_id;
+        
         $student_items = array();
         
         $sql = "SELECT u.* FROM users as u 
-                    WHERE u.user_type='student' ";
+                LEFT JOIN users_student as us ON(us.user_id=u.id)
+                    WHERE u.user_type='student' AND us.advisor_id={$advisor_id}";
         $query = $this->db->query($sql);
         $student_items = $query->result();
         

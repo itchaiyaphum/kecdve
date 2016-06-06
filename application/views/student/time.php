@@ -27,7 +27,7 @@
             			</table>
             			<?php 
                     	for($j=0; $j<count($days_of_weeks); $j++){
-                    		    
+                    	    $student_save = 0;
                 		    $come_hour = 0;
                 		    $come_minute = 0;
                 		    $back_hour = 0;
@@ -43,8 +43,15 @@
                         		    $back_minute = $item->back_minute;
                         		    $remark = $item->remark;
                         		    $remark_text = $item->remark_text;
+                        		    
+                        		    $student_save = 1;  //active
+                        		    $advisor_check_status = $item->advisor_check_status;
+                        		    $trainer_confirm_status = $item->trainer_confirm_status;
                 		        }
                 		    }
+                		    
+                		    
+                		    
                     	?>
                     	<form action="<?php base_url('profile/time'); ?>" class="uk-form uk-form-horizontal" method="post">
                     	<table class="uk-table">
@@ -99,7 +106,96 @@
             						<input type="submit" value="บันทึก" class="uk-button uk-button-small uk-button-success">
             					</td>
             				</tr>
+            				
+            				<?php 
+            				if($student_save){
+            				?>
+            				<tr>
+            					<td></td>
+            					<td colspan="5">
+            						<div class="uk-margin">
+            						
+            							<?php 
+            							if($profile->user_type=="student"){
+            							     if($advisor_check_status){
+            							?>
+            								<div class="uk-text-success">ครูนิเทศฝึกงาน: <i class="uk-icon-check"></i> ตรวจแล้ว</div>
+            								<?php 
+            							     }else{
+            								?>
+            								<div class="uk-text-danger">ครูนิเทศฝึกงาน: <i class="uk-icon-remove"></i> ยังไม่ตรวจ</div>
+            								<?php 
+            							     }
+            							     
+            							     if($trainer_confirm_status){
+            								?>
+            								<div class="uk-text-success">ผู้ควบคุมการฝึกงาน: <i class="uk-icon-check"></i> ยืนยันแล้ว</div>
+            								<?php 
+            							     }else{
+            							    ?>
+            							    <div class="uk-text-danger">ผู้ควบคุมการฝึกงาน: <i class="uk-icon-remove"></i> ยังไม่ยืนยันแล้ว</div>
+            							<?php
+            							     }
+            							}
+            							?>
+            							
+            							<?php 
+            							if($profile->user_type=="advisor"){
+            							     if($advisor_check_status){
+            							?>
+            							<div class="uk-button-group">
+                                            <button class="uk-button uk-button-success uk-button-small">ครูนิเทศฝึกงาน:</button>
+                                            <div>
+                                                <button class="uk-button uk-button-success uk-button-small">ตรวจแล้ว</button>
+                                            </div>
+                                        </div>
+            							<?php 
+            							     }else{
+            							?>
+                        				<div class="uk-button-group">
+                                            <button class="uk-button uk-button-danger uk-button-small">ครูนิเทศฝึกงาน:</button>
+                                            <div>
+                                                <button class="uk-button uk-button-danger uk-button-small">ยังไม่ตรวจ</button>
+                                            </div>
+                                        </div>
+                                        <?php 
+            							     }
+            							}
+            							?>
+            							
+            							<?php 
+            							if($profile->user_type=="trainer"){
+            							     if($trainer_confirm_status){
+            							?>
+            							<div class="uk-button-group">
+                                            <button class="uk-button uk-button-success uk-button-small">ผู้ควบคุมการฝึกงาน:</button>
+                                            <div>
+                                                <button class="uk-button uk-button-success uk-button-small">ยังไม่ยืนยัน</button>
+                                            </div>
+                                        </div>
+            							<?php 
+            							     }else{
+            							?>
+                                        <div class="uk-button-group">
+                                            <button class="uk-button uk-button-danger uk-button-small">ผู้ควบคุมการฝึกงาน:</button>
+                                            <div>
+                                                <button class="uk-button uk-button-danger uk-button-small">ยังไม่ยืนยัน</button>
+                                            </div>
+                                        </div>
+                                        <?php 
+            							     }
+            							}
+            							?>
+                                        
+                                    </div>
+            					</td>
+            				</tr>
+            				<?php 
+							}
+							?>
+            				
             			</table>
+            			
                 		<input type="hidden" value="<?php echo ($i+1);?>" name="week"/>
                 		<input type="hidden" value="<?php echo ($j+1);?>" name="day"/>
                 		</form>

@@ -75,6 +75,7 @@ class Time extends CI_Controller
                 
                 $data = array();
                 $data['items'] = $this->time_lib->getItems($profile->user_id);
+                $data['profile'] = $profile;
                 
                 $this->load->view('nav');
                 $this->load->view('student/time', $data);

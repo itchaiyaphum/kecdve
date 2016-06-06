@@ -8,8 +8,9 @@
 				<h2>สรุปผลการเรียนประเมินการฝึกงาน/เรียนในสถานประกอบการ</h2>
 				<h3>(สำหรับนักศึกษาฝึกงานในสถานประกอบการ)</h3>
 			</div>
-			
 			<hr>
+			
+			<!-- 
 			<br/>
 			<table width="100%">
 				<tr>
@@ -33,12 +34,12 @@
 			</table>
 			<br/>
 			<hr>
+			 -->
 			
 			<table class="uk-table uk-table-border">
 				<thead>
 					<tr>
 						<th>สัปดาห์ที่</th>
-						<th>สรุปการมาปฏิบัติงาน</th>
 						<th>มา</th>
 						<th>สาย</th>
 						<th>ไม่มา</th>
@@ -49,52 +50,52 @@
 						<th>ผู้ควบคุมตรวจยืนยัน</th>
 					</tr>
 				</thead>
+				<?php 
+				$total_work = 0;
+				$total_late = 0;
+				$total_not_work = 0;
+				$total_leave = 0;
+				$total_all = 0;
+				$total_advisor_check = 0;
+				$total_student_activity = 0;
+				$total_trainer_confirm = 0;
+				
+				for($i=0; $i<18; $i++){
+				    $week_no = $i + 1;
+				    $num_work = 0;
+				    $num_late = 0;
+				    $num_not_work = 0;
+				    $num_leave = 0;
+				    $num_total = 0;
+				    
+				    $text_advisor_check = "ตรวจแล้ว";
+				    $text_student_activity = "ยังไม่ส่งบันทึก";
+				    $text_trainer_confirm = "ยังไม่ตรวจ";
+				?>
 				<tr>
-					<td class="uk-text-center">1</td>
-					<td>02/05/2559 - 06/05/2559</td>
-					<td class="uk-text-center">5</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">5</td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-success">ตรวจแล้ว</a></td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-danger">ยังไม่ส่งบันทึก</a></td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-danger">ยังไม่ตรวจ</a></td>
+					<td class="uk-text-center"><?php echo $week_no;?></td>
+					<td class="uk-text-center"><?php echo $num_work;?></td>
+					<td class="uk-text-center"><?php echo $num_late;?></td>
+					<td class="uk-text-center"><?php echo $num_not_work;?></td>
+					<td class="uk-text-center"><?php echo $num_leave;?></td>
+					<td class="uk-text-center"><?php echo $num_total;?></td>
+					<td class="uk-text-center"><button class="uk-button uk-button-success"><?php echo $text_advisor_check;?></button></td>
+					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_student_activity;?></button></td>
+					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_trainer_confirm;?></button></td>
 				</tr>
+				<?php 
+				}
+				?>
 				<tr>
-					<td class="uk-text-center">2</td>
-					<td>09/05/2559 - 13/05/2559</td>
-					<td class="uk-text-center">5</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">5</td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-success">ตรวจแล้ว</a></td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-danger">ยังไม่ส่งบันทึก</a></td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-danger">ยังไม่ตรวจ</a></td>
-				</tr>
-				<tr>
-					<td class="uk-text-center">3</td>
-					<td>16/05/2559 - 20/05/2559</td>
-					<td class="uk-text-center">5</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">-</td>
-					<td class="uk-text-center">5</td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-success">ตรวจแล้ว</a></td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-danger">ยังไม่ส่งบันทึก</a></td>
-					<td class="uk-text-center"><a href="#" class="uk-button uk-button-danger">ยังไม่ตรวจ</a></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="uk-text-right">รวม:</td>
-					<td class="uk-text-center">15</td>
-					<td class="uk-text-center">0</td>
-					<td class="uk-text-center">0</td>
-					<td class="uk-text-center">0</td>
-					<td class="uk-text-center">15</td>
-					<td class="uk-text-center">3</td>
-					<td class="uk-text-center">0</td>
-					<td class="uk-text-center">0</td>
+					<td class="uk-text-right">รวม:</td>
+					<td class="uk-text-center"><?php echo $total_work;?></td>
+					<td class="uk-text-center"><?php echo $total_late;?></td>
+					<td class="uk-text-center"><?php echo $total_not_work;?></td>
+					<td class="uk-text-center"><?php echo $total_leave;?></td>
+					<td class="uk-text-center"><?php echo $total_all;?></td>
+					<td class="uk-text-center"><?php echo $total_advisor_check;?></td>
+					<td class="uk-text-center"><?php echo $total_student_activity;?></td>
+					<td class="uk-text-center"><?php echo $total_trainer_confirm;?></td>
 				</tr>
 			</table>
 			

@@ -40,8 +40,30 @@ class Evaluation extends CI_Controller
                 $this->load->view('student/changeprofile');
                 $this->load->view('footer');
             } else {
+                
+                $profile = $this->profile_lib->getData();
+                $student_id = $profile->user_id;
+                
+                $time_items = array();
+                $activity_items = array();
+                
+                // TIME
+                $sql = "SELECT * FROM time WHERE user_id={$student_id} ";
+                $query = $this->db->query($sql);
+                $time_items = $query->result();
+                
+                // ACTIVITY
+                $sql = "SELECT * FROM activity WHERE user_id={$student_id} ";
+                $query = $this->db->query($sql);
+                $activity_items = $query->result();
+                
+                $data = array();
+                $data['leftmenu'] = $this->load->view('trainer/menu', '', true);
+                $data['time_items'] = $time_items;
+                $data['activity_items'] = $activity_items;
+                
                 $this->load->view('nav');
-                $this->load->view('student/evaluation');
+                $this->load->view('student/evaluation',$data);
                 $this->load->view('footer');
             }
         }

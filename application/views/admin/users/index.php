@@ -23,12 +23,12 @@
             				<button onclick="document.getElementById('search').value='';this.form.submit();">Reset</button>
             			</td>
             			<td nowrap="nowrap">
-            				<select name="users_user_type" onchange="document.adminForm.submit();">
+            				<select name="users_filter_user_type" onchange="document.adminForm.submit();">
                             	<option value="">- เลือกประเภทผู้ใช้ -</option>
-                            	<option value="student" <?php echo set_select('users_user_type','student');?>>นักศึกษา</option>
-                            	<option value="advisor" <?php echo set_select('users_user_type','advisor');?>>อาจารย์ที่ปรึกษา</option>
-                            	<option value="trainer" <?php echo set_select('users_user_type','trainer');?>>ผู้ควบคุมการฝึกงาน</option>
-                            	<option value="staff" <?php echo set_select('users_user_type','staff');?>>เจ้าหน้าที่สถานศึกษา</option>
+                            	<option value="student" <?php echo set_select('users_filter_user_type','student');?>>นักศึกษา</option>
+                            	<option value="advisor" <?php echo set_select('users_filter_user_type','advisor');?>>อาจารย์ที่ปรึกษา</option>
+                            	<option value="trainer" <?php echo set_select('users_filter_user_type','trainer');?>>ผู้ควบคุมการฝึกงาน</option>
+                            	<option value="staff" <?php echo set_select('users_filter_user_type','staff');?>>เจ้าหน้าที่สถานศึกษา</option>
                             </select>
             				<?php echo $this->helper_lib->getStatusHtml('users_filter_status');?>
             			</td>

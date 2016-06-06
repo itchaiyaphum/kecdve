@@ -27,15 +27,14 @@ class Province extends BaseController
     
     public function edit()
     {
-        $this->form_validation->set_rules('name', 'ชื่อจังหวัด', 'trim|required|xss_clean');
+        $id = $this->input->get_post('id',0);
         
+        $this->form_validation->set_rules('name', 'ชื่อจังหวัด', 'trim|required|xss_clean');
         if ($this->form_validation->run()) {								// validation ok
             if ($this->province_model->save()) {								// success
                 redirect('/admin/province/');
             }
         }
-            
-        $id = $this->input->get_post('id',0);
         
         $data = array();
         $data['leftmenu'] = $this->load->view('admin/menu', '', true);
@@ -50,36 +49,36 @@ class Province extends BaseController
     public function publish()
     {
         $id = $this->input->get_post('id',0);
-        $this->province_model->publish($id);
         $per_page = $this->input->get_post('per_page',1);
+        $this->province_model->publish($id);
         redirect('admin/province/?per_page='.$per_page);
     }
     public function unpublish()
     {
         $id = $this->input->get_post('id',0);
-        $this->province_model->unpublish($id);
         $per_page = $this->input->get_post('per_page',1);
+        $this->province_model->unpublish($id);
         redirect('admin/province/?per_page='.$per_page);
     }
     public function trash()
     {
         $id = $this->input->get_post('id',0);
-        $this->province_model->trash($id);
         $per_page = $this->input->get_post('per_page',1);
+        $this->province_model->trash($id);
         redirect('admin/province/?per_page='.$per_page);
     }
     public function delete()
     {
         $id = $this->input->get_post('id',0);
-        $this->province_model->delete($id);
         $per_page = $this->input->get_post('per_page',1);
+        $this->province_model->delete($id);
         redirect('admin/province/?per_page='.$per_page);
     }
     public function restore()
     {
         $id = $this->input->get_post('id',0);
-        $this->province_model->restore($id);
         $per_page = $this->input->get_post('per_page',1);
+        $this->province_model->restore($id);
         redirect('admin/province/?per_page='.$per_page);
     }
 }

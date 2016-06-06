@@ -47,6 +47,7 @@
                         <input type="text" id="form-h-it" name="email" value="<?php echo $item->email;?>" class="uk-width-1-2">
                     </div>
                 </div>
+                <!-- 
             	<div class="uk-form-row">
                     <label class="uk-form-label" for="form-h-it">ภาคการศึกษา</label>
                     <div class="uk-form-controls">
@@ -61,7 +62,7 @@
                         </select>
                     </div>
                 </div>
-                
+                 -->
             	<input type="hidden" name="id" value="<?php echo $item->id;?>" />
             </form>
 

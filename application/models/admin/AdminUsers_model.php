@@ -48,6 +48,12 @@ class AdminUsers_model extends BaseModel
         $wheres[] = "activated IN({$filter_status_value})";
         
         
+        // filter: user_type
+        if ($filter_user_type != "") {
+            $filter_user_type_value = $filter_user_type;
+            $wheres[] = "user_type='{$filter_user_type_value}'";
+        }
+        
         // filter: search
         if ($filter_search != "") {
             $filter_search_value = $filter_search;

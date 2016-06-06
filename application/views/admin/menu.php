@@ -56,7 +56,7 @@
 	<li><hr></li>
 	<li class="uk-nav-header">ผู้ใช้งาน</li>
 	<li class="<?php echo $this->helper_lib->getActiveMenu('users');?>">
-		<a href="<?php echo base_url('admin/users'); ?>"><span class="uk-icon-cube"></span> จัดการประเภทผู้ใช้งาน</a>
+		<a href="<?php echo base_url('admin/users'); ?>"><span class="uk-icon-cube"></span> จัดการผู้ใช้งาน</a>
 	</li>
 	<!-- 
 	<li class="<?php echo $this->helper_lib->getActiveMenu('student');?>">

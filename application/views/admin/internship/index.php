@@ -42,7 +42,7 @@
             			<tr>
             				<th width="5%" class="title">#</th>
             				<th class="title">
-            					รายวิชา
+            					หัวข้อการฝึกงาน
             				</th>
             				<th class="title" width="20%">
             					สถานะ

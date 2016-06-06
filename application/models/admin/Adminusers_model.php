@@ -2,7 +2,7 @@
 if (! defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class AdminUsers_model extends BaseModel
+class Adminusers_model extends BaseModel
 {
 
     public $table = NULL;

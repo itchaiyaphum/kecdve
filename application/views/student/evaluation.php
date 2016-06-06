@@ -72,7 +72,7 @@
 				    $num_leave = 0;
 				    $num_total = 0;
 				    
-				    $text_advisor_check = "ตรวจแล้ว";
+				    $text_advisor_check = "ยังไม่ตรวจ";
 				    $text_student_activity = "ยังไม่ส่งบันทึก";
 				    $text_trainer_confirm = "ยังไม่ตรวจ";
 				?>
@@ -83,7 +83,7 @@
 					<td class="uk-text-center"><?php echo $num_not_work;?></td>
 					<td class="uk-text-center"><?php echo $num_leave;?></td>
 					<td class="uk-text-center"><?php echo $num_total;?></td>
-					<td class="uk-text-center"><button class="uk-button uk-button-success"><?php echo $text_advisor_check;?></button></td>
+					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_advisor_check;?></button></td>
 					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_student_activity;?></button></td>
 					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_trainer_confirm;?></button></td>
 				</tr>

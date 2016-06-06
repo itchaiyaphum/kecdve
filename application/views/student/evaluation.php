@@ -56,9 +56,13 @@
 				$total_not_work = 0;
 				$total_leave = 0;
 				$total_all = 0;
+				
 				$total_advisor_check = 0;
 				$total_student_activity = 0;
 				$total_trainer_confirm = 0;
+				$total_advisor_not_check = 0;
+				$total_student_not_activity = 0;
+				$total_trainer_not_confirm = 0;
 				
 				for($i=0; $i<18; $i++){
 				    $week_no = $i + 1;
@@ -105,31 +109,31 @@
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปเวลาปฏิบัติงาน</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>มา = 15 วัน</li>
-        				<li>ไม่มา = 3 วัน</li>
-        				<li>สาย = 5 วัน</li>
-        				<li>ลา = 1 วัน</li>
+        				<li>มา = <?php echo $total_work;?> วัน</li>
+        				<li>ไม่มา = <?php echo $total_not_work;?> วัน</li>
+        				<li>สาย = <?php echo $total_late;?> วัน</li>
+        				<li>ลา = <?php echo $total_leave;?> วัน</li>
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปบันทึกปฏิบัติงาน</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>ส่งบันทึกแล้ว = 15 วัน</li>
-        				<li>ยังไม่ส่งบันทึก = 3 วัน</li>
+        				<li>ส่งบันทึกแล้ว = <?php echo $total_student_activity;?> วัน</li>
+        				<li>ยังไม่ส่งบันทึก = <?php echo $total_student_not_activity;?> วัน</li>
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปครูนิเทศน์ตรวจเยี่ยม</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>ตรวจแล้ว = 15 วัน</li>
-        				<li>ยังไม่ตรวจ = 3 วัน</li>
+        				<li>ตรวจแล้ว = <?php echo $total_advisor_check;?> วัน</li>
+        				<li>ยังไม่ตรวจ = <?php echo $total_advisor_not_check;?> วัน</li>
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปผู้ควบคุมตรวจยืนยัน</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>ตรวจแล้ว = 15 วัน</li>
-        				<li>ยังไม่ตรวจ = 3 วัน</li>
+        				<li>ตรวจแล้ว = <?php echo $total_trainer_confirm;?> วัน</li>
+        				<li>ยังไม่ตรวจ = <?php echo $total_trainer_not_confirm;?> วัน</li>
         			</ul>
         		</div>
         	</div>

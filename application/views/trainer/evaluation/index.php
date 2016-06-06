@@ -1,56 +1,32 @@
 <div class="uk-container uk-container-center">
 	<div class="uk-grid">
 		<div class="tm-sidebar uk-width-medium-1-4 uk-hidden-small">
-			<?php $this->load->view('student/menu');?>
+			<?php echo $leftmenu;?>
 		</div>
 		<div class="tm-main uk-width-medium-3-4 uk-margin-top uk-margin-bottom">
 			<div class="uk-text-center">
 				<h2>สรุปผลการฝึกงานในสถานประกอบการ</h2>
-				<h3>(สำหรับนักศึกษาฝึกงานในสถานประกอบการ)</h3>
+				<h3>(สำหรับครูฝึกในสถานประกอบการ/ผู้ควบคุมงาน)</h3>
 			</div>
 			<hr>
-			
-			<!-- 
-			<br/>
-			<table width="100%">
-				<tr>
-					<td><b>ชื่อสถานประกอบการ:</b></td>
-					<td>บริษัท ทินิคอร์น จำกัด</td>
-					<td><b>แผนก/งาน:</b></td>
-					<td>ซอฟต์แวร์</td>
-				</tr>
-				<tr>
-					<td><b>ชื่อสถานศึกษา:</b></td>
-					<td>วิทยาลัยเทคนิคชัยภูมิ</td>
-					<td><b>สาขา:</b></td>
-					<td>เทคโนโลยีสารสนเทศ</td>
-				</tr>
-				<tr>
-					<td><b>วันเริ่มต้นการฝึกงาน:</b></td>
-					<td>02/05/2559 - 02/08/2559</td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-			<br/>
-			<hr>
-			 -->
 			
 			<table class="uk-table uk-table-border">
 				<thead>
 					<tr>
-						<th>สัปดาห์ที่</th>
-						<th>มา</th>
-						<th>สาย</th>
-						<th>ไม่มา</th>
-						<th>ลา</th>
-						<th>รวม</th>
-						<th>ครูนิเทศตรวจเยี่ยม</th>
-						<th>การบันทึกปฏิบัติงาน</th>
-						<th>ผู้ควบคุมตรวจยืนยัน</th>
+						<th class="uk-text-center">ลำดับที่</th>
+						<th>ชื่อนักศึกษา</th>
+						<th class="uk-text-center">มา</th>
+						<th class="uk-text-center">สาย</th>
+						<th class="uk-text-center">ไม่มา</th>
+						<th class="uk-text-center">ลา</th>
+						<th class="uk-text-center">รวม</th>
+						<th class="uk-text-center">การตรวจยืนยัน</th>
+						<th class="uk-text-center">บันทึกการทำงาน</th>
+						<th class="uk-text-center">รายการตรวจ</th>
 					</tr>
 				</thead>
 				<?php 
+				$total_student = count($student_items);
 				$total_work = 0;
 				$total_late = 0;
 				$total_not_work = 0;
@@ -64,8 +40,12 @@
 				$total_student_not_activity = 0;
 				$total_trainer_not_confirm = 0;
 				
-				for($i=0; $i<18; $i++){
+				for($i=0; $i<$total_student; $i++){
+				    $student = $student_items[$i];
 				    $week_no = $i + 1;
+				    
+				    $student_name = $student->firstname." ".$student->lastname;
+				    
 				    $num_work = 0;
 				    $num_late = 0;
 				    $num_not_work = 0;
@@ -78,6 +58,7 @@
 				?>
 				<tr>
 					<td class="uk-text-center"><?php echo $week_no;?></td>
+					<td><?php echo $student_name;?></td>
 					<td class="uk-text-center"><?php echo $num_work;?></td>
 					<td class="uk-text-center"><?php echo $num_late;?></td>
 					<td class="uk-text-center"><?php echo $num_not_work;?></td>
@@ -92,6 +73,7 @@
 				?>
 				<tr>
 					<td class="uk-text-right">รวม:</td>
+					<td class="uk-text-center"><?php echo $total_student;?></td>
 					<td class="uk-text-center"><?php echo $total_work;?></td>
 					<td class="uk-text-center"><?php echo $total_late;?></td>
 					<td class="uk-text-center"><?php echo $total_not_work;?></td>

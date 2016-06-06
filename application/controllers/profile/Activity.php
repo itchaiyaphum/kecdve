@@ -47,6 +47,7 @@ class Activity extends CI_Controller
                 $data['items'] = $this->activity_lib->getItems($profile->user_id);
                 $data['file_items'] = $this->activity_lib->getFileItems($profile->user_id, $profile->internship_id);
                 $data['photo_items'] = $this->activity_lib->getPhotoItems($profile->user_id, $profile->internship_id);
+                $data['profile'] = $profile;
                 
                 $this->load->view('nav');
                 $this->load->view('student/activity', $data);

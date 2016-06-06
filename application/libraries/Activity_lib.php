@@ -55,14 +55,13 @@ class Activity_lib
         
         $this->ci->upload->initialize($config);
         
-        $profile = $this->ci->profile_lib->getData();
         if($this->ci->upload->do_upload('photo1')){
             $photo1_data = $this->ci->upload->data();
             $this->ci->db->insert('attachment_photos', array(
                 'file_name' => $photo1_data['file_name'],
                 'file_ext' => $photo1_data['file_ext'],
                 'orig_name' => $photo1_data['client_name'],
-                'internship_id' => $profile->internship_id,
+                'internship_id' => $data['internship_id'],
                 'user_id' => $data['user_id'],
                 'week' => $data['week'],
                 'day' => $data['day'],
@@ -101,15 +100,13 @@ class Activity_lib
         
         $this->ci->upload->initialize($config);
         
-        $profile = $this->ci->profile_lib->getData();
-        
         if($this->ci->upload->do_upload('file1')){
             $file1_data = $this->ci->upload->data();
             $this->ci->db->insert('attachment_files', array(
                 'file_name' => $file1_data['file_name'],
                 'file_ext' => $file1_data['file_ext'],
                 'orig_name' => $file1_data['client_name'],
-                'internship_id' => $profile->internship_id,
+                'internship_id' => $data['internship_id'],
                 'user_id' => $data['user_id'],
                 'week' => $data['week'],
                 'day' => $data['day'],

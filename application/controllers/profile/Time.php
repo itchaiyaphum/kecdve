@@ -43,7 +43,7 @@ class Time extends CI_Controller
             } else {
                 $profile = $this->profile_lib->getData();
                 
-                $user_id = $this->input->get('user_id',$profile->user_id);
+                $user_id = $profile->user_id;
                 
                 $day = $this->input->get_post('day', 1);
                 $week = $this->input->get_post('week', 1);

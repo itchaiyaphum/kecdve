@@ -13,6 +13,7 @@
 			<?php 
 			$days_of_weeks = array('จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์');
     		for($i=0; $i<18; $i++){
+    		    $week = ($i+1);
     		?>
 			<article class="uk-article">
 				<table class="uk-table">
@@ -42,15 +43,27 @@
                     		    $trainer_confirm_status = $item->trainer_confirm_status;
             		        }
             		    }
+            		    
+            		    $day = ($j+1);
+            		    
+            		    $form_name = "form-".$week."-".$day;
             		?>
             		
 					<tr>
-						<td></td>
+						<td>
+							<form action="<?php base_url('preview/activity'); ?>" id="<?php echo $form_name;?>" class="main-form uk-form uk-form-horizontal" method="post">
+								<input type="hidden" value="<?php echo $week;?>" name="week"/>
+                        		<input type="hidden" value="<?php echo $day;?>" name="day"/>
+                        		<input type="hidden" value="<?php echo $user_id;?>" name="user_id"/>
+                        		<input type="hidden" value="<?php echo $advisor_check_status;?>" name="advisor_check_status"/>
+                            	<input type="hidden" value="<?php echo $trainer_confirm_status;?>" name="trainer_confirm_status"/>
+							</form>
+						</td>
 						<td><?php echo $days_of_weeks[$j];?></td>
 						<td><?php echo $text_activity;?></td>
 						<td><?php echo $text_problem;?></td>
 						<td><?php echo $text_advantage;?></td>
-						<td><a href="<?php echo base_url('profile/activity/form/?week='.($i+1).'&day='.($j+1)); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
+						<td><a href="<?php echo base_url('preview/activity/form/?week='.$week.'&day='.$day.'&user_id='.$user_id); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
 					</tr>
 					
 					<?php 
@@ -119,91 +132,66 @@
 					
 					
 					<?php 
-            				if($student_save){
-            				?>
-            				<tr>
-            					<td></td>
-            					<td colspan="5">
-            						<div class="uk-margin">
-            						
-            							<?php 
-            							if($profile->user_type=="student"){
-            							     if($advisor_check_status){
-            							?>
-            								<div class="uk-text-success">ครูนิเทศฝึกงาน: <i class="uk-icon-check"></i> ตรวจแล้ว</div>
-            								<?php 
-            							     }else{
-            								?>
-            								<div class="uk-text-danger">ครูนิเทศฝึกงาน: <i class="uk-icon-remove"></i> ยังไม่ตรวจ</div>
-            								<?php 
-            							     }
-            							     
-            							     if($trainer_confirm_status){
-            								?>
-            								<div class="uk-text-success">ผู้ควบคุมการฝึกงาน: <i class="uk-icon-check"></i> ยืนยันแล้ว</div>
-            								<?php 
-            							     }else{
-            							    ?>
-            							    <div class="uk-text-danger">ผู้ควบคุมการฝึกงาน: <i class="uk-icon-remove"></i> ยังไม่ยืนยันแล้ว</div>
-            							<?php
-            							     }
-            							}
-            							?>
-            							
-            							<?php 
-            							if($profile->user_type=="advisor"){
-            							     if($advisor_check_status){
-            							?>
-            							<div class="uk-button-group">
-                                            <button class="uk-button uk-button-success uk-button-small">ครูนิเทศฝึกงาน:</button>
-                                            <div>
-                                                <button class="uk-button uk-button-success uk-button-small">ตรวจแล้ว</button>
-                                            </div>
-                                        </div>
-            							<?php 
-            							     }else{
-            							?>
-                        				<div class="uk-button-group">
-                                            <button class="uk-button uk-button-danger uk-button-small">ครูนิเทศฝึกงาน:</button>
-                                            <div>
-                                                <button class="uk-button uk-button-danger uk-button-small">ยังไม่ตรวจ</button>
-                                            </div>
-                                        </div>
-                                        <?php 
-            							     }
-            							}
-            							?>
-            							
-            							<?php 
-            							if($profile->user_type=="trainer"){
-            							     if($trainer_confirm_status){
-            							?>
-            							<div class="uk-button-group">
-                                            <button class="uk-button uk-button-success uk-button-small">ผู้ควบคุมการฝึกงาน:</button>
-                                            <div>
-                                                <button class="uk-button uk-button-success uk-button-small">ยังไม่ยืนยัน</button>
-                                            </div>
-                                        </div>
-            							<?php 
-            							     }else{
-            							?>
-                                        <div class="uk-button-group">
-                                            <button class="uk-button uk-button-danger uk-button-small">ผู้ควบคุมการฝึกงาน:</button>
-                                            <div>
-                                                <button class="uk-button uk-button-danger uk-button-small">ยังไม่ยืนยัน</button>
-                                            </div>
-                                        </div>
-                                        <?php 
-            							     }
-            							}
-            							?>
-                                        
-                                    </div>
-            					</td>
-            				</tr>
-            				<?php 
-							}
-							?>
+    				if($student_save){
+    				?>
+    				<tr>
+    					<td></td>
+    					<td colspan="5">
+    						<div class="uk-margin">
+    						
+    							<?php 
+    							if($advisor_check_status){
+    							?>
+								<div class="uk-text-success">ครูนิเทศฝึกงาน: <i class="uk-icon-check"></i> ตรวจแล้ว</div>
+								<?php 
+							     }else{
+								?>
+								<div class="uk-text-danger">ครูนิเทศฝึกงาน: <i class="uk-icon-remove"></i> ยังไม่ตรวจ</div>
+								<?php } ?>
+    							<?php
+    							if($trainer_confirm_status){
+    							?>
+								<div class="uk-text-success">ผู้ควบคุมการฝึกงาน: <i class="uk-icon-check"></i> ยืนยันแล้ว</div>
+								<?php 
+							     }else{
+							    ?>
+							    <div class="uk-text-danger">ผู้ควบคุมการฝึกงาน: <i class="uk-icon-remove"></i> ยังไม่ยืนยันแล้ว</div>
+    							<?php } ?>
+    							
+    							<?php 
+    							if($profile->user_type=="advisor"){
+    							     if($advisor_check_status){
+    							?>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="advisor_check_status_cancel_button uk-button uk-button-small uk-button-danger">ยกเลิกการตรวจเยี่ยม</a>
+        							<?php 
+        							}else{
+        							?>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="advisor_check_status_ok_button uk-button uk-button-small uk-button-success">ยืนยันบันทึกการตรวจเยี่ยม</a>
+                                <?php 
+    							     }
+    							}
+    							?>
+    							
+    							<?php 
+    							if($profile->user_type=="trainer"){
+    							     if($trainer_confirm_status){
+    							?>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="trainer_confirm_status_cancel_button uk-button uk-button-small uk-button-danger">ยกเลิกการตรวจยืนยัน</a>
+        							<?php 
+        							}else{
+        							?>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="trainer_confirm_status_ok_button uk-button uk-button-small uk-button-success">บันทึกการตรวจยืนยัน</a>
+                                <?php 
+    							     }
+    							}
+    							?>
+                                
+                            </div>
+    					</td>
+    				</tr>
+    				<?php 
+					}
+					?>
 					
 					<?php } ?>
 					</tbody>
@@ -211,104 +199,35 @@
 			</article>
 			<?php } ?>
 			
-			<!-- 
-			<article class="uk-article">
-				<table class="uk-table uk-table-hover">
-					<tbody><tr>
-						<td class="uk-width-1-10">สัปดาห์ที่ 19</td>
-						<td class="uk-width-1-10">วัน</td>
-						<td class="uk-width-3-10">กิจกรรม/งานที่ปฏิบัติ</td>
-						<td class="uk-width-2-10">ปัญหาและอุปสรรค</td>
-						<td class="uk-width-2-10">ประโยชน์ที่ได้รับ</td>
-						<td class="uk-width-1-10" colspan="2"></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>จันทร์</td>
-						<td>
-							<div>ซ่อมเครื่องคอมที่บ้านลูกค้า จ.นครปฐม</div>
-							
-						</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="<?php echo base_url('index.php?option=com_internship&view=notes&layout=form&id='); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td colspan="3">
-							<div>
-								<img class="uk-thumbnail" src="/assets/imgs/slideshow1.jpg"/>
-							</div>
-							<ul class="uk-list uk-list-line">
-								<li><a target="_blank" href="/media/com_internship/downloads/doc1.zip"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: รายงานผลการทำงาน</a></li>
-								<li><a target="_blank" href="/media/com_internship/downloads/doc1.pdf"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: แผนที่งานซ่อม</a></li>
-							</ul>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>อังคาร</td>
-						<td>
-							<div>เดินสาย LAN จ.นครปฐม</div>
-						</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="<?php echo base_url('index.php?option=com_internship&view=notes&layout=form&id='); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td colspan="3">
-							<div class="uk-grid uk-grid-small">
-								<div class="uk-width-1-3">
-									<img class="uk-thumbnail" src="/assets/imgs/slideshow1.jpg"/>
-								</div>
-								<div class="uk-width-1-3">
-									<img class="uk-thumbnail" src="/assets/imgs/slideshow1.jpg"/>
-								</div>
-								<div class="uk-width-1-3">
-									<img class="uk-thumbnail" src="/assets/imgs/slideshow1.jpg"/>
-								</div>
-							</div>
-							<ul class="uk-list uk-list-line">
-								<li><a target="_blank" href="/media/com_internship/downloads/doc1.zip"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: รายงานผลการทำงาน</a></li>
-							</ul>
-						</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>พุธ</td>
-						<td>เดินสาย LAN จ.นครปฐม</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="<?php echo base_url('index.php?option=com_internship&view=notes&layout=form&id='); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-						<td colspan="3">
-							<div class="uk-grid uk-grid-small">
-								<div class="uk-width-1-2">
-									<img class="uk-thumbnail" src="/assets/imgs/slideshow1.jpg"/>
-								</div>
-								<div class="uk-width-1-2">
-									<img class="uk-thumbnail" src="/assets/imgs/slideshow1.jpg"/>
-								</div>
-							</div>
-							<ul class="uk-list uk-list-line">
-								<li><a target="_blank" href="/media/com_internship/downloads/doc1.zip"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: รายงานผลการทำงาน</a></li>
-								<li><a target="_blank" href="/media/com_internship/downloads/doc1.pdf"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: แผนที่งานซ่อม</a></li>
-							</ul>
-						</td>
-						<td></td>
-					</tr>
-					</tbody>
-				</table>
-			</article>
-			 -->
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+$(document).on('ready', function(){
+    $( ".advisor_check_status_cancel_button" ).on('click',function( event ) {
+        event.preventDefault();
+        $formName = $(this).data('form');
+        $('#'+$formName).find('input[name="advisor_check_status"]').val(0);
+        $('#'+$formName).submit();
+    });
+    $( ".trainer_confirm_status_cancel_button" ).on('click',function( event ) {
+        event.preventDefault();
+        $formName = $(this).data('form');
+        $('#'+$formName).find('input[name="trainer_confirm_status"]').val(0);
+        $('#'+$formName).submit();
+    });
+    $( ".advisor_check_status_ok_button" ).on('click',function( event ) {
+        event.preventDefault();
+        $formName = $(this).data('form');
+        $('#'+$formName).find('input[name="advisor_check_status"]').val(1);
+        $('#'+$formName).submit();
+    });
+    $( ".trainer_confirm_status_ok_button" ).on('click',function( event ) {
+        event.preventDefault();
+        $formName = $(this).data('form');
+        $('#'+$formName).find('input[name="trainer_confirm_status"]').val(1);
+        $('#'+$formName).submit();
+    });
+});
+</script>

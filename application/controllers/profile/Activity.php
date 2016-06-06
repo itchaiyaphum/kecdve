@@ -75,6 +75,7 @@ class Activity extends CI_Controller
             if ($this->form_validation->run()) { // validation ok
                 if ($this->activity_lib->save(array(
                     'user_id' => $profile->user_id,
+                    'internship_id' => $profile->internship_id,
                     'day' => $day,
                     'week' => $week,
                     'activity' => $this->form_validation->set_value('activity'),

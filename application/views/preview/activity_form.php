@@ -75,7 +75,7 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
                 	?>
                 	<li>
                 		<div class="uk-alert">
-                            <a href="<?php echo base_url('/profile/activity/photo_remove/?id='.$photo->id.'&week='.$week.'&day='.$day);?>" class="uk-alert-close uk-close"></a>
+                            <a href="<?php echo base_url('/preview/activity/photo_remove/?id='.$photo->id.'&week='.$week.'&day='.$day.'&user_id='.$user_id);?>" class="uk-alert-close uk-close"></a>
                             <p><a target="_blank" href="<?php echo base_url('/storage/photos/'.$photo->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $photo->orig_name;?></a></p>
                         </div>
                 	</li>
@@ -100,7 +100,7 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
                 	?>
                 	<li>
                 		<div class="uk-alert">
-                            <a href="<?php echo base_url('/profile/activity/file_remove/?id='.$file->id.'&week='.$week.'&day='.$day);?>" class="uk-alert-close uk-close"></a>
+                            <a href="<?php echo base_url('/preview/activity/file_remove/?id='.$file->id.'&week='.$week.'&day='.$day.'&user_id='.$user_id);?>" class="uk-alert-close uk-close"></a>
                             <p><a target="_blank" href="<?php echo base_url('/storage/files/'.$file->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $file->orig_name;?></a></p>
                         </div>
                 	</li>
@@ -120,6 +120,8 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
             </div>
             <input type="hidden" name="week" value="<?php echo $week;?>"/>
             <input type="hidden" name="day" value="<?php echo $day;?>"/>
+            <input type="hidden" name="user_id" value="<?php echo $user_id;?>"/>
+            <input type="hidden" name="internship_id" value="<?php echo $internship_id;?>"/>
             <?php echo form_close(); ?>
 		</div>
 	</div>

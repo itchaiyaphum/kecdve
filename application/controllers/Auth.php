@@ -34,6 +34,8 @@ class Auth extends CI_Controller
 	        redirect('/trainer/');
 	    }else if($profile->user_type=="staff"){
 	        redirect('/staff/');
+        }else if($profile->user_type=="admin"){
+            redirect('/admin/');
 	    }else{
 	        redirect('/');
 	    }

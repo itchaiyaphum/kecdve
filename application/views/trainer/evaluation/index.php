@@ -52,6 +52,22 @@
 				    $num_leave = 0;
 				    $num_total = 0;
 				    
+				    // calculate stats each week
+				    for($j=0; $j<count($time_items); $j++){
+				        if($student->id==$time_items[$j]->user_id){
+				            $num_work++;
+				        }
+				    }
+				    $num_total = $num_work;
+				    
+				    // summary stats
+				    $total_work += $num_work;
+				    $total_late += $num_late;
+				    $total_not_work += $num_not_work;
+				    $total_leave += $num_leave;
+				    $total_leave += $num_leave;
+				    $total_all += $num_total;
+				    
 				    $text_advisor_check = "ยังไม่ตรวจ";
 				    $text_student_activity = "ยังไม่ส่งบันทึก";
 				    $text_trainer_confirm = "ยังไม่ตรวจ";

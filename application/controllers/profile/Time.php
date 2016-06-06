@@ -42,6 +42,9 @@ class Time extends CI_Controller
                 $this->load->view('footer');
             } else {
                 $profile = $this->profile_lib->getData();
+                
+                $user_id = $this->input->get('user_id',$profile->user_id);
+                
                 $day = $this->input->get_post('day', 1);
                 $week = $this->input->get_post('week', 1);
                 
@@ -55,7 +58,7 @@ class Time extends CI_Controller
                 $data['errors'] = array();
                 if ($this->form_validation->run()) { // validation ok
                     if ($this->time_lib->save(array(
-                        'user_id' => $profile->user_id,
+                        'user_id' => $user_id,
                         'day' => $day,
                         'week' => $week,
                         'come_hour' => $this->form_validation->set_value('come_hour'),
@@ -74,7 +77,7 @@ class Time extends CI_Controller
                 }
                 
                 $data = array();
-                $data['items'] = $this->time_lib->getItems($profile->user_id);
+                $data['items'] = $this->time_lib->getItems($user_id);
                 $data['profile'] = $profile;
                 
                 $this->load->view('nav');

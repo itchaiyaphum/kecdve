@@ -76,7 +76,7 @@
 				?>
 				<tr>
 					<td class="uk-text-center"><?php echo $week_no;?></td>
-					<td><?php echo $student_name;?></td>
+					<td><a href="<?php echo base_url('/preview/time/?user_id='.$student->id);?>"><?php echo $student_name;?></a></td>
 					<td class="uk-text-center"><?php echo $num_work;?></td>
 					<td class="uk-text-center"><?php echo $num_late;?></td>
 					<td class="uk-text-center"><?php echo $num_not_work;?></td>

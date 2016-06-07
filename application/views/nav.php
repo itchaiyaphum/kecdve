@@ -62,7 +62,9 @@ tinymce.init({
                         				<li><a href="<?php echo base_url('admin/');?>"><i class="uk-icon-lock"></i> เข้าระบบจัดการข้อมูล</a></li>
                         				<?php } ?>
             							<li class="uk-nav-divider"></li>
+            							<?php if($profileData->user_type!='admin'){ ?>
             							<li><a href="<?php echo base_url('settings/profile');?>"><i class="uk-icon-gear"></i> แก้ไขข้อมูลส่วนตัว</a></li>
+            							<?php } ?>
             							<li><a href="<?php echo base_url('auth/logout');?>"><i class="uk-icon-power-off"></i> ออกจากระบบ</a></li>
             						</ul>
             					</div>

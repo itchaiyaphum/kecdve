@@ -60,6 +60,10 @@
 				$total_advisor_check = 0;
 				$total_student_activity = 0;
 				$total_trainer_confirm = 0;
+				$total_advisor_check_percentage = 0;
+				$total_student_activity_percentage = 0;
+				$total_trainer_confirm_percentage = 0;
+				
 				$total_advisor_not_check = 0;
 				$total_student_not_activity = 0;
 				$total_trainer_not_confirm = 0;
@@ -72,10 +76,43 @@
 				    $num_leave = 0;
 				    $num_total = 0;
 				    
-				    // calculate stats each week
+				    $advisor_check_status = 0;
+				    $advisor_check_status_percentage = 0;
+				    $student_activity_save = 0;
+				    $student_activity_save_percentage = 0;
+				    $trainer_confirm_status = 0;
+				    $trainer_confirm_status_percentage = 0;
+				    
+				    // calculate stats (time) each week
 				    for($j=0; $j<count($time_items); $j++){
 				        if($time_items[$j]->week==$week_no){
+				            
+				            // calculate: work
 				            $num_work++;
+				            
+				            // calculate: not work
+				            
+				            // calculate: late
+				            
+				            // calculate: leave
+				            
+				            // calculate: advisor check
+				            if($time_items[$j]->advisor_check_status==1){
+				                $advisor_check_status++;
+				            }
+				            
+				            // calculate: trainer confirm
+				            if($time_items[$j]->trainer_confirm_status==1){
+				                $trainer_confirm_status++;
+				            }
+				        }
+				    }
+				    
+				    // calculate stats (activity) each week
+				    for($j=0; $j<count($activity_items); $j++){
+				        if($activity_items[$j]->week==$week_no){
+				            // calculate: activity save
+				            $student_activity_save++;
 				        }
 				    }
 				    
@@ -86,13 +123,16 @@
 				    $total_late += $num_late;
 				    $total_not_work += $num_not_work;
 				    $total_leave += $num_leave;
-				    $total_leave += $num_leave;
 				    $total_all += $num_total;
 				    
+				    $total_advisor_check += $advisor_check_status;
+				    $total_student_activity += $student_activity_save;
+				    $total_trainer_confirm += $trainer_confirm_status;
 				    
-				    $text_advisor_check = "ยังไม่ตรวจ";
-				    $text_student_activity = "ยังไม่ส่งบันทึก";
-				    $text_trainer_confirm = "ยังไม่ตรวจ";
+				    
+				    $advisor_check_status_percentage = ($advisor_check_status/5) * 100;
+				    $student_activity_save_percentage = ($student_activity_save/5) * 100;
+				    $trainer_confirm_status_percentage = ($trainer_confirm_status/5) * 100;
 				?>
 				<tr>
 					<td class="uk-text-center"><?php echo $week_no;?></td>
@@ -101,12 +141,22 @@
 					<td class="uk-text-center"><?php echo $num_not_work;?></td>
 					<td class="uk-text-center"><?php echo $num_leave;?></td>
 					<td class="uk-text-center"><?php echo $num_total;?></td>
-					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_advisor_check;?></button></td>
-					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_student_activity;?></button></td>
-					<td class="uk-text-center"><button class="uk-button uk-button-danger"><?php echo $text_trainer_confirm;?></button></td>
+					<td class="uk-text-center">
+						<?php echo $this->helper_lib->getProgressBarHtml($advisor_check_status_percentage);?>
+					</td>
+					<td class="uk-text-center">
+						<?php echo $this->helper_lib->getProgressBarHtml($student_activity_save_percentage);?>
+                    </td>
+					<td class="uk-text-center">
+						<?php echo $this->helper_lib->getProgressBarHtml($trainer_confirm_status_percentage);?>
+                    </td>
 				</tr>
 				<?php 
 				}
+				
+				$total_advisor_check_percentage = ($total_advisor_check/(18*5)) * 100;
+				$total_student_activity_percentage = ($total_student_activity/(18*5)) * 100;
+				$total_trainer_confirm_percentage = ($total_trainer_confirm/(18*5)) * 100;
 				?>
 				<tr>
 					<td class="uk-text-right">รวม:</td>
@@ -115,9 +165,15 @@
 					<td class="uk-text-center"><?php echo $total_not_work;?></td>
 					<td class="uk-text-center"><?php echo $total_leave;?></td>
 					<td class="uk-text-center"><?php echo $total_all;?></td>
-					<td class="uk-text-center"><?php echo $total_advisor_check;?></td>
-					<td class="uk-text-center"><?php echo $total_student_activity;?></td>
-					<td class="uk-text-center"><?php echo $total_trainer_confirm;?></td>
+					<td class="uk-text-center">
+						<?php echo $this->helper_lib->getProgressBarHtml($total_advisor_check_percentage);?>
+					</td>
+					<td class="uk-text-center">
+						<?php echo $this->helper_lib->getProgressBarHtml($total_student_activity_percentage);?>
+					</td>
+					<td class="uk-text-center">
+						<?php echo $this->helper_lib->getProgressBarHtml($total_trainer_confirm_percentage);?>
+					</td>
 				</tr>
 			</table>
 			
@@ -137,21 +193,21 @@
         			<h3>สรุปบันทึกปฏิบัติงาน</h3>
         			<ul class="uk-list uk-list-striped">
         				<li>ส่งบันทึกแล้ว = <?php echo $total_student_activity;?> วัน</li>
-        				<li>ยังไม่ส่งบันทึก = <?php echo $total_student_not_activity;?> วัน</li>
+        				<!-- <li>ยังไม่ส่งบันทึก = <?php echo $total_student_not_activity;?> วัน</li>  -->
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปครูนิเทศน์ตรวจเยี่ยม</h3>
         			<ul class="uk-list uk-list-striped">
         				<li>ตรวจแล้ว = <?php echo $total_advisor_check;?> วัน</li>
-        				<li>ยังไม่ตรวจ = <?php echo $total_advisor_not_check;?> วัน</li>
+        				<!-- <li>ยังไม่ตรวจ = <?php echo $total_advisor_not_check;?> วัน</li>  -->
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปผู้ควบคุมตรวจยืนยัน</h3>
         			<ul class="uk-list uk-list-striped">
         				<li>ตรวจแล้ว = <?php echo $total_trainer_confirm;?> วัน</li>
-        				<li>ยังไม่ตรวจ = <?php echo $total_trainer_not_confirm;?> วัน</li>
+        				<!-- <li>ยังไม่ตรวจ = <?php echo $total_trainer_not_confirm;?> วัน</li> -->
         			</ul>
         		</div>
         	</div>

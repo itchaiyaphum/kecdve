@@ -27,6 +27,24 @@ class Helper_lib
         return $css_class;
     }
     
+    public function getProgressBarHtml($percentage=0)
+    {
+        $percentage = number_format($percentage,0);
+        
+        $bar_class = " ";
+        if($percentage<=50){
+            $bar_class = "uk-progress-danger";
+        }else if($percentage<=79){
+            $bar_class = "uk-progress-warning";
+        }else if($percentage>=80){
+            $bar_class = "uk-progress-success";
+        }
+        $html = '<div class="uk-progress '.$bar_class.'">';
+        $html .= '<div class="uk-progress-bar" style="width: '.number_format($percentage,0).'%;">'.number_format($percentage,0).'%</div>';
+        $html .= '</div>';
+        return $html;
+    }
+    
     public function getPaginationIndex($i=0){
         $page = $this->ci->input->get_post('per_page', 1);
         $limit = 10;

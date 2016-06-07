@@ -32,6 +32,16 @@ $student_id = array(
 	'id'	=> 'student_id',
 	'value'	=> $profile->student_id,
 );
+$college_id = array(
+	'name'	=> 'college_id',
+	'id'	=> 'college_id',
+	'value'	=> $profile->college_id,
+);
+$department_id = array(
+	'name'	=> 'department_id',
+	'id'	=> 'department_id',
+	'value'	=> $profile->department_id,
+);
 $major_title = array(
 	'name'	=> 'major_title',
 	'id'	=> 'major_title',
@@ -274,13 +284,29 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                             <div class="uk-form-row">
                                 <label class="uk-form-label" >สถานศึกษา</label>
                                 <div class="uk-form-controls">
-                                    <select name="organization_id" id="organization_id">
+                                    <select name="college_id" id="college_id">
                                 	<option value="0">--- เลือกสถานศึกษา ---</option>
                                     <?php 
                                     for($i=0; $i<count($colleges); $i++){
                                         $college = $colleges[$i];
                                         ?>
-                                        <option value="<?php echo $college->id;?>" <?php echo ($profile->organization_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->name;?></option>
+                                        <option value="<?php echo $college->id;?>" <?php echo ($profile->college_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->name;?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="uk-form-row">
+                                <label class="uk-form-label" >แผนก/สาขา</label>
+                                <div class="uk-form-controls">
+                                    <select name="department_id" id="department_id">
+                                	<option value="0">--- เลือกแผนก/สาขา ---</option>
+                                    <?php 
+                                    for($i=0; $i<count($departments); $i++){
+                                        $department = $departments[$i];
+                                        ?>
+                                        <option value="<?php echo $department->id;?>" <?php echo ($profile->department_id==$department->id)?' selected="selected" ':'';?>><?php echo $department->name;?></option>
                                         <?php
                                     }
                                     ?>

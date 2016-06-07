@@ -64,13 +64,13 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                             <div class="uk-form-row">
                                 <label class="uk-form-label" >สถานศึกษา</label>
                                 <div class="uk-form-controls">
-                                    <select name="organization_id" id="organization_id">
+                                    <select name="college_id" id="college_id">
                                 	<option value="0">--- เลือกสถานศึกษา ---</option>
                                     <?php 
                                     for($i=0; $i<count($college_items); $i++){
                                         $college = $college_items[$i];
                                         ?>
-                                        <option value="<?php echo $college->id;?>" <?php echo ($profile->organization_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->name;?></option>
+                                        <option value="<?php echo $college->id;?>" <?php echo ($profile->college_id==$college->id)?' selected="selected" ':'';?>><?php echo $college->name;?></option>
                                         <?php
                                     }
                                     ?>

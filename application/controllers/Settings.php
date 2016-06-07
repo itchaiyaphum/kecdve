@@ -10,6 +10,7 @@ class Settings extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->model('settings_model');
         $this->load->model('admin/college_model');
+        $this->load->model('admin/department_model');
         $this->load->model('admin/internship_model');
         $this->load->model('admin/company_model');
         $this->load->library('form_validation');
@@ -45,6 +46,7 @@ class Settings extends CI_Controller
                 }
                 
                 $data['colleges'] = $this->college_model->getItems(array('status'=>1));
+                $data['departments'] = $this->department_model->getItems(array('status'=>1));
                 $data['internship_items'] = $this->internship_model->getItems(array('status'=>1));
                 $data['company_items'] = $this->company_model->getItems(array('status'=>1));
                 $data['trainer_items'] = $this->profile_lib->getTrainer();
@@ -55,7 +57,7 @@ class Settings extends CI_Controller
                 $this->load->view('footer');
             }else if($profile->user_type=="advisor"){
                 $input_data['user_id'] = $profile->user_id;
-                if ($this->settings_model->validateStudent()) {
+                if ($this->settings_model->validateAdvisor()) {
                     if ($this->profile_lib->saveAdvisor($input_data)) {
                         $data['messages'] = 'บันทึกข้อมูลเรียบร้อบ';
                         redirect('settings/profile');

@@ -10,31 +10,28 @@
 			</div>
 			<hr>
 			
-			<!-- 
 			<br/>
 			<table width="100%">
 				<tr>
 					<td><b>ชื่อสถานประกอบการ:</b></td>
-					<td>บริษัท ทินิคอร์น จำกัด</td>
-					<td><b>แผนก/งาน:</b></td>
-					<td>ซอฟต์แวร์</td>
+					<td><?php echo $data->company_name;?></td>
+					<td colspan="2"></td>
 				</tr>
 				<tr>
 					<td><b>ชื่อสถานศึกษา:</b></td>
-					<td>วิทยาลัยเทคนิคชัยภูมิ</td>
-					<td><b>สาขา:</b></td>
-					<td>เทคโนโลยีสารสนเทศ</td>
+					<td><?php echo $data->college_name;?></td>
+					<td><b>แผนก/สาขา:</b></td>
+					<td><?php echo $data->college_department_name;?></td>
 				</tr>
 				<tr>
 					<td><b>วันเริ่มต้นการฝึกงาน:</b></td>
-					<td>02/05/2559 - 02/08/2559</td>
+					<td>(<?php echo $data->internship_start;?> ถึง <?php echo $data->internship_end;?>)</td>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
 			<br/>
 			<hr>
-			 -->
 			
 			<table class="uk-table uk-table-border">
 				<thead>
@@ -50,164 +47,77 @@
 						<th>ผู้ควบคุมตรวจยืนยัน</th>
 					</tr>
 				</thead>
-				<?php 
-				$total_work = 0;
-				$total_late = 0;
-				$total_not_work = 0;
-				$total_leave = 0;
-				$total_all = 0;
-				
-				$total_advisor_check = 0;
-				$total_student_activity = 0;
-				$total_trainer_confirm = 0;
-				$total_advisor_check_percentage = 0;
-				$total_student_activity_percentage = 0;
-				$total_trainer_confirm_percentage = 0;
-				
-				$total_advisor_not_check = 0;
-				$total_student_not_activity = 0;
-				$total_trainer_not_confirm = 0;
-				
-				for($i=0; $i<18; $i++){
-				    $week_no = $i + 1;
-				    $num_work = 0;
-				    $num_late = 0;
-				    $num_not_work = 0;
-				    $num_leave = 0;
-				    $num_total = 0;
-				    
-				    $advisor_check_status = 0;
-				    $advisor_check_status_percentage = 0;
-				    $student_activity_save = 0;
-				    $student_activity_save_percentage = 0;
-				    $trainer_confirm_status = 0;
-				    $trainer_confirm_status_percentage = 0;
-				    
-				    // calculate stats (time) each week
-				    for($j=0; $j<count($time_items); $j++){
-				        if($time_items[$j]->week==$week_no){
-				            
-				            // calculate: work
-				            $num_work++;
-				            
-				            // calculate: not work
-				            
-				            // calculate: late
-				            
-				            // calculate: leave
-				            
-				            // calculate: advisor check
-				            if($time_items[$j]->advisor_check_status==1){
-				                $advisor_check_status++;
-				            }
-				            
-				            // calculate: trainer confirm
-				            if($time_items[$j]->trainer_confirm_status==1){
-				                $trainer_confirm_status++;
-				            }
-				        }
-				    }
-				    
-				    // calculate stats (activity) each week
-				    for($j=0; $j<count($activity_items); $j++){
-				        if($activity_items[$j]->week==$week_no){
-				            // calculate: activity save
-				            $student_activity_save++;
-				        }
-				    }
-				    
-				    $num_total = $num_work;
-				    
-				    // summary stats
-				    $total_work += $num_work;
-				    $total_late += $num_late;
-				    $total_not_work += $num_not_work;
-				    $total_leave += $num_leave;
-				    $total_all += $num_total;
-				    
-				    $total_advisor_check += $advisor_check_status;
-				    $total_student_activity += $student_activity_save;
-				    $total_trainer_confirm += $trainer_confirm_status;
-				    
-				    
-				    $advisor_check_status_percentage = ($advisor_check_status/5) * 100;
-				    $student_activity_save_percentage = ($student_activity_save/5) * 100;
-				    $trainer_confirm_status_percentage = ($trainer_confirm_status/5) * 100;
-				?>
+				<?php
+				for($i=0; $i<count($data->stats); $i++){
+				    $item = $data->stats[$i];
+			    ?>
 				<tr>
-					<td class="uk-text-center"><?php echo $week_no;?></td>
-					<td class="uk-text-center"><?php echo $num_work;?></td>
-					<td class="uk-text-center"><?php echo $num_late;?></td>
-					<td class="uk-text-center"><?php echo $num_not_work;?></td>
-					<td class="uk-text-center"><?php echo $num_leave;?></td>
-					<td class="uk-text-center"><?php echo $num_total;?></td>
+					<td class="uk-text-center"><?php echo $item->week;?></td>
+					<td class="uk-text-center"><?php echo $item->come;?></td>
+					<td class="uk-text-center"><?php echo $item->not_come;?></td>
+					<td class="uk-text-center"><?php echo $item->late;?></td>
+					<td class="uk-text-center"><?php echo $item->leave;?></td>
+					<td class="uk-text-center"><?php echo $item->total;?></td>
 					<td class="uk-text-center">
-						<?php echo $this->helper_lib->getProgressBarHtml($advisor_check_status_percentage);?>
+						<?php echo $this->helper_lib->getProgressBarHtml($item->advisor_check_percentage);?>
 					</td>
 					<td class="uk-text-center">
-						<?php echo $this->helper_lib->getProgressBarHtml($student_activity_save_percentage);?>
+						<?php echo $this->helper_lib->getProgressBarHtml($item->student_activity_percentage);?>
                     </td>
 					<td class="uk-text-center">
-						<?php echo $this->helper_lib->getProgressBarHtml($trainer_confirm_status_percentage);?>
+						<?php echo $this->helper_lib->getProgressBarHtml($item->trainer_confirm_percentage);?>
                     </td>
 				</tr>
-				<?php 
+    			<?php 
 				}
-				
-				$total_advisor_check_percentage = ($total_advisor_check/(18*5)) * 100;
-				$total_student_activity_percentage = ($total_student_activity/(18*5)) * 100;
-				$total_trainer_confirm_percentage = ($total_trainer_confirm/(18*5)) * 100;
 				?>
 				<tr>
 					<td class="uk-text-right">รวม:</td>
-					<td class="uk-text-center"><?php echo $total_work;?></td>
-					<td class="uk-text-center"><?php echo $total_late;?></td>
-					<td class="uk-text-center"><?php echo $total_not_work;?></td>
-					<td class="uk-text-center"><?php echo $total_leave;?></td>
-					<td class="uk-text-center"><?php echo $total_all;?></td>
+					<td class="uk-text-center"><?php echo $data->totals->come;?></td>
+					<td class="uk-text-center"><?php echo $data->totals->not_come;?></td>
+					<td class="uk-text-center"><?php echo $data->totals->late;?></td>
+					<td class="uk-text-center"><?php echo $data->totals->leave;?></td>
+					<td class="uk-text-center"><?php echo $data->totals->total;?></td>
 					<td class="uk-text-center">
-						<?php echo $this->helper_lib->getProgressBarHtml($total_advisor_check_percentage);?>
+						<?php echo $this->helper_lib->getProgressBarHtml($data->totals->advisor_check_percentage);?>
 					</td>
 					<td class="uk-text-center">
-						<?php echo $this->helper_lib->getProgressBarHtml($total_student_activity_percentage);?>
+						<?php echo $this->helper_lib->getProgressBarHtml($data->totals->student_activity_percentage);?>
 					</td>
 					<td class="uk-text-center">
-						<?php echo $this->helper_lib->getProgressBarHtml($total_trainer_confirm_percentage);?>
+						<?php echo $this->helper_lib->getProgressBarHtml($data->totals->trainer_confirm_percentage);?>
 					</td>
 				</tr>
 			</table>
-			
+
 			<br/>
 			<h2><u>สรุป</u></h2>
 			<div class="uk-grid">
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปเวลาปฏิบัติงาน</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>มา = <?php echo $total_work;?> วัน</li>
-        				<li>ไม่มา = <?php echo $total_not_work;?> วัน</li>
-        				<li>สาย = <?php echo $total_late;?> วัน</li>
-        				<li>ลา = <?php echo $total_leave;?> วัน</li>
+        				<li>มา = <?php echo $data->totals->come;?> วัน</li>
+        				<li>ไม่มา = <?php echo $data->totals->not_come;?> วัน</li>
+        				<li>สาย = <?php echo $data->totals->late;?> วัน</li>
+        				<li>ลา = <?php echo $data->totals->leave;?> วัน</li>
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปบันทึกปฏิบัติงาน</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>ส่งบันทึกแล้ว = <?php echo $total_student_activity;?> วัน</li>
-        				<!-- <li>ยังไม่ส่งบันทึก = <?php echo $total_student_not_activity;?> วัน</li>  -->
+        				<li>ส่งบันทึกแล้ว = <?php echo $data->totals->student_activity;?> วัน</li>
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปครูนิเทศน์ตรวจเยี่ยม</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>ตรวจแล้ว = <?php echo $total_advisor_check;?> วัน</li>
-        				<!-- <li>ยังไม่ตรวจ = <?php echo $total_advisor_not_check;?> วัน</li>  -->
+        				<li>ตรวจแล้ว = <?php echo $data->totals->advisor_check;?> วัน</li>
         			</ul>
         		</div>
         		<div class="uk-width-medium-1-4">
         			<h3>สรุปผู้ควบคุมตรวจยืนยัน</h3>
         			<ul class="uk-list uk-list-striped">
-        				<li>ตรวจแล้ว = <?php echo $total_trainer_confirm;?> วัน</li>
-        				<!-- <li>ยังไม่ตรวจ = <?php echo $total_trainer_not_confirm;?> วัน</li> -->
+        				<li>ตรวจแล้ว = <?php echo $data->totals->trainer_confirm;?> วัน</li>
         			</ul>
         		</div>
         	</div>

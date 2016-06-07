@@ -20,6 +20,8 @@ class Profile_lib
         $profile->user_type = NULL;
         $profile->email = NULL;
         $profile->student_id = NULL;
+        $profile->college_id = NULL;
+        $profile->department_id = NULL;
         $profile->major_id = NULL;
         $profile->major_title = NULL;
         $profile->group_id = NULL;
@@ -81,10 +83,42 @@ class Profile_lib
             
             if($profile->user_type=='student'){
                 $profile = $this->getStudentProfile($profile);
+            }else if($profile->user_type=='advisor'){
+                $profile = $this->getAdvisorProfile($profile);
+            }else if($profile->user_type=='trainer'){
+                $profile = $this->getTrainerProfile($profile);
             }
             
         }
         
+        return $profile;
+    }
+    
+    private function getAdvisorProfile($profile){
+        $this->ci->db->where('user_id', $profile->user_id);
+        $query = $this->ci->db->get('users_advisor');
+        if ($query->num_rows()) {
+            $row = $query->row();
+            
+            $profile->firstname = $row->firstname;
+            $profile->lastname = $row->lastname;
+            $profile->user_id = $row->user_id;
+            $profile->college_id = $row->college_id;
+        }
+        return $profile;
+    }
+    
+    private function getTrainerProfile($profile){
+        $this->ci->db->where('user_id', $profile->user_id);
+        $query = $this->ci->db->get('users_trainer');
+        if ($query->num_rows()) {
+            $row = $query->row();
+            
+            $profile->firstname = $row->firstname;
+            $profile->lastname = $row->lastname;
+            $profile->user_id = $row->user_id;
+            $profile->company_id = $row->company_id;
+        }
         return $profile;
     }
     
@@ -98,6 +132,8 @@ class Profile_lib
             $profile->lastname_en = $row->lastname_en;
             $profile->student_id = $row->student_id;
             $profile->major_id = $row->major_id;
+            $profile->college_id = $row->college_id;
+            $profile->department_id = $row->department_id;
 //             $profile->major_title = $row->major_title;
             $profile->group_id = $row->group_id;
 //             $profile->group_title = $row->group_title;
@@ -216,7 +252,7 @@ class Profile_lib
         $users_data = array();
         $users_data['firstname'] = $data['firstname'];
         $users_data['lastname'] = $data['lastname'];
-        $users_data['organization_id'] = $data['organization_id'];
+//         $users_data['organization_id'] = $data['organization_id'];
         $users_data['email'] = $data['email'];
         if(!empty($thumbnail)){
             $users_data['thumbnail'] = $thumbnail;
@@ -253,7 +289,7 @@ class Profile_lib
         $users_data = array();
         $users_data['firstname'] = $data['firstname'];
         $users_data['lastname'] = $data['lastname'];
-        $users_data['organization_id'] = $data['organization_id'];
+//         $users_data['organization_id'] = $data['organization_id'];
         $users_data['email'] = $data['email'];
         if(!empty($thumbnail)){
             $users_data['thumbnail'] = $thumbnail;
@@ -290,7 +326,7 @@ class Profile_lib
         $users_data = array();
         $users_data['firstname'] = $data['firstname'];
         $users_data['lastname'] = $data['lastname'];
-        $users_data['organization_id'] = $data['organization_id'];
+//         $users_data['organization_id'] = $data['organization_id'];
         $users_data['email'] = $data['email'];
         if(!empty($thumbnail)){
             $users_data['thumbnail'] = $thumbnail;

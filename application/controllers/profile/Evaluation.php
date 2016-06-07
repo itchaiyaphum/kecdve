@@ -134,10 +134,10 @@ class Evaluation extends CI_Controller
             // calculate stats (time) each week
             for($j=0; $j<count($time_items); $j++){
                 if($time_items[$j]->week==$week_no){
-                    // calculate: work
+                    // calculate: come
                     $num_come++;
         
-                    // calculate: not work
+                    // calculate: not come
                     // calculate: late
                     // calculate: leave
         

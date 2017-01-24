@@ -43,6 +43,9 @@
             					ชื่อ-นามสกุล
             				</th>
             				<th class="title">
+            					อีเมล์
+            				</th>
+            				<th class="title">
             					ประเภทผู้ใช้
             				</th>
             				<th class="title" width="20%">
@@ -90,6 +93,9 @@
             				</td>
             				<td>
             					<a href="<?php echo $link_edit;?>"><?php echo $row->firstname.' '.$row->lastname; ?></a>
+            				</td>
+            				<td>
+            					<a href="<?php echo $link_edit;?>"><?php echo $row->email; ?></a>
             				</td>
             				<td>
             					<?php echo $row->user_type; ?>

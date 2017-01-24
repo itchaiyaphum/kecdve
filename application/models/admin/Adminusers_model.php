@@ -24,6 +24,13 @@ class Adminusers_model extends BaseModel
             'per_page' => 10
         ));
     }
+    
+    public function checkEmailExists($email=''){
+        $sql = "SELECT * FROM users WHERE email='".$email."'";
+        $query = $this->ci->db->query($sql);
+        $items = $query->result();
+        return count($items);
+    }
 
     public function getItems($options = array())
     {

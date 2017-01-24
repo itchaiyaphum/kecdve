@@ -32,15 +32,23 @@ class Adminusers extends BaseController
         $this->form_validation->set_rules('user_type', 'ประเภทผู้ใช้', 'trim|required|xss_clean');
         $this->form_validation->set_rules('email', 'อีเมล์', 'trim|required|xss_clean');
         
+        $data = array();
+        
+        $data['errors'] = array();
         if ($this->form_validation->run()) {
-            if ($this->adminusers_model->save()) {
-                redirect('/admin/users/');
+            if($this->input->post('id')=='' && $this->adminusers_model->checkEmailExists($this->input->post('email'))){
+                $data['errors']['email'] = "มีอีเมล์นี้อยู่ในระบบแล้ว!";
+            }else{
+                if ($this->adminusers_model->save()) {
+                    redirect('/admin/users/');
+                }else{
+                    $data['errors']['global'] = "ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบการกรอกข้อมูลและลองใหม่อีกครั้ง!";
+                }
             }
         }
             
         $id = $this->input->get_post('id',0);
         
-        $data = array();
         $data['leftmenu'] = $this->load->view('admin/menu', '', true);
         $data['pagination'] = $this->adminusers_model->getPagination();
         $data['item'] = $this->adminusers_model->getItem($id);

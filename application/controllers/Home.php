@@ -28,7 +28,7 @@ class Home extends CI_Controller
     public function help()
     {
         $this->load->view('home/nav');
-        $this->load->view('home/help');
+        $this->load->view('help/student');
         $this->load->view('home/footer');
     }
     public function admin_restricted_access(){

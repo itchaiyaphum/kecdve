@@ -9,7 +9,7 @@
 				</div>
 				<div class="uk-width-6-10" style="border-left: 1px solid #fff; padding: 10px;">
 				
-					<h1 style="color: #fff;"><u>คู่มือการใช้งาน</u></h1>
+					<h1 style="color: #fff;"><u>คู่มือการใช้งาน (สำหรับนักศึกษา)</u></h1>
 					
 					<div class="uk-thumbnail">
 						<img src="<?php echo base_url('assets/imgs/help/student/homepage.png');?>">

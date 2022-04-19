@@ -21,5 +21,8 @@ $profileData = $this->profile_lib->getData();
 	<li class="<?php echo $this->helper_lib->getActiveMenu('evaluation');?>">
 		<a href="<?php echo base_url('profile/evaluation/'); ?>"><span class="uk-icon-pie-chart"></span> สรุปผลการฝึกงาน</a>
 	</li>
+	<li class="<?php echo $this->helper_lib->getActiveMenu('request_internship');?>">
+		<a href="<?php echo base_url('profile/request_internship/'); ?>" target="_blank"><span class="uk-icon-cube"></span> หนังสือคําร้องขอฝึกอาชีพ</a>
+	</li>
 </ul>
 <br/><br/>

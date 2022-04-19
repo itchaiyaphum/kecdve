@@ -14,6 +14,7 @@
 					<?php $this->load->view('home/rightmenu');?>
 				</div>
 			</div>
+			<?php echo CI_VERSION ?>
 			<hr/>
 			<?php $this->load->view('home/footer_txt.php');?>
 		</div>

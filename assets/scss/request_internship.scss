@@ -1,0 +1,43 @@
+@import "variables";
+$margin-page: 2.54cm 1.5cm 1cm 2.54cm;
+$font-s-h: 18pt;
+$font-s: 16pt;
+@import "print_a4";
+
+body {
+    line-height: 1.25;
+}
+
+.indent {
+    text-indent: 4em;
+}
+
+li::marker {
+    content: attr(data-icon);
+    font-size: 1em;
+}
+
+.map-box {
+    margin: 0.5em 0 5em 0;
+    height: 20em;
+    border: 1px solid #000;
+}
+
+.data {
+    position: absolute;
+    width: 210mm - 1.5cm - 2.54cm;
+    height: 297mm - 2.54cm - 1cm;
+    margin: 0;
+    z-index: 999;
+    overflow: hidden;
+    word-wrap: normal;
+
+    // background-color: rgba(#ffff00, 0.2)
+    div {
+        position: absolute;
+    }
+}
+
+.bg {
+    // background-color: rgba(#ffff00, 0.2)
+}

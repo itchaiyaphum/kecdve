@@ -40,4 +40,9 @@ class Request_internship_model extends CI_Model
         
         return $data;
     }
+
+    public function data_form() {
+        $data = new stdClass();
+        return $data;
+    }
 }

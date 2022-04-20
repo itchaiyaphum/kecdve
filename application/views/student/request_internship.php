@@ -32,10 +32,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="uk-button uk-button-mini"><i class="uk-icon-circle-o"></i> รอการอนุมัติ</div>
                                 </td>
                                 <td class="uk-text-center">
-                                    <a class="uk-button" href="<?= site_url('profile/request_internship/form') ?>">ขอฝึกงาน</a>
+                                    <a class="uk-button" href="<?= site_url('student/request_internship/form') ?>">ขอฝึกงาน</a>
                                 </td>
                                 <td class="uk-text-center">
-                                    <a class="uk-button" href="<?= site_url('profile/request_internship/print_doc') ?>" target="_blank">พิมพ์</a>
+                                    <a class="uk-button" href="<?= site_url('student/request_internship/print_doc') ?>" target="_blank">พิมพ์</a>
                                 </td>
                             </tr>
                         </tbody>

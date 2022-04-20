@@ -24,4 +24,11 @@ class Request_internship extends CI_Controller
         $this->load->library('Sawasdee');
         $this->load->view('student/request_internship_print', $data);
     }
+
+    public function form()
+    {
+        $data = array();
+        $data['data'] = $this->request_internship->data_form();
+        $this->load->view('student/request_internship_form', $data);
+    }
 }

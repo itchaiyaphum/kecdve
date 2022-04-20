@@ -14,15 +14,16 @@
 			$days_of_weeks = array('จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์');
     		for($i=0; $i<18; $i++){
     		?>
-			<article class="uk-article">
-				<table class="uk-table">
-					<tbody><tr>
-						<td class="uk-width-1-10">สัปดาห์ที่ <?php echo ($i+1);?></td>
-						<td class="uk-width-1-10">วัน</td>
-						<td class="uk-width-3-10">กิจกรรม/งานที่ปฏิบัติ</td>
-						<td class="uk-width-2-10">ปัญหาและอุปสรรค</td>
-						<td class="uk-width-2-10">ประโยชน์ที่ได้รับ</td>
-						<td class="uk-width-1-10" colspan="2"></td>
+			<div class="uk-panel uk-panel-box uk-panel-box-default uk-margin-top">
+				<table class="uk-table uk-table-hover uk-table-responsive uk-table-striped" cellpadding="1">
+					<thead>
+						<tr>
+						<th class="uk-width-large-1-10">สัปดาห์ที่</th>
+						<th class="uk-width-large-1-10">วัน</th>
+						<th class="uk-width-large-3-10">กิจกรรม/งานที่ปฏิบัติ</th>
+						<th class="uk-width-large-2-10">ปัญหาและอุปสรรค</th>
+						<th class="uk-width-large-2-10">ประโยชน์ที่ได้รับ</th>
+						<th class="uk-width-large-1-10" colspan="2"></th>
 					</tr>
 					<?php 
             		for($j=0; $j<count($days_of_weeks); $j++){
@@ -43,15 +44,59 @@
             		        }
             		    }
             		?>
-            		
+					</thead>
+            		<tbody>
 					<tr>
-						<td></td>
-						<td><?php echo $days_of_weeks[$j];?></td>
-						<td><?php echo $text_activity;?></td>
-						<td><?php echo $text_problem;?></td>
-						<td><?php echo $text_advantage;?></td>
-						<td><a href="<?php echo base_url('profile/activity/form/?week='.($i+1).'&day='.($j+1)); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">สัปดาห์ที่: </div>
+								<div class="uk-width-small-7-10">
+									<?php echo ($i+1);?>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">วัน: </div>
+								<div class="uk-width-small-7-10">
+									<?php echo $days_of_weeks[$j];?>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">กิจกรรม/งานที่ปฏิบัติ: </div>
+								<div class="uk-width-small-7-10">
+									<?php echo $text_activity;?>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">ปัญหาและอุปสรรค: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo $text_problem;?>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">ประโยชน์ที่ได้รับ: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo $text_advantage;?>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold"></div>
+								<div class="uk-width-small-7-10">
+								<a href="<?php echo base_url('profile/activity/form/?week='.($i+1).'&day='.($j+1)); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a>
+								</div>
+							</div>
+						</td>
 					</tr>
+
 					
 					<?php 
 					$filter_photos = array();
@@ -67,23 +112,29 @@
 					<tr>
 						<td></td>
 						<td colspan="5">
-							<div class="uk-grid uk-grid-small">
-								<?php 
-								$class_width = "uk-width-1-3";
-								if(count($filter_photos)==1){
-								    $class_width = "uk-width-1-1";
-								}else if(count($filter_photos)==2){
-								    $class_width = "uk-width-1-2";
-								}
-								for($n=0; $n<count($filter_photos); $n++){
-								    $photo = $filter_photos[$n];
-								?>
-								<div class="<?php echo $class_width;?>">
-									<a target="_blank" href="<?php echo base_url('/storage/photos/'.$photo->file_name);?>"><img class="uk-thumbnail" src="<?php echo base_url('/storage/photos/thumbnail/'.$photo->file_name);?>"/></a>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">รูปภาพ</div>
+								<div class="uk-width-small-7-10">
+									<div class="uk-grid uk-grid-small">
+										<?php 
+										$class_width = "uk-width-1-3";
+										if(count($filter_photos)==1){
+											$class_width = "uk-width-1-1";
+										}else if(count($filter_photos)==2){
+											$class_width = "uk-width-1-2";
+										}
+										for($n=0; $n<count($filter_photos); $n++){
+											$photo = $filter_photos[$n];
+										?>
+										<div class="<?php echo $class_width;?>">
+											<a target="_blank" href="<?php echo base_url('/storage/photos/'.$photo->file_name);?>"><img class="uk-thumbnail" src="<?php echo base_url('/storage/photos/thumbnail/'.$photo->file_name);?>"/></a>
+										</div>
+										<?php 
+										} 
+										?>
+									</div>
+								</ul>
 								</div>
-								<?php 
-								} 
-								?>
 							</div>
 						</td>
 					</tr>
@@ -103,16 +154,21 @@
 					<tr>
 						<td></td>
 						<td colspan="5">
-							<ul class="uk-list uk-list-line">
-								<?php 
-								for($n=0; $n<count($filter_files); $n++){
-								    $file = $filter_files[$n];
-								?>
-								<li><a target="_blank" href="<?php echo base_url('/storage/files/'.$file->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $file->orig_name;?></a></li>
-								<?php 
-								} 
-								?>
-							</ul>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">ไฟล์</div>
+								<div class="uk-width-small-7-10">
+									<ul class="uk-list uk-list-line">
+									<?php 
+									for($n=0; $n<count($filter_files); $n++){
+										$file = $filter_files[$n];
+									?>
+									<li><a target="_blank" href="<?php echo base_url('/storage/files/'.$file->file_name);?>"><i class="uk-icon-cloud-download"></i> ดาวน์โหลด: <?php echo $file->orig_name;?></a></li>
+									<?php 
+									} 
+									?>
+								</ul>
+								</div>
+							</div>
 						</td>
 					</tr>
 					<?php } ?>
@@ -208,7 +264,7 @@
 					<?php } ?>
 					</tbody>
 				</table>
-			</article>
+			</div>
 			<?php } ?>
 			
 			<!-- 

@@ -19,11 +19,14 @@ class Activity extends CI_Controller
     
     public function index()
     {
-        $profile = $this->profile_lib->getData();
-        $internship_id = $profile->internship_id;
         $week = $this->input->get_post('week', 1);
         $day = $this->input->get_post('day', 1);
         $user_id = $this->input->get_post('user_id', 0);
+        $student_profile = $this->profile_lib->getData($user_id);
+        $internship_id = $student_profile->internship_id;
+
+        $profile = $this->profile_lib->getData();
+        
         $advisor_check_status = $this->input->get_post('advisor_check_status', 0);
         $trainer_confirm_status = $this->input->get_post('trainer_confirm_status', 0);
         
@@ -62,12 +65,14 @@ class Activity extends CI_Controller
 
     public function form()
     {
-        
-        $profile = $this->profile_lib->getData();
         $week = $this->input->get_post('week', 1);
         $day = $this->input->get_post('day', 1);
         $user_id = $this->input->get_post('user_id', 0);
-        $internship_id = 1;//@TODO
+        $user_profile = $this->profile_lib->getData($user_id);
+
+        $profile = $this->profile_lib->getData();
+        
+        $internship_id = $user_profile->internship_id;
         
         $this->form_validation->set_rules('activity', 'กิจกรรม/งานที่ปฏิบัติ', 'trim|required|xss_clean');
         $this->form_validation->set_rules('problem', 'ปัญหาและอุปสรรค', 'trim|required|xss_clean');

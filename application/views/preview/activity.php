@@ -26,11 +26,16 @@
 						<td class="uk-width-1-10" colspan="2"></td>
 					</tr>
 					<?php 
+					
             		for($j=0; $j<count($days_of_weeks); $j++){
             		    $student_save = 0;
             		    $text_activity = '-';
             		    $text_problem = '-';
             		    $text_advantage = '-';
+
+						$advisor_check_status = 0;
+						$trainer_confirm_status = 0;
+
             		    for($k=0; $k<count($items); $k++){
             		        $item = $items[$k];
             		        if($item->week==($i+1) && $item->day==($j+1)){
@@ -47,6 +52,14 @@
             		    $day = ($j+1);
             		    
             		    $form_name = "form-".$week."-".$day;
+
+						$check_status_disable = false;
+						if ($profile->user_type=="advisor" && $advisor_check_status) {
+							$check_status_disable = true;
+						}else if($profile->user_type=="trainer" && $trainer_confirm_status){
+							$check_status_disable = true;
+						}
+
             		?>
             		
 					<tr>
@@ -63,7 +76,14 @@
 						<td><?php echo $text_activity;?></td>
 						<td><?php echo $text_problem;?></td>
 						<td><?php echo $text_advantage;?></td>
-						<td><a href="<?php echo base_url('preview/activity/form/?week='.$week.'&day='.$day.'&user_id='.$user_id); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a></td>
+						<td>
+							<?php
+                            if (!$check_status_disable) {
+                                ?>
+							<a href="<?php echo base_url('preview/activity/form/?week='.$week.'&day='.$day.'&user_id='.$user_id); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a>
+							<?php
+                            } ?>
+						</td>
 					</tr>
 					
 					<?php 
@@ -162,25 +182,21 @@
     							if($profile->user_type=="advisor"){
     							     if($advisor_check_status){
     							?>
-        							<a href="#" data-form="<?php echo $form_name;?>" class="advisor_check_status_cancel_button uk-button uk-button-small uk-button-danger">ยกเลิกการตรวจเยี่ยม</a>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="advisor_check_status_cancel_button uk-button uk-button-small uk-button-danger">ครูนิเทศฝึกงาน: ยกเลิกการตรวจเยี่ยม</a>
         							<?php 
         							}else{
         							?>
-        							<a href="#" data-form="<?php echo $form_name;?>" class="advisor_check_status_ok_button uk-button uk-button-small uk-button-success">ยืนยันบันทึกการตรวจเยี่ยม</a>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="advisor_check_status_ok_button uk-button uk-button-small uk-button-success">ครูนิเทศฝึกงาน: ยืนยันบันทึกการตรวจเยี่ยม</a>
                                 <?php 
     							     }
-    							}
-    							?>
-    							
-    							<?php 
-    							if($profile->user_type=="trainer"){
+    							}else if($profile->user_type=="trainer"){
     							     if($trainer_confirm_status){
     							?>
-        							<a href="#" data-form="<?php echo $form_name;?>" class="trainer_confirm_status_cancel_button uk-button uk-button-small uk-button-danger">ยกเลิกการตรวจยืนยัน</a>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="trainer_confirm_status_cancel_button uk-button uk-button-small uk-button-danger">ผู้ควบคุมการฝึกงาน: ยกเลิกการตรวจยืนยัน</a>
         							<?php 
         							}else{
         							?>
-        							<a href="#" data-form="<?php echo $form_name;?>" class="trainer_confirm_status_ok_button uk-button uk-button-small uk-button-success">บันทึกการตรวจยืนยัน</a>
+        							<a href="#" data-form="<?php echo $form_name;?>" class="trainer_confirm_status_ok_button uk-button uk-button-small uk-button-success">ผู้ควบคุมการฝึกงาน: บันทึกการตรวจยืนยัน</a>
                                 <?php 
     							     }
     							}

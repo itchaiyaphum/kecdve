@@ -9,7 +9,7 @@ class Profile_lib
         $this->ci = & get_instance();
     }
 
-    public function getData()
+    public function getData($user_id=0)
     {
         $profile = new stdClass();
         $profile->user_id = NULL;
@@ -67,7 +67,10 @@ class Profile_lib
         $profile->thumbnail = NULL;
         $profile->organization_id = NULL;
         
-        $this->ci->db->where('id', $this->ci->tank_auth->get_user_id());
+        if($user_id==0){
+            $user_id=$this->ci->tank_auth->get_user_id();
+        }
+        $this->ci->db->where('id', $user_id);
         $query = $this->ci->db->get('users');
         if ($query->num_rows()) {
             $row = $query->row();

@@ -34,6 +34,10 @@
                 		    $back_minute = 0;
                 		    $remark = 0;
                 		    $remark_text = "";
+
+							$advisor_check_status = false;
+							$trainer_confirm_status = false;
+
                 		    for($k=0; $k<count($items); $k++){
                 		        $item = $items[$k];
                 		        if($item->week==($i+1) && $item->day==($j+1)){
@@ -51,6 +55,13 @@
                 		    }
                 		    
                 		    $form_name = "form-".($i+1)."-".($j+1);
+
+							$check_status_disable = false;
+                            if ($profile->user_type=="advisor" && $advisor_check_status) {
+								$check_status_disable = true;
+                            }else if($profile->user_type=="trainer" && $trainer_confirm_status){
+								$check_status_disable = true;
+							}
                 		    
                     	?>
                     	<form action="<?php base_url('preview/time'); ?>" id="<?php echo $form_name;?>" class="main-form uk-form uk-form-horizontal" method="post">
@@ -59,14 +70,14 @@
             					<td class="uk-width-1-10"></td>
             					<td class="uk-width-1-10"><?php echo $days_of_weeks[$j];?></td>
             					<td class="uk-width-2-10">
-            						<select name="come_hour" style="width: 50px; float: left;">
+            						<select name="come_hour" style="width: 50px; float: left;" <?php echo ($check_status_disable)?'disabled':'';?>>
                                 		<?php 
                                 		for($ii=0; $ii<24; $ii++){
                                 		?>
                                 		<option value="<?php echo $ii;?>" <?php echo ($ii==$come_hour)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
                                 		<?php } ?>
                                 	</select>
-                                	<select name="come_minute" style="width: 50px; float: left; margin-left: 5px;">
+                                	<select name="come_minute" style="width: 50px; float: left; margin-left: 5px;" <?php echo ($check_status_disable)?'disabled':'';?>>
                                 		<?php 
                                 		for($ii=0; $ii<60; $ii++){
                                 		?>
@@ -75,14 +86,14 @@
                                 	</select>
                                 </td>
             					<td class="uk-width-2-10">
-            						<select name="back_hour" style="width: 50px; float: left;">
+            						<select name="back_hour" style="width: 50px; float: left;" <?php echo ($check_status_disable)?'disabled':'';?>>
                                 		<?php 
                                 		for($ii=0; $ii<24; $ii++){
                                 		?>
                                 		<option value="<?php echo $ii;?>" <?php echo ($ii==$back_hour)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
                                 		<?php } ?>
                                 	</select>
-            						<select name="back_minute" style="width: 50px; float: left; margin-left: 5px;">
+            						<select name="back_minute" style="width: 50px; float: left; margin-left: 5px;" <?php echo ($check_status_disable)?'disabled':'';?>>
                                 		<?php 
                                 		for($ii=0; $ii<60; $ii++){
                                 		?>
@@ -92,18 +103,18 @@
             					</td>
             					<td class="uk-width-3-10">
             						<div class="uk-form-row">
-                						<select style="width: 100%;" name="remark">
+                						<select style="width: 100%;" name="remark" <?php echo ($check_status_disable)?'disabled':'';?>>
                 							<option value="0" <?php echo ($remark==0)?' selected="selected" ':''; ?>></option>
                 							<option value="1" <?php echo ($remark==1)?' selected="selected" ':''; ?>>วันหยุดราชการ</option>
                 							<option value="2" <?php echo ($remark==2)?' selected="selected" ':''; ?>>วันหยุดสถานประกอบการ</option>
                 							<option value="3" <?php echo ($remark==3)?' selected="selected" ':''; ?>>ทำงานนอกเวลา</option>
                 							<option value="4" <?php echo ($remark==4)?' selected="selected" ':''; ?>>อื่นๆ</option>
                 						</select>
-                						<textarea style="height: 30px; width: 100%;" name="remark_text"><?php echo $remark_text;?></textarea>
+                						<textarea style="height: 30px; width: 100%;" name="remark_text" <?php echo ($check_status_disable)?'disabled':'';?>><?php echo $remark_text;?></textarea>
             						</div>
             					</td>
             					<td class="uk-width-1-10">
-            						<input type="submit" value="บันทึก" class="uk-button uk-button-small uk-button-success">
+            						<input type="submit" <?php echo ($check_status_disable)?'disabled':'';?> value="บันทึก" class="uk-button uk-button-small uk-button-success">
             					</td>
             				</tr>
             				

@@ -131,7 +131,7 @@ class Activity_lib
         $query = $this->ci->db->get('activity');
         if ($query->num_rows())
             return $query->result();
-        return NULL;
+        return array();
     }
     
     public function getFileItems($user_id = 0, $internship_id = 0)
@@ -141,7 +141,7 @@ class Activity_lib
         $query = $this->ci->db->get('attachment_files');
         if ($query->num_rows())
             return $query->result();
-        return NULL;
+        return array();
     }
     
     public function getPhotoItems($user_id = 0, $internship_id = 0)
@@ -151,7 +151,7 @@ class Activity_lib
         $query = $this->ci->db->get('attachment_photos');
         if ($query->num_rows())
             return $query->result();
-        return NULL;
+        return array();
     }
     
     public function removeFile($id = 0)

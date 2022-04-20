@@ -157,9 +157,20 @@ class Evaluation extends BaseController
 		    $total_trainer_confirm += $trainer_confirm;
 		    $total_trainer_not_confirm += $trainer_not_confirm;
 		    
-		    $advisor_check_percentage = ($advisor_check/($advisor_check+$advisor_not_check)) * 100;
-		    $student_activity_percentage = ($student_activity/($advisor_time_check+$advisor_time_not_check)) * 100;
-		    $trainer_confirm_percentage = ($trainer_confirm/($trainer_confirm+$trainer_not_confirm)) * 100;
+		    $advisor_check_percentage = 0;
+			if($advisor_check>0 && $advisor_check >0 && $advisor_not_check>0){
+				$advisor_check_percentage = ($advisor_check/($advisor_check+$advisor_not_check)) * 100;
+			}
+			$student_activity_percentage = 0;
+			if($student_activity>0 && $advisor_time_check >0 && $advisor_time_not_check>0){
+				$student_activity_percentage = ($student_activity/($advisor_time_check+$advisor_time_not_check)) * 100;
+			}
+			$trainer_confirm_percentage = 0;
+			if($trainer_confirm>0 && $trainer_confirm >0 && $trainer_not_confirm>0){
+				$trainer_confirm_percentage = ($trainer_confirm/($trainer_confirm+$trainer_not_confirm)) * 100;
+			}
+		    
+		    
 		    
 		    // mapping data
 		    $stat = new stdClass();

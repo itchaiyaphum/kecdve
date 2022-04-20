@@ -57,6 +57,6 @@ class Time_lib
         $query = $this->ci->db->get('time');
         if ($query->num_rows())
             return $query->result();
-        return NULL;
+        return array();
     }
 }

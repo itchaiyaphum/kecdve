@@ -38,6 +38,7 @@ class Adminusers extends BaseController
         $this->form_validation->set_rules('lastname', 'นามสกุล', 'trim|required|xss_clean');
         $this->form_validation->set_rules('user_type', 'ประเภทผู้ใช้', 'trim|required|xss_clean');
         $this->form_validation->set_rules('email', 'อีเมล์', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('password', 'รหัสผ่าน', 'trim|xss_clean');
         
         $data = array();
         
@@ -46,7 +47,7 @@ class Adminusers extends BaseController
             if($this->input->post('id')=='' && $this->adminusers_model->checkEmailExists($this->input->post('email'))){
                 $data['errors']['email'] = "มีอีเมล์นี้อยู่ในระบบแล้ว!";
             }else{
-                if ($this->adminusers_model->save()) {
+                if ($this->adminusers_model->pre_save()) {
                     redirect('/admin/users/');
                 }else{
                     $data['errors']['global'] = "ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบการกรอกข้อมูลและลองใหม่อีกครั้ง!";

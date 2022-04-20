@@ -15,16 +15,18 @@
     		for($i=0; $i<18; $i++){
     		    $week = ($i+1);
     		?>
-			<article class="uk-article">
-				<table class="uk-table">
-					<tbody><tr>
-						<td class="uk-width-1-10">สัปดาห์ที่ <?php echo ($i+1);?></td>
-						<td class="uk-width-1-10">วัน</td>
-						<td class="uk-width-3-10">กิจกรรม/งานที่ปฏิบัติ</td>
-						<td class="uk-width-2-10">ปัญหาและอุปสรรค</td>
-						<td class="uk-width-2-10">ประโยชน์ที่ได้รับ</td>
-						<td class="uk-width-1-10" colspan="2"></td>
+			<div class="uk-panel uk-panel-box uk-panel-box-default uk-margin-top">
+				<table class="uk-table uk-table-hover uk-table-responsive uk-table-striped" cellpadding="1">
+					<thead>
+					<tr>
+						<th class="uk-width-1-10">สัปดาห์ที่</th>
+						<th class="uk-width-1-10">วัน</th>
+						<th class="uk-width-3-10">กิจกรรม/งานที่ปฏิบัติ</th>
+						<th class="uk-width-2-10">ปัญหาและอุปสรรค</th>
+						<th class="uk-width-2-10">ประโยชน์ที่ได้รับ</th>
+						<th class="uk-width-1-10" colspan="2"></th>
 					</tr>
+					</thead>
 					<?php 
 					
             		for($j=0; $j<count($days_of_weeks); $j++){
@@ -61,28 +63,67 @@
 						}
 
             		?>
-            		
+            		<tbody>
 					<tr>
 						<td>
 							<form action="<?php base_url('preview/activity'); ?>" id="<?php echo $form_name;?>" class="main-form uk-form uk-form-horizontal" method="post">
 								<input type="hidden" value="<?php echo $week;?>" name="week"/>
-                        		<input type="hidden" value="<?php echo $day;?>" name="day"/>
-                        		<input type="hidden" value="<?php echo $user_id;?>" name="user_id"/>
-                        		<input type="hidden" value="<?php echo $advisor_check_status;?>" name="advisor_check_status"/>
-                            	<input type="hidden" value="<?php echo $trainer_confirm_status;?>" name="trainer_confirm_status"/>
+								<input type="hidden" value="<?php echo $day;?>" name="day"/>
+								<input type="hidden" value="<?php echo $user_id;?>" name="user_id"/>
+								<input type="hidden" value="<?php echo $advisor_check_status;?>" name="advisor_check_status"/>
+								<input type="hidden" value="<?php echo $trainer_confirm_status;?>" name="trainer_confirm_status"/>
 							</form>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">สัปดาห์ที่: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo ($i+1);?>
+								</div>
+							</div>	
 						</td>
-						<td><?php echo $days_of_weeks[$j];?></td>
-						<td><?php echo $text_activity;?></td>
-						<td><?php echo $text_problem;?></td>
-						<td><?php echo $text_advantage;?></td>
 						<td>
-							<?php
-                            if (!$check_status_disable) {
-                                ?>
-							<a href="<?php echo base_url('preview/activity/form/?week='.$week.'&day='.$day.'&user_id='.$user_id); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a>
-							<?php
-                            } ?>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">วัน: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo $days_of_weeks[$j];?>
+								</div>
+							</div>	
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">กิจกรรม/งานที่ปฏิบัติ: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo $text_activity;?>
+								</div>
+							</div>	
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">ปัญหาและอุปสรรค: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo $text_problem;?>
+								</div>
+							</div>	
+						</td>
+						<td>
+						<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">ประโยชน์ที่ได้รับ: </div>
+								<div class="uk-width-small-7-10">
+								<?php echo $text_advantage;?>
+								</div>
+							</div>	
+						</td>
+						<td>
+							<div class="uk-grid uk-grid-collapse">
+								<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold"></div>
+								<div class="uk-width-small-7-10">
+								<?php
+								if (!$check_status_disable) {
+									?>
+								<a href="<?php echo base_url('preview/activity/form/?week='.$week.'&day='.$day.'&user_id='.$user_id); ?>" class="uk-button uk-button-small uk-button-success"><i class="uk-icon-pencil"></i> บันทึก</a>
+								<?php
+								} ?>
+								</div>
+							</div>	
 						</td>
 					</tr>
 					
@@ -212,7 +253,7 @@
 					<?php } ?>
 					</tbody>
 				</table>
-			</article>
+			</div>
 			<?php } ?>
 			
 		</div>

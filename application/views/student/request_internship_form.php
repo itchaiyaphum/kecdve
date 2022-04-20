@@ -11,11 +11,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <h2>ขอฝึกอาชีพในสถานประกอบการ</h2>
             </div>
             <hr>
-            <!-- <a class="uk-button" href="<?= site_url('profile/request_internship/print_doc') ?>" target="_blank">พิมพ์หนังสือคําร้องขอฝึกอาชีพในสถานประกอบการ</a> -->
 
             <div class="uk-panel uk-panel-box uk-panel-box-default uk-margin-top">
-                <h3 class="uk-panel-title"></h3>
-                
+                <h3 class="uk-panel-title">คำร้องขอฝึกอาชีพในสถานประกอบการ</h3>
+                <?php
+                if (empty($data->student)) {
+                ?>
+                    <div class="uk-alert uk-alert-danger uk-text-center">
+                        <a href="<?= site_url('settings/profile') ?>" class="uk-text-danger">
+                            กรุณากรอกข้อมูลให้ครบถ้วน ก่อนดำเนินการต่างๆต่อไป
+                            <br>...คลิก...
+                        </a>
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <form method="post">
+                        <dl class="uk-description-list-horizontal">
+                            <dt>ชื่อ-นามสกุล</dt>
+                            <dd><?= $data->student->firstname.' '.$data->student->lastname ?></dd>
+                            <dt>รหัสประจำตัวนักศึกษา</dt>
+                            <dd><?= $data->student->student_id ?></dd>
+                            <dt>ช่วงเวลาที่ฝึกงาน</dt>
+                            <dd><?= $data->internship->title.'<br>'.$data->internship->internship_start.' ถึง '.$data->internship->internship_end ?></dd>
+                            <dt>สถานที่ฝึกงาน</dt>
+                            <dd><?= $data->company->name ?></dd>
+                        </dl>
+                        <div class="uk-text-center">
+                            <button type="submit" name="submit" class="uk-button uk-button-primary uk-button-large uk-width-large-1-4 uk-margin-top">ส่งคำร้องขอผึกอาชีพ</button>
+                        </div>
+                    </form>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

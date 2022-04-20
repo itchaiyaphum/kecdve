@@ -71,7 +71,7 @@ tinymce.init({
             		</div>
             		<a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
             		<div class="uk-navbar-brand uk-navbar-center uk-visible-small">
-            			<a href="<?php echo base_url('');?>">ระบบกิจกรรมนักเรียน</a>
+            			<a href="<?php echo base_url('');?>">ระบบนิเทศติดตามการฝึกงาน</a>
             		</div>
             	</div>
             </nav>
@@ -84,25 +84,9 @@ tinymce.init({
                         if ($this->tank_auth->is_logged_in()) {
                             $profileData = $this->profile_lib->getData(); ?>
             				<?php if ($profileData->user_type=='student') { ?>
-            				<?php } elseif ($profileData->user_type=='headadvisor') { ?>
-            				<li><a href="<?php echo base_url('headadvisor/');?>"><i class="uk-icon-home"></i> หน้าหลักสำหรับหัวหน้างานครูที่ปรึกษา</a></li>
-            				<li><a href="<?php echo base_url('headadvisor/homeroom/');?>"><i class="uk-icon-home"></i> จัดการตารางกิจกรรมโฮมรูม</a></li>
-            				<li><a href="<?php echo base_url('headadvisor/users/');?>"><i class="uk-icon-user"></i> จัดการครูที่ปรึกษา</a></li>
-            				<li><a href="<?php echo base_url('headadvisor/approving/');?>"><i class="uk-icon-save"></i> อนุมัติการส่งข้อมูลกิจกรรมโฮมรูม</a></li>
-            				<?php } elseif ($profileData->user_type=='executive') { ?>
-            				<li><a href="<?php echo base_url('executive/');?>"><i class="uk-icon-home"></i> หน้าหลักสำหรับฝ่ายบริหาร</a></li>
-            				<li><a href="<?php echo base_url('executive/approving/');?>"><i class="uk-icon-save"></i> อนุมัติการส่งข้อมูลกิจกรรมโฮมรูม</a></li>
             				<?php } elseif ($profileData->user_type=='advisor') { ?>
             				<li><a href="<?php echo base_url('advisor/');?>"><i class="uk-icon-home"></i> หน้าหลักสำหรับครูที่ปรึกษา</a></li>
-            				<li><a href="<?php echo base_url('advisor/homeroom/');?>"><i class="uk-icon-save"></i> บันทึกข้อมูลกิจกรรมโฮมรูม</a></li>
-							<li><a href="<?php echo base_url('advisor/reporthomeroom'); ?>"><i class="uk-icon-file-text-o"></i> รายงาน คป 06</a><li>
-							<li><a href="<?php echo base_url('advisor/summaryhomeroom'); ?>"><i class="uk-icon-lightbulb-o"></i> สรุปผลเข้าร่วมกิจกรรมโฮมรูม</a><li>
-            				<?php } elseif ($profileData->user_type=='headdepartment') { ?>
-            				<li><a href="<?php echo base_url('headdepartment/');?>"><i class="uk-icon-home"></i> หน้าหลักสำหรับหัวหน้าแผนก</a></li>
-            				<li><a href="<?php echo base_url('headdepartment/homeroom/');?>"><i class="uk-icon-save"></i> บันทึกข้อมูลกิจกรรมโฮมรูม</a></li>
-            				<li><a href="<?php echo base_url('headdepartment/approving/');?>"><i class="uk-icon-lock"></i> รับรองการบันทึกกิจกรรมโฮมรูม</a></li>
-							<li><a href="<?php echo base_url('headdepartment/reporthomeroom'); ?>"><i class="uk-icon-file-text-o"></i> รายงาน คป 06</a><li>
-							<li><a href="<?php echo base_url('headdepartment/summaryhomeroom'); ?>"><i class="uk-icon-lightbulb-o"></i> สรุปผลเข้าร่วมกิจกรรมโฮมรูม</a><li>
+            				
             				<?php } elseif ($profileData->user_type=='admin') { ?>
             				<li><a href="<?php echo base_url('admin/');?>"><i class="uk-icon-home"></i> เข้าระบบจัดการข้อมูล</a></li>
             				<?php } ?>

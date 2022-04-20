@@ -3,16 +3,11 @@
                 	<div class="uk-container uk-container-center uk-text-center">
             			<div style="padding: 10px;">
             				<a href="<?php echo base_url('');?>">หน้าหลัก</a> | 
-            				<a href="<?php echo base_url('about');?>">เกี่ยวกับเรา</a> | 
-            				<a href="<?php echo base_url('contact');?>">ติดต่อเรา</a> | 
-            				<a href="<?php echo base_url('help');?>">คู่มือการใช้งาน</a>
+            				<a href="<?php echo base_url('contact');?>">ติดต่อเรา</a>
             			</div>
                 	</div>
                 	<div class="uk-container uk-container-center uk-text-center uk-margin-top">
-                		ระบบการนิเทศแบบออนไลน์นี้เป็นส่วนหนึ่งของการดำเนินงานวิจัย<br/>
-                		ดำเนินการโดยนายอดิศร สิทธิวงศ์ และนายอลงกรณ์ ภูคงคา<br/>
-                		สถาบันการอาชีวศึกษาภาคตะวันออกเฉียงเหนือ 5<br/>
-                		วิทยาลัยเทคนิคชัยภูมิ
+					ระบบนิเทศติดตามการฝึกงาน<br/>วิทยาลัยการอาชีพแก้งคร้อ
                 	</div>
                 	<br/><br/>
                 </footer>

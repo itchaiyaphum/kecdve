@@ -6,6 +6,7 @@ if ($use_username) {
 		'value' => set_value('username'),
 		'maxlength'	=> $this->config->item('username_max_length', 'tank_auth'),
 		'size'	=> 30,
+        'class' => 'uk-width-large-1-1'
 	);
 }
 $firstname = array(
@@ -14,6 +15,7 @@ $firstname = array(
 	'value'	=> set_value('firstname'),
 	'maxlength'	=> 80,
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 $lastname = array(
 	'name'	=> 'lastname',
@@ -21,6 +23,7 @@ $lastname = array(
 	'value'	=> set_value('lastname'),
 	'maxlength'	=> 80,
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 $email = array(
 	'name'	=> 'email',
@@ -28,6 +31,7 @@ $email = array(
 	'value'	=> set_value('email'),
 	'maxlength'	=> 80,
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 $password = array(
 	'name'	=> 'password',
@@ -35,6 +39,7 @@ $password = array(
 	'value' => set_value('password'),
 	'maxlength'	=> $this->config->item('password_max_length', 'tank_auth'),
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 $confirm_password = array(
 	'name'	=> 'confirm_password',
@@ -42,11 +47,13 @@ $confirm_password = array(
 	'value' => set_value('confirm_password'),
 	'maxlength'	=> $this->config->item('password_max_length', 'tank_auth'),
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 $captcha = array(
 	'name'	=> 'captcha',
 	'id'	=> 'captcha',
 	'maxlength'	=> 8,
+    'class' => 'uk-width-large-1-1'
 );
 $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-form uk-form-horizontal', 'id' => 'forgotform', 'method'=>'post');
 ?>
@@ -89,7 +96,7 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
         	<div class="uk-form-row">
                 <label class="uk-form-label" for="form-h-it"><?php echo form_label('สถานศึกษา', 'organization_id'); ?></label>
                 <div class="uk-form-controls uk-text-left">
-                	<select name="organization_id" id="organization_id">
+                	<select name="organization_id" id="organization_id" class='uk-width-large-1-1'>
                 	<option value="0">--- เลือกสถานศึกษา ---</option>
                     <?php 
                     for($i=0; $i<count($colleges); $i++){
@@ -174,8 +181,12 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
         <div class="uk-form-row">
             <label class="uk-form-label" for="form-h-it"></label>
             <div class="uk-form-controls uk-text-left">
-                <input type="submit" value="ลงทะเบียน" class="uk-button uk-button-success">
+                <input type="submit" value="ลงทะเบียน" class="uk-button uk-button-success uk-width-large-1-1">
             </div>
+        </div>
+        <hr/>
+        <div class="uk-text-center">
+            <div><?php echo anchor('/auth/login/', 'เป็นสมาชิกอยู่แล้ว...ลงชื่อเข้าสู่ระบบ'); ?></div>
         </div>
         <?php echo form_close(); ?>
 	</div>

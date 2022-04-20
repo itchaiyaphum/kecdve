@@ -5,6 +5,7 @@ $login = array(
 	'value' => set_value('login'),
 	'maxlength'	=> 80,
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 if ($login_by_username AND $login_by_email) {
 	$login_label = 'อีเมล์ หรือ ชื่อผู้ใช้';
@@ -17,11 +18,13 @@ $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
 	'size'	=> 30,
+    'class' => 'uk-width-large-1-1'
 );
 $captcha = array(
 	'name'	=> 'captcha',
 	'id'	=> 'captcha',
 	'maxlength'	=> 8,
+    'class' => 'uk-width-large-1-1'
 );
 $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-form uk-form-horizontal', 'id' => 'loginform', 'method'=>'post');
 ?>
@@ -100,12 +103,12 @@ $attributes = array('class' => 'uk-panel uk-panel-box uk-panel-box-secondary uk-
         <div class="uk-form-row">
             <label class="uk-form-label" for="form-h-it"></label>
             <div class="uk-form-controls uk-text-left">
-                <input type="submit" value="เข้าสู่ระบบ" class="uk-button uk-button-success">
+                <input type="submit" value="เข้าสู่ระบบ" class="uk-button uk-button-success uk-width-large-1-1">
             </div>
         </div>
         <hr/>
         <div class="uk-text-center">
-            <div><?php echo anchor('/auth/forgot_password/', 'ลืมรหัสผ่าน'); ?> | <?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'สมัครสมาชิกใหม่'); ?></div>
+            <div><?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'ยังไม่ได้เป็นสมาชิก...สมัครสมาชิกใหม่'); ?></div>
         </div>
         <input type="hidden" name="remember" value="1"/>
         <?php echo form_close(); ?>

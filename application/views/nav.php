@@ -84,6 +84,11 @@ tinymce.init({
                         if ($this->tank_auth->is_logged_in()) {
                             $profileData = $this->profile_lib->getData(); ?>
             				<?php if ($profileData->user_type=='student') { ?>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('profile');?>"><a href="<?php echo base_url('profile'); ?>"><span class="uk-icon-home"></span> หน้าหลัก</a></li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('activity');?>"><a href="<?php echo base_url('profile/activity/'); ?>"><span class="uk-icon-book"></span> บันทึกการเรียน</a></li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('time');?>"><a href="<?php echo base_url('profile/time/'); ?>"><span class="uk-icon-clock-o"></span> บันทึกเวลาเรียน</a></li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('evaluation');?>"><a href="<?php echo base_url('profile/evaluation/'); ?>"><span class="uk-icon-pie-chart"></span> สรุปผลการฝึกงาน</a></li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('request_internship');?>"><a href="<?php echo base_url('student/request_internship/'); ?>"><span class="uk-icon-cube"></span> ขอฝึกงาน</a></li>
             				<?php } elseif ($profileData->user_type=='advisor') { ?>
             				<li><a href="<?php echo base_url('advisor/');?>"><i class="uk-icon-home"></i> หน้าหลักสำหรับครูที่ปรึกษา</a></li>
             				
@@ -99,7 +104,7 @@ tinymce.init({
             				<li><a href="<?php echo base_url('auth/login');?>"><span class="uk-icon-lock"></span> ลงชื่อเข้าสู่ระบบ</a></li>
             			<?php } ?>
 							<li class="uk-nav-divider"></li>
-							<li><a target="_blank" href="https://line.me/R/ti/p/@itchaiyaphum"><i class="uk-icon-support"></i> Line: @itchaiyaphum</a></li>
+							<li><a target="_blank" href="https://line.me/R/ti/p/@itchaiyaphum"><i class="uk-icon-support"></i> Line: @kecdve</a></li>
             		</ul>
             	</div>
             </div>

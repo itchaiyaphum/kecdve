@@ -3,16 +3,19 @@ $old_password = array(
 	'name'	=> 'old_password',
 	'id'	=> 'old_password',
 	'size'	=> 30,
+    'class' => 'uk-width-small-1-1'
 );
 $new_password = array(
     'name'	=> 'new_password',
     'id'	=> 'new_password',
     'size'	=> 30,
+    'class' => 'uk-width-small-1-1'
 );
 $confirm_new_password = array(
 	'name'	=> 'confirm_new_password',
 	'id'	=> 'confirm_new_password',
 	'size'	=> 30,
+    'class' => 'uk-width-small-1-1'
 );
 $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform', 'method'=>'post');
 ?>
@@ -28,7 +31,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                 <div class="uk-alert uk-alert-success"><?php echo $messages;?></div>
                 <?php } ?>
                 <div class="uk-form-row">
-                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("รหัสผ่านเดิม:", $old_password['id']); ?></label>
+                    <label class="uk-form-label uk-text-center" for="form-h-it"><?php echo form_label("รหัสผ่านเดิม:", $old_password['id']); ?></label>
                     <div class="uk-form-controls">
                         <?php echo form_password($old_password); ?>
                         <div>
@@ -38,7 +41,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                     </div>
                 </div>
                 <div class="uk-form-row">
-                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("รหัสผ่านใหม่:", $new_password['id']); ?></label>
+                    <label class="uk-form-label uk-text-center" for="form-h-it"><?php echo form_label("รหัสผ่านใหม่:", $new_password['id']); ?></label>
                     <div class="uk-form-controls">
                         <?php echo form_password($new_password); ?>
                         <div>
@@ -48,7 +51,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                     </div>
                 </div>
                 <div class="uk-form-row">
-                    <label class="uk-form-label uk-text-right" for="form-h-it"><?php echo form_label("ยืนยันรหัสผ่านใหม่:", $confirm_new_password['id']); ?></label>
+                    <label class="uk-form-label uk-text-center" for="form-h-it"><?php echo form_label("ยืนยันรหัสผ่านใหม่:", $confirm_new_password['id']); ?></label>
                     <div class="uk-form-controls">
                         <?php echo form_password($confirm_new_password); ?>
                         <div>
@@ -60,7 +63,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                 <div class="uk-form-row">
                     <label class="uk-form-label" for="form-h-it"></label>
                     <div class="uk-form-controls uk-text-left">
-                        <input type="submit" value="บันทึกข้อมูล" class="uk-button uk-button-success">
+                        <input type="submit" value="บันทึกข้อมูล" class="uk-button uk-button-success uk-width-small-1-1">
                     </div>
                 </div>
                 <?php echo form_close(); ?>

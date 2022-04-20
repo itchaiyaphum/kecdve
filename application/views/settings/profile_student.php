@@ -5,154 +5,184 @@ $firstname = array(
 	'name'	=> 'firstname',
 	'id'	=> 'firstname',
     'value'	=> $profile->firstname,
+	'class' => 'uk-width-small-1-1'
 );
 $lastname = array(
 	'name'	=> 'lastname',
 	'id'	=> 'lastname',
     'value'	=> $profile->lastname,
+	'class' => 'uk-width-small-1-1'
 );
 $email = array(
 	'name'	=> 'email',
 	'id'	=> 'email',
 	'value'	=> $profile->email,
 	'size'	=> 30,
+	'class' => 'uk-width-small-1-1'
 );
 $firstname_en = array(
 	'name'	=> 'firstname_en',
 	'id'	=> 'firstname_en',
 	'value'	=> $profile->firstname_en,
+	'class' => 'uk-width-small-1-1'
 );
 $lastname_en = array(
 	'name'	=> 'lastname_en',
 	'id'	=> 'lastname_en',
 	'value'	=> $profile->lastname_en,
+	'class' => 'uk-width-small-1-1'
 );
 $student_id = array(
 	'name'	=> 'student_id',
 	'id'	=> 'student_id',
 	'value'	=> $profile->student_id,
+	'class' => 'uk-width-small-1-1'
 );
 $college_id = array(
 	'name'	=> 'college_id',
 	'id'	=> 'college_id',
 	'value'	=> $profile->college_id,
+	'class' => 'uk-width-small-1-1'
 );
 $department_id = array(
 	'name'	=> 'department_id',
 	'id'	=> 'department_id',
 	'value'	=> $profile->department_id,
+	'class' => 'uk-width-small-1-1'
 );
 $major_title = array(
 	'name'	=> 'major_title',
 	'id'	=> 'major_title',
 	'value'	=> $profile->major_title,
+	'class' => 'uk-width-small-1-1'
 );
 $group_title = array(
 	'name'	=> 'group_title',
 	'id'	=> 'group_title',
 	'value'	=> $profile->group_title,
+	'class' => 'uk-width-small-1-1'
 );
 $edulevel = array(
 	'name'	=> 'edulevel',
 	'id'	=> 'edulevel',
 	'value'	=> $profile->edulevel,
+	'class' => 'uk-width-small-1-1'
 );
 $religion_title = array(
 	'name'	=> 'religion_title',
 	'id'	=> 'religion_title',
 	'value'	=> $profile->religion_title,
+	'class' => 'uk-width-small-1-1'
 );
 $dob = array(
 	'name'	=> 'dob',
 	'id'	=> 'dob',
 	'value'	=> $profile->dob,
-    'data-uk-datepicker' => "{format:'YYYY-MM-DD'}"
+    'data-uk-datepicker' => "{format:'YYYY-MM-DD'}",
+	'class' => 'uk-width-small-1-1'
 );
 $age = array(
 	'name'	=> 'age',
 	'id'	=> 'age',
 	'value'	=> $profile->age,
+	'class' => 'uk-width-small-1-1'
 );
 $congenital_disease = array(
 	'name'	=> 'congenital_disease',
 	'id'	=> 'congenital_disease',
 	'value'	=> $profile->congenital_disease,
+	'class' => 'uk-width-small-1-1'
 );
 $drug_allergy = array(
 	'name'	=> 'drug_allergy',
 	'id'	=> 'drug_allergy',
 	'value'	=> $profile->drug_allergy,
+	'class' => 'uk-width-small-1-1'
 );
 $blood_type = array(
 	'name'	=> 'blood_type',
 	'id'	=> 'blood_type',
 	'value'	=> $profile->blood_type,
+	'class' => 'uk-width-small-1-1'
 );
 
 $hometown_no = array(
 	'name'	=> 'hometown_no',
 	'id'	=> 'hometown_no',
 	'value'	=> $profile->hometown_no,
+	'class' => 'uk-width-small-1-1'
 );
 $hometown_moo = array(
 	'name'	=> 'hometown_moo',
 	'id'	=> 'hometown_moo',
 	'value'	=> $profile->hometown_moo,
+	'class' => 'uk-width-small-1-1'
 );
 $hometown_subdistrict = array(
 	'name'	=> 'hometown_subdistrict',
 	'id'	=> 'hometown_subdistrict',
 	'value'	=> $profile->hometown_subdistrict,
+	'class' => 'uk-width-small-1-1'
 );
 $hometown_district = array(
 	'name'	=> 'hometown_district',
 	'id'	=> 'hometown_district',
 	'value'	=> $profile->hometown_district,
+	'class' => 'uk-width-small-1-1'
 );
 $hometown_province = array(
 	'name'	=> 'hometown_province',
 	'id'	=> 'hometown_province',
 	'value'	=> $profile->hometown_province,
+	'class' => 'uk-width-small-1-1'
 );
 $hometown_postcode = array(
 	'name'	=> 'hometown_postcode',
 	'id'	=> 'hometown_postcode',
 	'value'	=> $profile->hometown_postcode,
+	'class' => 'uk-width-small-1-1'
 );
 $hometown_mobile = array(
 	'name'	=> 'hometown_mobile',
 	'id'	=> 'hometown_mobile',
 	'value'	=> $profile->hometown_mobile,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_no = array(
 	'name'	=> 'current_address_no',
 	'id'	=> 'current_address_no',
 	'value'	=> $profile->current_address_no,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_moo = array(
 	'name'	=> 'current_address_moo',
 	'id'	=> 'current_address_moo',
 	'value'	=> $profile->current_address_moo,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_subdistrict = array(
 	'name'	=> 'current_address_subdistrict',
 	'id'	=> 'current_address_subdistrict',
 	'value'	=> $profile->current_address_subdistrict,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_district = array(
 	'name'	=> 'current_address_district',
 	'id'	=> 'current_address_district',
 	'value'	=> $profile->current_address_district,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_province = array(
 	'name'	=> 'current_address_province',
 	'id'	=> 'current_address_province',
 	'value'	=> $profile->current_address_province,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_postcode = array(
 	'name'	=> 'current_address_postcode',
 	'id'	=> 'current_address_postcode',
 	'value'	=> $profile->current_address_postcode,
+	'class' => 'uk-width-small-1-1'
 );
 $current_address_mobile = array(
 	'name'	=> 'current_address_mobile',
@@ -164,46 +194,55 @@ $experience_work = array(
 	'name'	=> 'experience_work',
 	'id'	=> 'experience_work',
 	'value'	=> $profile->experience_work,
+	'class' => 'uk-width-small-1-1'
 );
 $experience_skill = array(
 	'name'	=> 'experience_skill',
 	'id'	=> 'experience_skill',
 	'value'	=> $profile->experience_skill,
+	'class' => 'uk-width-small-1-1'
 );
 $experience_intesting = array(
 	'name'	=> 'experience_intesting',
 	'id'	=> 'experience_intesting',
 	'value'	=> $profile->experience_intesting,
+	'class' => 'uk-width-small-1-1'
 );
 $experience_status = array(
 	'name'	=> 'experience_status',
 	'id'	=> 'experience_status',
 	'value'	=> $profile->experience_status,
+	'class' => 'uk-width-small-1-1'
 );
 $experience_marry_name = array(
 	'name'	=> 'experience_marry_name',
 	'id'	=> 'experience_marry_name',
 	'value'	=> $profile->experience_marry_name,
+	'class' => 'uk-width-small-1-1'
 );
 $experience_marry_cocupation = array(
 	'name'	=> 'experience_marry_cocupation',
 	'id'	=> 'experience_marry_cocupation',
 	'value'	=> $profile->experience_marry_cocupation,
+	'class' => 'uk-width-small-1-1'
 );
 $emergency_name = array(
 	'name'	=> 'emergency_name',
 	'id'	=> 'emergency_name',
 	'value'	=> $profile->emergency_name,
+	'class' => 'uk-width-small-1-1'
 );
 $emergency_address = array(
 	'name'	=> 'emergency_address',
 	'id'	=> 'emergency_address',
 	'value'	=> $profile->emergency_address,
+	'class' => 'uk-width-small-1-1'
 );
 $emergency_mobile = array(
 	'name'	=> 'emergency_mobile',
 	'id'	=> 'emergency_mobile',
 	'value'	=> $profile->emergency_mobile,
+	'class' => 'uk-width-small-1-1'
 );
 
 
@@ -214,12 +253,12 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
 		<div class="tm-sidebar uk-width-medium-1-4 uk-hidden-small">
 			<?php $this->load->view('settings/menu');?>
 		</div>
-		<div class="tm-main uk-width-medium-3-4 uk-margin-top uk-margin-bottom">
+		<div class="tm-main uk-width-small-1-1 uk-width-medium-3-4 uk-margin-top uk-margin-bottom">
             <div class="uk-height-1-1 uk-margin-large-bottom">
             
             	<?php echo form_open_multipart($this->uri->uri_string(), $attributes); ?>
            	 		<div class="uk-grid">
-           	 			<div class="uk-width-1-2">
+           	 			<div class="uk-width-large-1-2">
                         	<h3><u>ข้อมูลพื้นฐานทั่วไป</u></h3>
                             <div class="uk-form-row">
                                 <label class="uk-form-label" ><?php echo form_label("อีเมล์", $email['id']); ?></label>
@@ -313,28 +352,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                                     </select>
                                 </div>
                             </div>
-                            <!-- 
-                            <div class="uk-form-row">
-                                <label class="uk-form-label" ><?php echo form_label("สาขาวิชา", $major_title['id']); ?></label>
-                                <div class="uk-form-controls">
-                                	<?php echo form_input($major_title); ?>
-                                	<div>
-                                    	<?php echo form_error($major_title['name']); ?>
-                                    	<?php echo isset($errors[$major_title['name']])?$errors[$major_title['name']]:''; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-form-row">
-                                <label class="uk-form-label" ><?php echo form_label("กลุ่ม", $group_title['id']); ?></label>
-                                <div class="uk-form-controls">
-                                	<?php echo form_input($group_title); ?>
-                                	<div>
-                                    	<?php echo form_error($group_title['name']); ?>
-                                    	<?php echo isset($errors[$group_title['name']])?$errors[$group_title['name']]:''; ?>
-                                    </div>
-                                </div>
-                            </div>
-                             -->
+                            
                             <div class="uk-form-row">
                                 <label class="uk-form-label" ><?php echo form_label("ระดับ", $edulevel['id']); ?></label>
                                 <div class="uk-form-controls uk-form-controls-text">
@@ -496,7 +514,7 @@ $attributes = array('class' => 'uk-form uk-form-horizontal', 'id' => 'loginform'
                                 </div>
                             </div>
                 		</div>
-                		<div class="uk-width-1-2">
+                		<div class="uk-width-large-1-2">
                 			<h3><u>ภูมิลำเนาเดิม</u></h3>
                             <div class="uk-form-row">
                                 <label class="uk-form-label" ><?php echo form_label("บ้านเลขที่", $hometown_no['id']); ?></label>

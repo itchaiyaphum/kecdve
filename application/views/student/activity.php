@@ -15,7 +15,7 @@
     		for($i=0; $i<18; $i++){
     		?>
 			<div class="uk-panel uk-panel-box uk-panel-box-default uk-margin-top">
-				<table class="uk-table uk-table-hover uk-table-responsive uk-table-striped" cellpadding="1">
+				<table class="uk-table uk-table-hover uk-table-responsive" cellpadding="1">
 					<thead>
 						<tr>
 						<th class="uk-width-large-1-10">สัปดาห์ที่</th>

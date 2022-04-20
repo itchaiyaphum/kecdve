@@ -24,6 +24,13 @@ class Adminusers extends BaseController
         $this->load->view('admin/users/index', $data);
         $this->load->view('footer');
     }
+
+    public function bypass()
+    {
+        $user_id = $this->input->get_post('id', 0);
+        $this->adminusers_model->bypass_login($user_id);
+        redirect('/');
+    }
     
     public function edit()
     {

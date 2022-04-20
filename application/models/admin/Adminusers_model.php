@@ -41,6 +41,22 @@ class Adminusers_model extends BaseModel
         return $items;
     }
 
+    public function bypass_login($user_id = 0)
+    {
+        $this->table->load($user_id);
+        return $this->ci->auth_lib->bypass_login(array(
+            'user_id'	=> $this->table->id,
+            'username'	=> $this->table->username,
+            'email'	    => $this->table->email,
+            'firstname'	=> $this->table->firstname,
+            'lastname'	=> $this->table->lastname,
+            'user_type'	=> $this->table->user_type,
+            'thumbnail'	=> $this->table->thumbnail,
+            'bypass'	=> 1,
+            'status'	=> $this->table->activated
+        ));
+    }
+
     public function getQueryWhere($options)
     {
         $filter_search = $this->ci->input->get_post('users_filter_search');

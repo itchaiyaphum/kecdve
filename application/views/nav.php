@@ -84,14 +84,21 @@ tinymce.init({
                         if ($this->tank_auth->is_logged_in()) {
                             $profileData = $this->profile_lib->getData(); ?>
             				<?php if ($profileData->user_type=='student') { ?>
-							<li class="<?php echo $this->helper_lib->getActiveMenu('profile');?>"><a href="<?php echo base_url('profile'); ?>"><span class="uk-icon-home"></span> หน้าหลัก</a></li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('profile');?>"><a href="<?php echo base_url('profile'); ?>"><span class="uk-icon-home"></span> หน้าหลักสำหรับนักเรียน</a></li>
 							<li class="<?php echo $this->helper_lib->getActiveMenu('activity');?>"><a href="<?php echo base_url('profile/activity/'); ?>"><span class="uk-icon-book"></span> บันทึกการเรียน</a></li>
 							<li class="<?php echo $this->helper_lib->getActiveMenu('time');?>"><a href="<?php echo base_url('profile/time/'); ?>"><span class="uk-icon-clock-o"></span> บันทึกเวลาเรียน</a></li>
 							<li class="<?php echo $this->helper_lib->getActiveMenu('evaluation');?>"><a href="<?php echo base_url('profile/evaluation/'); ?>"><span class="uk-icon-pie-chart"></span> สรุปผลการฝึกงาน</a></li>
 							<li class="<?php echo $this->helper_lib->getActiveMenu('request_internship');?>"><a href="<?php echo base_url('student/request_internship/'); ?>"><span class="uk-icon-cube"></span> ขอฝึกงาน</a></li>
             				<?php } elseif ($profileData->user_type=='advisor') { ?>
-            				<li><a href="<?php echo base_url('advisor/');?>"><i class="uk-icon-home"></i> หน้าหลักสำหรับครูที่ปรึกษา</a></li>
-            				
+            				<li class="<?php echo $this->helper_lib->getActiveMenu('advisor');?>">
+							<a href="<?php echo base_url('advisor'); ?>"><span class="uk-icon-home"></span> หน้าหลักสำหรับครูที่ปรึกษา</a>
+							</li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('evaluation');?>">
+							<a href="<?php echo base_url('advisor/evaluation'); ?>"><span class="uk-icon-pie-chart"></span> ประเมินผลการฝึกงาน</a>
+							</li>
+							<li class="<?php echo $this->helper_lib->getActiveMenu('request_internship');?>">
+							<a href="<?php echo base_url('advisor/request_internship/'); ?>"><span class="uk-icon-cube"></span> อนุมัติขอฝึกงาน</a>
+							</li>
             				<?php } elseif ($profileData->user_type=='admin') { ?>
             				<li><a href="<?php echo base_url('admin/');?>"><i class="uk-icon-home"></i> เข้าระบบจัดการข้อมูล</a></li>
             				<?php } ?>

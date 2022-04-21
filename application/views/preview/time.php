@@ -15,15 +15,17 @@
             		$days_of_weeks = array('จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์');
             		for($i=0; $i<18; $i++){
             		?>
-            			<table class="uk-table">
+            			<table class="uk-table uk-table-hover uk-table-responsive" cellpadding="1">
+							<thead>
             				<tr>
-            					<td class="uk-width-1-10">สัปดาห์ที่ <?php echo ($i+1);?></td>
-            					<td class="uk-width-1-10">วัน</td>
-            					<td class="uk-width-2-10">เวลามา</td>
-            					<td class="uk-width-2-10">เวลากลับ</td>
-            					<td class="uk-width-3-10">หมายเหตุ</td>
-            					<td class="uk-width-1-10" colspan="2"></td>
+            					<th class="uk-width-1-10">สัปดาห์ที่</th>
+            					<th class="uk-width-1-10">วัน</th>
+            					<th class="uk-width-2-10">เวลามา</th>
+            					<th class="uk-width-2-10">เวลากลับ</th>
+            					<th class="uk-width-3-10">หมายเหตุ</th>
+            					<th class="uk-width-1-10" colspan="2"></th>
             				</tr>
+							</thead>
             			</table>
             			<?php 
                     	for($j=0; $j<count($days_of_weeks); $j++){
@@ -65,56 +67,98 @@
                 		    
                     	?>
                     	<form action="<?php base_url('preview/time'); ?>" id="<?php echo $form_name;?>" class="main-form uk-form uk-form-horizontal" method="post">
-                    	<table class="uk-table">
+                    	<table class="uk-table uk-table-hover uk-table-responsive" cellpadding="1">
+							<tbody>
             				<tr>
-            					<td class="uk-width-1-10"></td>
-            					<td class="uk-width-1-10"><?php echo $days_of_weeks[$j];?></td>
-            					<td class="uk-width-2-10">
-            						<select name="come_hour" style="width: 50px; float: left;" <?php echo ($check_status_disable)?'disabled':'';?>>
-                                		<?php 
-                                		for($ii=0; $ii<24; $ii++){
-                                		?>
-                                		<option value="<?php echo $ii;?>" <?php echo ($ii==$come_hour)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
-                                		<?php } ?>
-                                	</select>
-                                	<select name="come_minute" style="width: 50px; float: left; margin-left: 5px;" <?php echo ($check_status_disable)?'disabled':'';?>>
-                                		<?php 
-                                		for($ii=0; $ii<60; $ii++){
-                                		?>
-                                		<option value="<?php echo $ii;?>" <?php echo ($ii==$come_minute)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
-                                		<?php } ?>
-                                	</select>
+            					<td class="uk-width-large-1-10">
+									<div class="uk-grid uk-grid-collapse">
+										<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">สัปดาห์ที่: </div>
+										<div class="uk-width-small-7-10 uk-width-large-1-1">
+											<?php echo ($i+1);?>
+										</div>
+									</div>	
+								</td>
+            					<td class="uk-width-large-1-10">
+									<div class="uk-grid uk-grid-collapse">
+										<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">วัน: </div>
+										<div class="uk-width-small-7-10 uk-width-large-1-1">
+											<?php echo $days_of_weeks[$j];?>
+										</div>
+									</div>	
+								</td>
+            					<td class="uk-width-large-2-10">
+									<div class="uk-grid uk-grid-collapse">
+										<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">เวลามา: </div>
+										<div class="uk-width-small-7-10 uk-width-large-1-1">
+											<select name="come_hour" style="width: 50px; float: left;" <?php echo ($check_status_disable)?'disabled':'';?>>
+												<?php 
+												for($ii=0; $ii<24; $ii++){
+												?>
+												<option value="<?php echo $ii;?>" <?php echo ($ii==$come_hour)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
+												<?php } ?>
+											</select>
+											<select name="come_minute" style="width: 50px; float: left; margin-left: 5px;" <?php echo ($check_status_disable)?'disabled':'';?>>
+												<?php 
+												for($ii=0; $ii<60; $ii++){
+												?>
+												<option value="<?php echo $ii;?>" <?php echo ($ii==$come_minute)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>	
                                 </td>
-            					<td class="uk-width-2-10">
-            						<select name="back_hour" style="width: 50px; float: left;" <?php echo ($check_status_disable)?'disabled':'';?>>
-                                		<?php 
-                                		for($ii=0; $ii<24; $ii++){
-                                		?>
-                                		<option value="<?php echo $ii;?>" <?php echo ($ii==$back_hour)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
-                                		<?php } ?>
-                                	</select>
-            						<select name="back_minute" style="width: 50px; float: left; margin-left: 5px;" <?php echo ($check_status_disable)?'disabled':'';?>>
-                                		<?php 
-                                		for($ii=0; $ii<60; $ii++){
-                                		?>
-                                		<option value="<?php echo $ii;?>" <?php echo ($ii==$back_minute)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
-                                		<?php } ?>
-                                	</select>
+            					<td class="uk-width-large-2-10">
+									<div class="uk-grid uk-grid-collapse">
+										<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">เวลากลับ: </div>
+										<div class="uk-width-small-7-10 uk-width-large-1-1">
+											<select name="back_hour" style="width: 50px; float: left;" <?php echo ($check_status_disable)?'disabled':'';?>>
+												<?php 
+												for($ii=0; $ii<24; $ii++){
+												?>
+												<option value="<?php echo $ii;?>" <?php echo ($ii==$back_hour)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
+												<?php } ?>
+											</select>
+											<select name="back_minute" style="width: 50px; float: left; margin-left: 5px;" <?php echo ($check_status_disable)?'disabled':'';?>>
+												<?php 
+												for($ii=0; $ii<60; $ii++){
+												?>
+												<option value="<?php echo $ii;?>" <?php echo ($ii==$back_minute)?' selected="selected" ':''; ?>><?php echo $ii;?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>	
             					</td>
-            					<td class="uk-width-3-10">
-            						<div class="uk-form-row">
-                						<select style="width: 100%;" name="remark" <?php echo ($check_status_disable)?'disabled':'';?>>
-                							<option value="0" <?php echo ($remark==0)?' selected="selected" ':''; ?>></option>
-                							<option value="1" <?php echo ($remark==1)?' selected="selected" ':''; ?>>วันหยุดราชการ</option>
-                							<option value="2" <?php echo ($remark==2)?' selected="selected" ':''; ?>>วันหยุดสถานประกอบการ</option>
-                							<option value="3" <?php echo ($remark==3)?' selected="selected" ':''; ?>>ทำงานนอกเวลา</option>
-                							<option value="4" <?php echo ($remark==4)?' selected="selected" ':''; ?>>อื่นๆ</option>
-                						</select>
-                						<textarea style="height: 30px; width: 100%;" name="remark_text" <?php echo ($check_status_disable)?'disabled':'';?>><?php echo $remark_text;?></textarea>
-            						</div>
+            					<td class="uk-width-large-3-10">
+									<div class="uk-grid uk-grid-collapse">
+										<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold">หมายเหตุ: </div>
+										<div class="uk-width-small-7-10 uk-width-large-1-1">
+											<div class="uk-form-row">
+												<select style="width: 100%;" name="remark" <?php echo ($check_status_disable)?'disabled':'';?>>
+													<option value="0" <?php echo ($remark==0)?' selected="selected" ':''; ?>></option>
+													<option value="1" <?php echo ($remark==1)?' selected="selected" ':''; ?>>วันหยุดราชการ</option>
+													<option value="2" <?php echo ($remark==2)?' selected="selected" ':''; ?>>วันหยุดสถานประกอบการ</option>
+													<option value="3" <?php echo ($remark==3)?' selected="selected" ':''; ?>>ทำงานนอกเวลา</option>
+													<option value="4" <?php echo ($remark==4)?' selected="selected" ':''; ?>>อื่นๆ</option>
+												</select>
+												<textarea style="height: 30px; width: 100%;" name="remark_text" <?php echo ($check_status_disable)?'disabled':'';?>><?php echo $remark_text;?></textarea>
+											</div>
+										</div>
+									</div>	
             					</td>
-            					<td class="uk-width-1-10">
-            						<input type="submit" <?php echo ($check_status_disable)?'disabled':'';?> value="บันทึก" class="uk-button uk-button-small uk-button-success">
+            					<td class="uk-width-large-1-10">
+									<div class="uk-grid uk-grid-collapse">
+										<div class="uk-width-small-3-10 uk-hidden-large uk-text-bold"></div>
+										<div class="uk-width-small-7-10 uk-width-large-1-1">
+											<?php
+                                            if (!$check_status_disable) {
+                                            ?>
+											<input type="submit" value="บันทึก" class="uk-button uk-button-small uk-button-success">
+											<?php
+                                            } 
+											?>
+											
+										</div>
+									</div>	
             					</td>
             				</tr>
             				
@@ -179,7 +223,7 @@
             				<?php 
 							}
 							?>
-            				
+            				</tbody>
             			</table>
             			
                 		<input type="hidden" value="<?php echo ($i+1);?>" name="week"/>
